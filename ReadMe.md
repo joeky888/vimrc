@@ -41,8 +41,8 @@ The code is under Public-domain licence.
 | --------- | ----------------------------------------------------- | ----------- |
 | Ctrl A    | Move cursor to the beginning of the line              | |
 | Ctrl E    | Move cursor to the end of the line                    | |
-| Ctrl C    | Copy current line / Copy Selection                    | |
-| Ctrl X    | Cut current line / Cut Selection                      | |
+| Ctrl C    | Copy current line / Copy Selection                    | Also copy to a file `clipboard.txt` if you are using terminals |
+| Ctrl X    | Cut current line / Cut Selection                      | Also cut to a file `clipboard.txt` if you are using terminals |
 | Ctrl V    | Paste                                                 | |
 | Ctrl D    | Duplicate current line                                | |
 | Ctrl K    | Delete current line                                   | |
@@ -77,6 +77,7 @@ The code is under Public-domain licence.
 | Ctrl B    | Delete a word backward                                | |
 | Tab       | Indent                                                | |
 | Shift Tab | Unindent                                              | |
+| Insert    | Paste from `clipboard.txt`                            | Only available in terminals, in case vim clipboard is broken |
 | F2        | New tab                                               | Like Byobu |
 | F3        | Move to next tab                                      | Like Byobu |
 | F4        | Move to previous tab                                  | Like Byobu |
