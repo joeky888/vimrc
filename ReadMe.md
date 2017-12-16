@@ -31,9 +31,7 @@ Features
 * Extra menu items under Edit option (GUI)
 * For vim beginners only
 
-This vimrc is based on [MiniVim](https://github.com/sd65/MiniVim). It runs on both Vim>=7.4 and neovim even though
-
-I am not a fan of neovim. I do not intend to release it to an extra public repo.
+This vimrc is based on [MiniVim](https://github.com/sd65/MiniVim). It runs on Vim/Gvim/MacVim >= 7.4
 
 The code is under Public-domain licence.
 
