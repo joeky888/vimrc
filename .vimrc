@@ -1461,10 +1461,12 @@ EOF
   " :'<,'>JsonBeautify
   command! -range=% JsonBeautify python FormatJSON(<line1>, <line2>)
   nnoremenu Edit.Json.Beautify(UTF8)  ggVG:<C-u>'<,'>JsonBeautify<CR>
+  inoremenu Edit.Json.Beautify(UTF8)  <ESC>ggVG:<C-u>'<,'>JsonBeautify<CR>
   vnoremenu Edit.Json.Beautify(UTF8)  :<C-u>'<,'>JsonBeautify<CR>
 else
   command! JsonBeautify %!python -m json.tool
   nnoremenu Edit.Json.Beautify(cANSI) :%!python -m json.tool<CR>
+  inoremenu Edit.Json.Beautify(cANSI) <ESC>:%!python -m json.tool<CR>
 endif
 
 function! JsonMinify()
@@ -1476,6 +1478,7 @@ function! JsonMinify()
 endfunction
 
 nnoremenu Edit.Json.Minify    :call JsonMinify()<CR>
+inoremenu Edit.Json.Minify    <ESC>:call JsonMinify()<CR>
 command! JsonMinify           call JsonMinify()
 
 " XML pretty by vim
@@ -1499,7 +1502,9 @@ function! XmlMinify()
 endfunction
 
 nnoremenu Edit.XML.Beautify   :call XmlBeautify()<CR>
+inoremenu Edit.XML.Beautify   <ESC>:call XmlBeautify()<CR>
 nnoremenu Edit.XML.Minify     :call XmlMinify()<CR>
+inoremenu Edit.XML.Minify     <ESC>:call XmlMinify()<CR>
 command! XmlBeautify    execute "call XmlBeautify()"
 command! XmlMinify      execute "call XmlMinify()"
 
@@ -1508,6 +1513,7 @@ command! -range=% XXD <line1>,<line2>%!xxd
 
 " Merge selected to one line
 nnoremenu Edit.Merge\ to\ one\ line  :%j!<CR>
+inoremenu Edit.Merge\ to\ one\ line  <ESC>:%j!<CR>
 vnoremenu Edit.Merge\ to\ one\ line  gv:%j!<CR>
 command! -range=% MergeToOneLine <line1>,<line2>%j!
 
@@ -1515,6 +1521,9 @@ command! -range=% MergeToOneLine <line1>,<line2>%j!
 nnoremenu Edit.Remove.Empty\ lines          :g/^$/de<CR>
 nnoremenu Edit.Remove.Leading\ whitespace   :%s/^\s\+//e<CR>
 nnoremenu Edit.Remove.Trailing\ whitespace  :%s/\s\+$//e<CR>
+inoremenu Edit.Remove.Empty\ lines          <ESC>:g/^$/de<CR>
+inoremenu Edit.Remove.Leading\ whitespace   <ESC>:%s/^\s\+//e<CR>
+inoremenu Edit.Remove.Trailing\ whitespace  <ESC>:%s/\s\+$//e<CR>
 
 command! -range=% RemoveLeadingSpace     <line1>,<line2>%s/^\s\+//e
 command! -range=% RemoveTrailingSpace    <line1>,<line2>%s/\s\+$//e
@@ -1522,7 +1531,9 @@ command! -range=% RemoveEmptyLines       <line1>,<line2>g/^$/d
 
 " Toggle case
 nnoremenu Edit.Toggle\ case.Upper          ggVGU
+inoremenu Edit.Toggle\ case.Upper          <ESC>ggVGU
 nnoremenu Edit.Toggle\ case.Lower          ggVGu
+inoremenu Edit.Toggle\ case.Lower          <ESC>ggVGu
 vnoremenu Edit.Toggle\ case.Upper          U
 vnoremenu Edit.Toggle\ case.Lower          u
 command! -range=% ToggleCaseToUpper  <line1>,<line2>s/\%V.*\%V./\U&/
@@ -1551,12 +1562,15 @@ function! Reverse()
   endtry
 endfunction
 nnoremenu Edit.Reverse\ String Vc<C-O>:set revins<CR><C-R>"<Esc>:set norevins<CR>
+inoremenu Edit.Reverse\ String <ESC>Vc<C-O>:set revins<CR><C-R>"<Esc>:set norevins<CR>
 vnoremenu Edit.Reverse\ String c<C-O>:set revins<CR><C-R>"<Esc>:set norevins<CR>
 command! -range ReverseString <line1>,<line2>call Reverse()
 
 " Opencc
 nnoremenu Edit.Opencc.Traditional         :%!opencc -c s2twp.json<CR>
+inoremenu Edit.Opencc.Traditional         <ESC>:%!opencc -c s2twp.json<CR>
 nnoremenu Edit.Opencc.Simplified          :%!opencc -c tw2sp.json<CR>
+inoremenu Edit.Opencc.Simplified          <ESC>:%!opencc -c tw2sp.json<CR>
 
 command! -range=% Opencc2T    <line1>,<line2>%!opencc -c s2twp.json
 command! -range=% Opencc2S    <line1>,<line2>%!opencc -c tw2sp.json
@@ -1567,15 +1581,21 @@ function! FastRender()
   syntax clear
 endfunction
 
-noremenu Edit.FastRender :call FastRender()<CR>
+nnoremenu Edit.FastRender :call FastRender()<CR>
+inoremenu Edit.FastRender <ESC>:call FastRender()<CR>
 command! FastRender call FastRender()
 
 " Split view
-noremenu Edit.Split\ Window.Vertical\ 2     :vsplit<CR>
-noremenu Edit.Split\ Window.Vertical\ 3     :vsplit<CR>:vsplit<CR>:wincmd =<CR>
-noremenu Edit.Split\ Window.Horizontal\ 2   :split<CR>
-noremenu Edit.Split\ Window.Horizontal\ 3   :split<CR>:split<CR>:wincmd =<CR>
-noremenu Edit.Split\ Window.4               :split<CR>:vsplit<CR>:wincmd j<CR>:vsplit<CR>:wincmd k<CR>
+nnoremenu Edit.Split\ Window.Vertical\ 2     :vsplit<CR>
+nnoremenu Edit.Split\ Window.Vertical\ 3     :vsplit<CR>:vsplit<CR>:wincmd =<CR>
+nnoremenu Edit.Split\ Window.Horizontal\ 2   :split<CR>
+nnoremenu Edit.Split\ Window.Horizontal\ 3   :split<CR>:split<CR>:wincmd =<CR>
+nnoremenu Edit.Split\ Window.4               :split<CR>:vsplit<CR>:wincmd j<CR>:vsplit<CR>:wincmd k<CR>
+inoremenu Edit.Split\ Window.Vertical\ 2     <ESC>:vsplit<CR>
+inoremenu Edit.Split\ Window.Vertical\ 3     <ESC>:vsplit<CR>:vsplit<CR>:wincmd =<CR>
+inoremenu Edit.Split\ Window.Horizontal\ 2   <ESC>:split<CR>
+inoremenu Edit.Split\ Window.Horizontal\ 3   <ESC>:split<CR>:split<CR>:wincmd =<CR>
+inoremenu Edit.Split\ Window.4               <ESC>:split<CR>:vsplit<CR>:wincmd j<CR>:vsplit<CR>:wincmd k<CR>
 
 command! Split2Vertical     vsplit
 command! Split3Vertical     vsplit | vsplit | wincmd =
@@ -1618,30 +1638,47 @@ command! IndentSpace8   execute "call IndentSpace(8)"
 command! IndentTab2     execute "call IndentTab(2)"
 command! IndentTab4     execute "call IndentTab(4)"
 command! IndentTab8     execute "call IndentTab(8)"
-noremenu Edit.Indent.Space\ 2   :call IndentSpace(2)<CR>
-noremenu Edit.Indent.Space\ 4   :call IndentSpace(4)<CR>
-noremenu Edit.Indent.Space\ 8   :call IndentSpace(8)<CR>
-noremenu Edit.Indent.Tab\ 2     :call IndentTab(2)<CR>
-noremenu Edit.Indent.Tab\ 4     :call IndentTab(4)<CR>
-noremenu Edit.Indent.Tab\ 8     :call IndentTab(8)<CR>
+nnoremenu Edit.Indent.Space\ 2   :call IndentSpace(2)<CR>
+nnoremenu Edit.Indent.Space\ 4   :call IndentSpace(4)<CR>
+nnoremenu Edit.Indent.Space\ 8   :call IndentSpace(8)<CR>
+nnoremenu Edit.Indent.Tab\ 2     :call IndentTab(2)<CR>
+nnoremenu Edit.Indent.Tab\ 4     :call IndentTab(4)<CR>
+nnoremenu Edit.Indent.Tab\ 8     :call IndentTab(8)<CR>
+inoremenu Edit.Indent.Space\ 2   <ESC>:call IndentSpace(2)<CR>
+inoremenu Edit.Indent.Space\ 4   <ESC>:call IndentSpace(4)<CR>
+inoremenu Edit.Indent.Space\ 8   <ESC>:call IndentSpace(8)<CR>
+inoremenu Edit.Indent.Tab\ 2     <ESC>:call IndentTab(2)<CR>
+inoremenu Edit.Indent.Tab\ 4     <ESC>:call IndentTab(4)<CR>
+inoremenu Edit.Indent.Tab\ 8     <ESC>:call IndentTab(8)<CR>
 
 " Line ending format
 command! LineEndingUnix   execute "set fileformat=unix"
 command! LineEndingDos    execute "set fileformat=dos"
 command! LineEndingMac    execute "set fileformat=mac"
-noremenu Edit.Line\ ending.Unix\ (\\n)    :set fileformat=unix<CR>
-noremenu Edit.Line\ ending.Dos\ (\\r\\n)  :set fileformat=dos<CR>
-noremenu Edit.Line\ ending.Mac\ (\\r)     :set fileformat=mac<CR>
+nnoremenu Edit.Line\ ending.Unix\ (\\n)    :set fileformat=unix<CR>
+nnoremenu Edit.Line\ ending.Dos\ (\\r\\n)  :set fileformat=dos<CR>
+nnoremenu Edit.Line\ ending.Mac\ (\\r)     :set fileformat=mac<CR>
+inoremenu Edit.Line\ ending.Unix\ (\\n)    <ESC>:set fileformat=unix<CR>
+inoremenu Edit.Line\ ending.Dos\ (\\r\\n)  <ESC>:set fileformat=dos<CR>
+inoremenu Edit.Line\ ending.Mac\ (\\r)     <ESC>:set fileformat=mac<CR>
 
 " Encoding
-noremenu Edit.Encoding.UTF8      :e ++enc=utf-8<CR>
-noremenu Edit.Encoding.Big5      :e ++enc=big5<CR>
-noremenu Edit.Encoding.GBK       :e ++enc=gbk<CR>
-noremenu Edit.Encoding.Japan     :e ++enc=japan<CR>
-noremenu Edit.Encoding.Korea     :e ++enc=korea<CR>
-noremenu Edit.Encoding.UTF16LE   :e ++enc=utf-16le<CR>
-noremenu Edit.Encoding.UTF16BE   :e ++enc=utf-16be<CR>
-noremenu Edit.Encoding.ANSI      :e ++enc=ansi<CR>
+nnoremenu Edit.Encoding.UTF8      :e ++enc=utf-8<CR>
+nnoremenu Edit.Encoding.Big5      :e ++enc=big5<CR>
+nnoremenu Edit.Encoding.GBK       :e ++enc=gbk<CR>
+nnoremenu Edit.Encoding.Japan     :e ++enc=japan<CR>
+nnoremenu Edit.Encoding.Korea     :e ++enc=korea<CR>
+nnoremenu Edit.Encoding.UTF16LE   :e ++enc=utf-16le<CR>
+nnoremenu Edit.Encoding.UTF16BE   :e ++enc=utf-16be<CR>
+nnoremenu Edit.Encoding.ANSI      :e ++enc=ansi<CR>
+inoremenu Edit.Encoding.UTF8      <ESC>:e ++enc=utf-8<CR>
+inoremenu Edit.Encoding.Big5      <ESC>:e ++enc=big5<CR>
+inoremenu Edit.Encoding.GBK       <ESC>:e ++enc=gbk<CR>
+inoremenu Edit.Encoding.Japan     <ESC>:e ++enc=japan<CR>
+inoremenu Edit.Encoding.Korea     <ESC>:e ++enc=korea<CR>
+inoremenu Edit.Encoding.UTF16LE   <ESC>:e ++enc=utf-16le<CR>
+inoremenu Edit.Encoding.UTF16BE   <ESC>:e ++enc=utf-16be<CR>
+inoremenu Edit.Encoding.ANSI      <ESC>:e ++enc=ansi<CR>
 
 command! EncodingUTF8    execute "e ++enc=utf-8"
 command! EncodingBig5    execute "e ++enc=big5"
@@ -1679,7 +1716,8 @@ command! -nargs=1 Download call DownloadFile(<f-args>)
 
 if !exists('g:ftypes') | let g:ftypes = map(split(globpath(&rtp, 'syntax/*.vim'), '\n'), 'fnamemodify(v:val, ":t:r")') | endif
 for syn in g:ftypes
-  execute "noremenu Edit.Filetype.".split(syn, '\zs')[0].".".syn." :setlocal filetype=".syn."<CR>"
+  execute "nnoremenu Edit.Filetype.".split(syn, '\zs')[0].".".syn." :setlocal filetype=".syn."<CR>"
+  execute "inoremenu Edit.Filetype.".split(syn, '\zs')[0].".".syn." <ESC>:setlocal filetype=".syn."<CR>"
 endfor
 
 " Get into insert mode by pressing any key in visual mode

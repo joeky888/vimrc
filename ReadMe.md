@@ -89,7 +89,7 @@ The code is under Public-domain licence.
 | Alt  Backspace    |  Delete a word backward                       | In case Ctrl key is not working in terminal emulators |
 | Ctrl Delete       |  Delete a word forward                        | |
 
-## Extra menu items (Not available in Insert mode, GUI only)
+## Extra menu items (GUI)
 
 ![Menu](https://i.imgur.com/5HfHMOK.png)
 
