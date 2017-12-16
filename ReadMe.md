@@ -37,13 +37,13 @@ The code is under Public-domain licence.
 
 | Keys      | Action                                                | Description |
 | --------- | ----------------------------------------------------- | ----------- |
-| Ctrl A    | Move cursor to the beginning of the line              | |
-| Ctrl E    | Move cursor to the end of the line                    | |
+| Ctrl A    | Move cursor to the beginning of the line              | Just like macOS and terminals |
+| Ctrl E    | Move cursor to the end of the line                    | Just like macOS and terminals |
 | Ctrl C    | Copy current line / Copy Selection                    | Also copy to a file `clipboard.txt` if you are using terminals |
 | Ctrl X    | Cut current line / Cut Selection                      | Also cut to a file `clipboard.txt` if you are using terminals |
 | Ctrl V    | Paste                                                 | |
 | Ctrl D    | Duplicate current line                                | |
-| Ctrl K    | Delete current line                                   | |
+| Ctrl K    | Kill current line / Kill selected lines               | Just like nano |
 | Ctrl F    | Search                                                | Case insensitive  |
 | /         | Search                                                | Case sensitive    |
 | Ctrl R    | Replace                                               | Case sensitive    |
