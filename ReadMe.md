@@ -58,16 +58,16 @@ The code is under Public-domain licence.
 | \| (bar)  | Enter multiple-line editing from Visual-Block mode    | |
 | Ctrl N    | Next word                                             | |
 | Ctrl P    | Previous word                                         | |
-| Ctrl U    | Jump multiple lines up                                | Depends on window size |
-| Ctrl J    | Jump multiple lines down                              | Depends on window size |
+| Ctrl U    | Jump up multiple lines                                | Depends on window size |
+| Ctrl J    | Jump down multiple lines                              | Depends on window size |
 | Ctrl →    | Next word                                             | |
 | Ctrl ←    | Previous word                                         | |
-| Ctrl ↑    | Jump multiple lines up                                | Depends on window size |
-| Ctrl ↓    | Jump multiple lines down                              | Depends on window size |
+| Ctrl ↑    | Jump up multiple lines                                | Depends on window size |
+| Ctrl ↓    | Jump down multiple lines                              | Depends on window size |
 | Alt →     | Next word                                             | In case Ctrl key is not working in terminal emulators |
 | Alt ←     | Previous word                                         | |
-| Alt ↑     | Jump multiple lines up                                | Depends on window size |
-| Alt ↓     | Jump multiple lines down                              | Depends on window size |
+| Alt ↑     | Jump up multiple lines                                | Depends on window size |
+| Alt ↓     | Jump down multiple lines                              | Depends on window size |
 | Shift →   | Select next word                                      | In case Ctrl key is not working in terminal emulators |
 | Shift ←   | Select previous word                                  | |
 | Shift ↑   | Select multiple lines up                              | Depends on window size |
