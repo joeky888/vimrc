@@ -979,8 +979,8 @@ nnoremap <silent> <C-\> :call ToggleComment()<CR>
 inoremap <silent> <C-\> <C-o>:call ToggleComment()<CR>
 vnoremap <silent> <C-\> :call ToggleComment()<CR>
 
-inoremap <C-b> <C-w>
-nnoremap <C-b> i<C-w>
+inoremap <C-b> <C-w><C-g>u
+nnoremap <C-b> i<C-w><C-g>u
 cnoremap <C-b> <C-w>
 nnoremap <Del> i<Del>
 
