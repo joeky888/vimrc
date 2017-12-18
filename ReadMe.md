@@ -199,6 +199,6 @@ $   End of line
 [A-Za-z0-9_]    alphanumeric
 [^A-Za-z0-9_]   non-alphanumeric
 
-[\u0021-\u002F]     range of unicode
-[^\u0000-\u007F]    range of non-ASCII (Full-width characters)
+[\u0000-\u007F]     range of ASCII
+[^\u0000-\u007F]    range of non-ASCII (e.g. Full-width characters)
 ```
