@@ -169,3 +169,48 @@ stty lnext '^-' stop undef start undef -ixon # In order to use Ctrl V
 export VISUAL="vim" # For sudoedit command
 export EDITOR="$VISUAL" # For sudoedit command
 ```
+
+Regex pattern Cheat sheet
+=====
+```conf
+\s  whitespace character        \S  non-whitespace character
+\d  number digit                \D  non-number digit
+\x  hex digit	                \X  non-hex digit
+\o  octal digit	                \O  non-octal digit
+\a  alphabetic character        \A  non-alphabetic character
+\w  ASCII letters and numbers   \W  non-letters or non-numbers
+\l  lowercase character         \L  non-lowercase character
+\u  uppercase character         \U  non-uppercase character
+
+\e  <Esc>
+\t  <Tab>
+\r  <CR>
+\b  <BS> <Backspace>
+\n  line break
+
+.   any character
+*   matches 0 or more
+\+  matches 1 or more
+\=  matches 0 or 1
+\{n,m}      matches from n to m times
+\{n}        matches exactly n times
+\{,m}       matches at most m times
+\{n,}       matches at least n times
+
+[A-Za-z0-9_]    alphanumeric
+[^A-Za-z0-9_]   non-alphanumeric
+
+[:alnum:]       ASCII letters and numbers
+[:alpha:]       ASCII letters
+[:blank:]       space and tab
+[:digit:]       decimal digits '0' to '9'
+[:lower:]       lowercase letters
+[:upper:]       uppercase letters (all letters when
+[:print:]       printable characters including space
+[:space:]       whitespace characters: space, tab, CR, NL, vertical tab
+[:xdigit:]      hexadecimal digits: 0-9, a-f, A-F
+[:return:]      the <CR> character
+[:tab:]         the <Tab> character
+[\u0021-\u002F]     range of unicode
+[^\u0000-\u007F]    range of non-ASCII (Full-width characters)
+```
