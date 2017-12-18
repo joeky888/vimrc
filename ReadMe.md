@@ -173,6 +173,9 @@ export EDITOR="$VISUAL" # For sudoedit command
 ### Cheat sheet for Vim regex pattern matching
 
 ```conf
+^   Begin of line
+$   End of line
+
 \s  whitespace character        \S  non-whitespace character
 \d  number digit                \D  non-number digit
 \x  hex digit	                \X  non-hex digit
