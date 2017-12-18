@@ -201,4 +201,7 @@ $   End of line
 
 [\u0000-\u007F]     range of ASCII
 [^\u0000-\u007F]    range of non-ASCII (e.g. Full-width characters)
+
+# Remove all lines contains a pattern
+:g/pattern/d
 ```
