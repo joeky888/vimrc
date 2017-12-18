@@ -48,7 +48,7 @@ The code is under Public-domain licence.
 | /         | Search                                                | Case sensitive    |
 | Ctrl R    | Replace                                               | Case sensitive    |
 | Ctrl G    | Select all                                            | |
-| Ctrl \\   | Comment/Uncomment	                                    | Depends on file type |
+| Ctrl \\   | Comment/Uncomment                                     | Depends on file type |
 | Ctrl T    | New tab                                               | |
 | Ctrl Z    | Undo                                                  | |
 | Ctrl Y    | Redo                                                  | |
@@ -170,7 +170,7 @@ export VISUAL="vim" # For sudoedit command
 export EDITOR="$VISUAL" # For sudoedit command
 ```
 
-Regex pattern Cheat sheet
+Cheat sheet for Vim regex pattern matching
 =====
 ```conf
 \s  whitespace character        \S  non-whitespace character
@@ -181,17 +181,13 @@ Regex pattern Cheat sheet
 \w  ASCII letters and numbers   \W  non-letters or non-numbers
 \l  lowercase character         \L  non-lowercase character
 \u  uppercase character         \U  non-uppercase character
-
-\e  <Esc>
-\t  <Tab>
-\r  <CR>
-\b  <BS> <Backspace>
-\n  line break
+\t  Tab character
 
 .   any character
 *   matches 0 or more
 \+  matches 1 or more
 \=  matches 0 or 1
+
 \{n,m}      matches from n to m times
 \{n}        matches exactly n times
 \{,m}       matches at most m times
