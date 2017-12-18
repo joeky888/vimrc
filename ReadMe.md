@@ -200,17 +200,6 @@ Regex pattern Cheat sheet
 [A-Za-z0-9_]    alphanumeric
 [^A-Za-z0-9_]   non-alphanumeric
 
-[:alnum:]       ASCII letters and numbers
-[:alpha:]       ASCII letters
-[:blank:]       space and tab
-[:digit:]       decimal digits '0' to '9'
-[:lower:]       lowercase letters
-[:upper:]       uppercase letters (all letters when
-[:print:]       printable characters including space
-[:space:]       whitespace characters: space, tab, CR, NL, vertical tab
-[:xdigit:]      hexadecimal digits: 0-9, a-f, A-F
-[:return:]      the <CR> character
-[:tab:]         the <Tab> character
 [\u0021-\u002F]     range of unicode
 [^\u0000-\u007F]    range of non-ASCII (Full-width characters)
 ```
