@@ -146,8 +146,8 @@ The code is under Public-domain licence.
 | AutoCompleteDisable   |                                               | |
 | Download              | Download a file from a given URL              | |
 
-Extra notes
-=====
+### Extra notes
+
 * Don't use `sudo vim`, use `sudoedit` instead
 * On MacVim, both Ctrl key and Command key will work
 * There are some keys one should never map them
@@ -170,8 +170,8 @@ export VISUAL="vim" # For sudoedit command
 export EDITOR="$VISUAL" # For sudoedit command
 ```
 
-Cheat sheet for Vim regex pattern matching
-=====
+### Cheat sheet for Vim regex pattern matching
+
 ```conf
 \s  whitespace character        \S  non-whitespace character
 \d  number digit                \D  non-number digit
