@@ -411,7 +411,7 @@ function! PasteClipboardInsertMode()
   return ''
 endfunction
 
-function! MacVimKeyMapping()
+function! MetaKeyMapping()
   if has("gui_macvim")
     " Command A - Begin Line
     call CreateShortcut("D-a", "0", "nv")
@@ -456,7 +456,7 @@ function! MacVimKeyMapping()
     execute 'nnoremap <silent> <A-Down> '.g:vertical_jump.'j'
     execute 'inoremap <silent> <A-Down> <C-\><C-O>'.g:vertical_jump.'j'
     execute 'vnoremap <silent> <A-Down> '.g:vertical_jump.'j'
-      " Command U - Pageup
+    " Command U - Pageup
     execute 'nnoremap <silent> <D-u> '.g:vertical_jump.'k'
     execute 'inoremap <silent> <D-u> <C-\><C-O>'.g:vertical_jump.'k'
     execute 'vnoremap <silent> <D-u> '.g:vertical_jump.'k'
@@ -520,10 +520,10 @@ function! MacVimKeyMapping()
     nnoremap <silent> <D-\> :call ToggleComment()<CR>
     inoremap <silent> <D-\> <C-o>:call ToggleComment()<CR>
     vnoremap <silent> <D-\> :call ToggleComment()<CR>
-    inoremap <D-b> <C-w>
-    nnoremap <D-b> i<C-w>
+    inoremap <D-b> <C-w><C-g>u
+    nnoremap <D-b> i<C-w><C-g>u
     cnoremap <D-b> <C-w>
-    nnoremap <Del> i<Del>
+    nnoremap <Del> i<Del><C-g>u
     " Useful command mode mapping
     cnoremap <D-k> <C-e><C-u>
     cnoremap <D-f> <C-c>:noh<CR>:redraw<CR>/
@@ -550,7 +550,136 @@ function! MacVimKeyMapping()
     inoremap <silent> <D-v> <C-r>=PasteClipboardInsertMode()<CR><C-g>u
     cnoremap <D-v> <C-r>+
   endif
+  " Meta A - Begin Line
+  call CreateShortcut("M-a", "0", "nv")
+  inoremap <M-a> <Home>
+  " Meta E - End Line
+  call CreateShortcut("M-e", "$l", "nv")
+  inoremap <M-e> <End>
+  " Meta S - Save
+  nnoremap <silent> <M-s> :call FileSave()<CR>
+  inoremap <silent> <M-s> <C-g>u<C-O>:call FileSave()<CR>
+  vnoremap <silent> <M-s> <ESC>:call FileSave()<CR>
+  cnoremap <M-s> <C-c>:call FileSave()<CR>
+  " Meta K - Delete Line
+  nnoremap <silent> <M-k> :call DeleteLine()<CR>
+  inoremap <silent> <M-k> <C-o>:call DeleteLine()<CR><C-g>u
+  vnoremap <silent> <M-k> :d _<CR>
+  " Meta D - Duplicate Line
+  nnoremap <silent> <M-d> mj:t.<CR>`jji
+  inoremap <silent> <M-d> <C-\><C-O>mj<C-O>:t.<CR><C-O>`j<Down><C-g>u
+  vnoremap <M-d> yPgv
+  " Meta Q - Visual block selection
+  nnoremap <M-q> <C-v>
+  inoremap <M-q> <C-\><C-o><C-v>
+  vnoremap <M-q> <ESC>
+  " Meta Left - Move a word
+  call CreateShortcut("M-Left", "b", "n")
+  " Meta Right - Move a word
+  call CreateShortcut("M-Right", "w", "n")
+  " Meta Up - Pageup, &scroll = half of screen lines
+  execute 'nnoremap <silent> <M-Up> '.g:vertical_jump.'k'
+  execute 'inoremap <silent> <M-Up> <C-\><C-O>'.g:vertical_jump.'k'
+  execute 'vnoremap <silent> <M-Up> '.g:vertical_jump.'k'
+  " Meta Down - Pagedown
+  execute 'nnoremap <silent> <M-Down> '.g:vertical_jump.'j'
+  execute 'inoremap <silent> <M-Down> <C-\><C-O>'.g:vertical_jump.'j'
+  execute 'vnoremap <silent> <M-Down> '.g:vertical_jump.'j'
+  " Meta U - Pageup
+  execute 'nnoremap <silent> <M-u> '.g:vertical_jump.'k'
+  execute 'inoremap <silent> <M-u> <C-\><C-O>'.g:vertical_jump.'k'
+  execute 'vnoremap <silent> <M-u> '.g:vertical_jump.'k'
+  " Meta J - Pagedown
+  execute 'nnoremap <silent> <M-j> '.g:vertical_jump.'j'
+  execute 'inoremap <silent> <M-j> <C-\><C-O>'.g:vertical_jump.'j'
+  execute 'vnoremap <silent> <M-j> '.g:vertical_jump.'j'
+  " Meta F - Find
+  nnoremap <M-f> :noh<CR>:redraw<CR>:set ignorecase<CR>/
+  inoremap <M-f> <Esc>:noh<CR>:redraw<CR>:set ignorecase<CR>/
+  vnoremap <M-f> <Esc>:noh<CR>:redraw<CR>:set ignorecase<CR>/\%V
+  " Meta R - Search and Replace
+  nnoremap <M-r> :noh<CR>:redraw<CR>:set noignorecase<CR>:%s/
+  inoremap <M-r> <Esc>:noh<CR>:redraw<CR>:set noignorecase<CR>:%s/
+  vnoremap <M-r> <Esc>:noh<CR>:redraw<CR>:set noignorecase<CR>:'<,'>s/\%V
+  " Meta G - Select all
+  call CreateShortcut("M-g", "ggVG", "inv")
+  " Meta L - Visual line selection
+  call CreateShortcut("M-l", "V", "n")
+  inoremap <M-l> <C-\><C-O>V
+  vnoremap <M-l> <ESC>
+  " Meta Pageup - Move up Line booster
+  nnoremap <silent> <M-PageUp> mj:<C-u>silent! move-16<CR>`j
+  inoremap <silent> <M-PageUp> <C-\><C-O>mj<C-O>:<C-u>silent! move-16<CR><C-O>`j<C-g>u
+  vnoremap <silent> <M-PageUp> :<C-u>silent! '<,'>move-16<CR>gv
+  " Meta Pagedown - Move down Line boosted
+  nnoremap <silent> <M-PageDown> mj:<C-u>silent! move+15<CR>`j
+  inoremap <silent> <M-PageDown> <C-\><C-O>mj<C-O>:<C-u>silent! move+15<CR><C-O>`j<C-g>u
+  vnoremap <silent> <M-PageDown> :<C-u>silent! '<,'>move'>+15<CR>gv
+  " Meta W - Quit
+  nnoremap <silent> <M-w> :call FileQuit()<CR>
+  inoremap <silent> <M-w> <C-o>:call FileQuit()<CR>
+  vnoremap <silent> <M-w> <ESC>:call FileQuit()<CR>
+  cnoremap <M-w> <C-c>:call FileQuit()<CR>
+  " Meta Z - Undo
+  nnoremap <M-z> u
+  inoremap <M-z> <C-o>u
+  vnoremap <M-z> <ESC>u
+  cnoremap <M-z> <C-c>u
+  " Meta Y - Redo
+  nnoremap <M-y> <C-r>
+  inoremap <M-y> <C-o><C-r>
+  cnoremap <M-y> <C-c><C-r>
+  " Meta T - New tab
+  call CreateShortcut("M-t", ":tabnew<CR>", "inv", "noTrailingIInInsert", "cmdInVisual")
+  " Meta N - Next word
+  call CreateShortcut("M-n", "w", "n")
+  inoremap <M-n> <C-Right>
+  vnoremap <M-n> <S-Right>
+  " Meta P - Previous word
+  call CreateShortcut("M-p", "b", "n")
+  inoremap <M-p> <C-Left>
+  vnoremap <M-p> <S-Left>
+  " Meta Left - Previous 5 column
+  vnoremap <M-Left> <S-Left>
+  " Meta Right - Next 5 column
+  vnoremap <M-Right> <S-Right>
+  " Meta O - Netrw (:Explore)
+  call CreateShortcut("M-o",":call OpenNetrw()<CR>", "inv", "noTrailingIInInsert", "cmdInVisual")
+  " Meta \ is toggling comments
+  nnoremap <silent> <M-\> :call ToggleComment()<CR>
+  inoremap <silent> <M-\> <C-o>:call ToggleComment()<CR>
+  vnoremap <silent> <M-\> :call ToggleComment()<CR>
+  inoremap <M-b> <C-w><C-g>u
+  nnoremap <M-b> i<C-w><C-g>u
+  cnoremap <M-b> <C-w>
+  nnoremap <Del> i<Del><C-g>u
+  " Useful command mode mapping
+  cnoremap <M-k> <C-e><C-u>
+  cnoremap <M-f> <C-c>:noh<CR>:redraw<CR>/
+  cnoremap <M-r> <C-c>:noh<CR>:redraw<CR>:%s/
+  cnoremap <M-a> <Home>
+  cnoremap <M-e> <End>
+  inoremap <M-CR> <C-o>o<C-g>u
+  nnoremap <M-CR> o<C-g>u
+  inoremap <M-BS> <C-g>u<C-W>
+  nnoremap <M-BS> i<C-g>u<C-W>
+  cnoremap <M-BS> <C-w>
+  " Meta C is copying line if there is no word selected
+  nnoremap <M-c> mjV"+y:redraw!<CR>`ji
+  inoremap <M-c> <C-\><C-o>mj<C-o>V"+y<C-o>:redraw!<CR><C-o>`j
+  vnoremap <M-c> "+y:redraw!<CR>gv
+  cnoremap <M-c> <C-y>
+  " Meta X is cutting line if there is no word selected
+  nnoremap <silent> <M-x>           :call SavePos()<CR>dd:call setpos(".", b:savepos)<CR>
+  inoremap <silent> <M-x> <C-\><C-o>:call SavePos()<CR><C-\><C-o>dd<C-\><C-o>:call setpos(".", b:savepos)<CR><C-g>u
+  vnoremap <silent> <M-x> "+x
+  " Meta V is pasting from system clipboard
+  nnoremap <silent> <M-v> "+gPi<C-g>u
+  vnoremap <silent> <M-v> "_d"+gP
+  inoremap <silent> <M-v> <C-r>=PasteClipboardInsertMode()<CR><C-g>u
+  cnoremap <M-v> <C-r>+
 endfunction
+au VimEnter * call MetaKeyMapping()
 
 " Usefull shortcuts for entering insert mode
 nnoremap <CR> i<CR>
@@ -2014,8 +2143,6 @@ if has("gui_running")
     set backupdir=$TEMP/vim/backup
     set undodir=$TEMP/vim/undo
     au GUIEnter * simalt ~x " Full screen on start
-  elseif has("gui_macvim")
-    au VimEnter * call MacVimKeyMapping()
   endif
   set number
   set lines=999 columns=999 " set window Maximized
