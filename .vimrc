@@ -732,6 +732,9 @@ nnoremap <4-MiddleMouse> <Nop>
 inoremap <4-MiddleMouse> <Nop>
 vnoremap <4-MiddleMouse> <Nop>
 
+" Disable EX mode
+nnoremap Q <Nop>
+
 " Meta LeftMouse is block selecting
 noremap  <M-LeftMouse> <4-LeftMouse>
 inoremap <M-LeftMouse> <4-LeftMouse>
