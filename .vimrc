@@ -1980,6 +1980,7 @@ function! HighlightPS1()
   endif
   set ft=ps1
   let b:comment_leader = '#'
+  setlocal ts=2 sw=2 sts=2
   syn case ignore
   syn cluster ps1NotTop contains=@ps1Comment,ps1CDocParam,ps1FunctionDeclaration
   syn keyword ps1CommentTodo TODO FIXME XXX TBD HACK NOTE contained
