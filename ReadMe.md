@@ -204,3 +204,7 @@ $   End of line
 
 :g/pattern/d        Remove all lines contains a pattern
 ```
+
+### TODO
+=====
+* Compatible with neovim
