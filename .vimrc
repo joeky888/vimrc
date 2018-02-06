@@ -1180,7 +1180,7 @@ inoremap <silent> ( (<C-r>=AutoPair(")")<CR>
 " Commenting blocks of code.
 autocmd FileType c,cpp,java         let b:comment_leader = '\/\/'
 autocmd FileType javascript         let b:comment_leader = '\/\/'
-autocmd FileType arduino            let b:comment_leader = '\/\/'
+autocmd FileType arduino,groovy     let b:comment_leader = '\/\/'
 autocmd FileType registry,dosini    let b:comment_leader = ';'
 autocmd FileType dosbatch           let b:comment_leader = '::'
 autocmd FileType sh,ruby,python     let b:comment_leader = '#'
