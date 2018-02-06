@@ -1190,6 +1190,7 @@ autocmd FileType make,cmake,yaml    let b:comment_leader = '#'
 autocmd FileType debsources,desktop let b:comment_leader = '#'
 autocmd FileType xdefaults          let b:comment_leader = '#'
 autocmd FileType dockerfile         let b:comment_leader = '#'
+autocmd FileType jproperties        let b:comment_leader = '#'
 autocmd FileType matlab,tex         let b:comment_leader = '%'
 autocmd FileType vim                let b:comment_leader = '"'
 autocmd FileType css                let b:comment_leader = '\/\*'   |   let b:comment_ender = '\*\/'
@@ -2153,7 +2154,7 @@ if has("gui_running")
   set fileformats=dos,unix,mac
   if has("multi_byte_ime") || has("xim")
     set iminsert=2 " This could cause statusline color act weirdly
-    set imcmdline
+    " set imcmdline " Disabled since searching with sogou IM on Linux is painful
     set imsearch=2
   endif
 
