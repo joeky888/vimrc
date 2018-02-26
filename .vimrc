@@ -2154,10 +2154,14 @@ if has("gui_running")
   set number
   set lines=999 columns=999 " set window Maximized
   set fileformats=dos,unix,mac
-  if has("multi_byte_ime") || has("xim")
+  if has("multi_byte_ime")
     set iminsert=2 " This could cause statusline color act weirdly
-    " set imcmdline " Disabled since searching with sogou IM on Linux is painful
+    set imcmdline
     set imsearch=2
+  elseif has("xim")
+"     set iminsert=2 " This could cause statusline color act weirdly
+"     set imcmdline " Disabled since searching with sogou IM on Linux is painful
+"     set imsearch=2
   endif
 
   function! ChangeFontSize()
