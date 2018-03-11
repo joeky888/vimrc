@@ -2166,7 +2166,7 @@ if has("gui_running")
 
   function! ChangeFontSize()
     if has('win32') || has('win64')
-      execute "set guifont=Ubuntu\\ Mono:h".g:guifontsize.",Consolas:h".g:guifontsize
+      execute "set guifont=Ubuntu\\ Mono:h".g:guifontsize.",Consolas:h".g:guifontsize.",Lucida_Console:h".g:guifontsize
       execute "set guifontwide=DroidMono:h".g:guifontsize.",Sarasa\\ Mono\\ TC:h".g:guifontsize.",NSimsun:h".g:guifontsize
     elseif has("gui_macvim")
       execute "set guifont=Monaco:h".g:guifontsize
