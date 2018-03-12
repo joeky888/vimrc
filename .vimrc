@@ -1568,9 +1568,11 @@ function! SyntaxMonokai()
 
   if has("win32unix") || ( !has("gui_running") && ( has("win32") && has("win64") ) )
     if !executable("uname")
+      " Powershell
       set t_Co=16
       colorscheme murphy
     elseif system('uname -o') =~ "Msys" && system('uname -s') =~ "MINGW"
+      " Powershell, I guess :)
       set t_Co=16
       colorscheme murphy
     endif
