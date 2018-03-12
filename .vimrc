@@ -1566,14 +1566,24 @@ function! SyntaxMonokai()
   hi WildMenu             ctermfg=81      ctermbg=16      guifg=#66D9EF     guibg=#000000
   hi iCursor              guifg=#000000   guibg=#F8F8F0
 
-  if ( has("win32") || has("win64") ) && !has("gui_running") && !executable("zsh") && !executable("uname")
-    set shell=powershell
-    set shellcmdflag=-command
-    highlight clear
-    syntax reset
-    syntax enable
-    set t_Co=256
-    colorscheme murphy
+  if ( has("win32") || has("win64") ) && !has("gui_running")
+    if !executable("uname")
+      set shell=powershell
+      set shellcmdflag=-command
+      highlight clear
+      syntax reset
+      syntax enable
+      set t_Co=16
+      colorscheme murphy
+    elseif system('uname -o') =~ "Msys" && system('uname -s') =~ "MINGW"
+      set shell=powershell
+      set shellcmdflag=-command
+      highlight clear
+      syntax reset
+      syntax enable
+      set t_Co=16
+      colorscheme murphy
+    endif
   endif
 endfunction
 
