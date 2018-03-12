@@ -1565,6 +1565,16 @@ function! SyntaxMonokai()
   hi WarningMsg           ctermfg=231     ctermbg=238     cterm=none        guifg=#FFFFFF       guibg=#333333   gui=none
   hi WildMenu             ctermfg=81      ctermbg=16      guifg=#66D9EF     guibg=#000000
   hi iCursor              guifg=#000000   guibg=#F8F8F0
+
+  if ( has("win32") || has("win64") ) && !has("gui_running") && !executable("bash") && !executable("uname")
+    set shell=powershell
+    set shellcmdflag=-command
+    highlight clear
+    syntax reset
+    syntax enable
+    set t_Co=256
+    colorscheme murphy
+  endif
 endfunction
 
 " :OpenDroppedFiles <Drop_Files_To_Vim>
