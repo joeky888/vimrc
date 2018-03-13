@@ -1571,7 +1571,7 @@ function! SyntaxMonokai()
       " Powershell
       set t_Co=16
       colorscheme murphy
-    elseif system('uname -o') =~ "Msys" && system('uname -s') =~ "MINGW"
+    elseif &shell =~ "cmd.exe" || &shell =~ "command.com"
       " Powershell, I guess :)
       set t_Co=16
       colorscheme murphy
