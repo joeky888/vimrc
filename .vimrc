@@ -823,7 +823,7 @@ cnoremap <Insert> <C-r>"
 
 " Ctrl S - Save
 nnoremap <silent> <C-s> :call FileSave()<CR>
-inoremap <silent> <C-s> <C-g>u<C-O>:call FileSave()<CR>
+inoremap <expr> <silent> <C-s> pumvisible() ? "\<C-e>\<C-g>u\<C-o>:call FileSave()\<CR>" : "\<C-g>u\<C-O>:call FileSave()\<CR>"
 vnoremap <silent> <C-s> <ESC>:call FileSave()<CR>
 cnoremap <C-s> <C-c>:call FileSave()<CR>
 
