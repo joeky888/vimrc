@@ -1314,11 +1314,10 @@ let colorsAndModesGui= {
 function! LastAccentColor()
   if !exists('b:lastMode')
     let b:lastMode = g:currentmode[mode()]
-    if &t_Co == "16" | call ChangeAccentColor16() | else | call ChangeAccentColor()
-    endif
+    if &t_Co == "16" | call ChangeAccentColor16() | else | call ChangeAccentColor() | endif
   elseif b:lastMode != g:currentmode[mode()]
     let b:lastMode = g:currentmode[mode()]
-    if &t_Co == "16" | call ChangeAccentColor16() | else | call ChangeAccentColor()
+    if &t_Co == "16" | call ChangeAccentColor16() | else | call ChangeAccentColor() | endif
   endif
   return ''
 endfunction
