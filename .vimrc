@@ -1588,8 +1588,8 @@ function! SyntaxMonokai()
     if !executable("uname")
       " Powershell
       call SyntaxMonokai16color()
-    elseif &shell =~ "cmd.exe" || &shell =~ "command.com" || &shell =~ "powershell"
-      " Powershell, I guess :)
+    elseif &shell =~ "cmd.exe" || &shell =~ "command.com" || &shell =~ "powershell" || &shell =~ "sh"
+      " CMD or Powershell, I guess :)
       call SyntaxMonokai16color()
     endif
   endif
