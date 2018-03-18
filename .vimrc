@@ -1625,10 +1625,10 @@ function! SyntaxMonokai16color()
   " Normal is the background color
   hi Normal ctermfg=7 ctermbg=0 cterm=NONE
   " Visual is the selection color
-  hi Visual ctermfg=7 ctermbg=11 cterm=NONE
+  hi Visual ctermfg=15 ctermbg=3 cterm=NONE
   " Pmenu is the popup autocomplete color
-  hi Pmenu ctermfg=7 ctermbg=11 cterm=NONE
-  hi PmenuSel ctermfg=11 ctermbg=7 cterm=NONE
+  hi Pmenu ctermfg=7 ctermbg=2 cterm=NONE
+  hi PmenuSel ctermfg=2 ctermbg=7 cterm=NONE
 
   hi Green      ctermfg=10 ctermbg=NONE cterm=NONE
   hi iGreen     ctermfg=0 ctermbg=10 cterm=NONE
