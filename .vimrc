@@ -1648,7 +1648,7 @@ function! SyntaxMonokai16color()
   hi Constant             ctermfg=13      cterm=none
   hi Cursor               ctermfg=0       ctermbg=7
   hi CursorColumn         ctermbg=0
-  hi CursorLine           ctermbg=14      cterm=none
+  hi CursorLine           ctermbg=1       cterm=none
   hi Debug                ctermfg=15      cterm=none
   hi Define               ctermfg=11
   hi Delimiter            ctermfg=8
