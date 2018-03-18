@@ -1291,11 +1291,18 @@ command! UndoCloseTab call OpenLastBufferInNewTab()
 """ Colors and Statusline
 
 let defaultAccentColor=161
+let defaultAccentColor16=12
 let colorsAndModes= {
   \ 'i' : 39,
   \ 'v' : 82,
   \ 'V' : 226,
   \ '' : 208
+\}
+let colorsAndModes16= {
+  \ 'i' : 11,
+  \ 'v' : 10,
+  \ 'V' : 14,
+  \ '' : 14
 \}
 let defaultAccentColorGui='#D7005F'
 let colorsAndModesGui= {
@@ -1307,10 +1314,11 @@ let colorsAndModesGui= {
 function! LastAccentColor()
   if !exists('b:lastMode')
     let b:lastMode = g:currentmode[mode()]
-    call ChangeAccentColor()
+    if &t_Co == "16" | call ChangeAccentColor16() | else | call ChangeAccentColor()
+    endif
   elseif b:lastMode != g:currentmode[mode()]
     let b:lastMode = g:currentmode[mode()]
-    call ChangeAccentColor()
+    if &t_Co == "16" | call ChangeAccentColor16() | else | call ChangeAccentColor()
   endif
   return ''
 endfunction
@@ -1324,6 +1332,17 @@ function! ChangeAccentColor()
   execute 'hi! TabLineSel ctermfg=233 cterm=NONE ctermbg=' . accentColor
   execute 'hi! TabLine ctermbg=233 ctermfg=' . accentColor
   execute 'hi! CursorLineNr ctermfg=' . accentColor . ' guifg=' . accentColorGui
+  return ''
+endfunction
+function! ChangeAccentColor16()
+  let accentColor=get(g:colorsAndModes16, mode(), g:defaultAccentColor16)
+  let accentColorGui=get(g:colorsAndModesGui, mode(), g:defaultAccentColorGui)
+  execute 'hi! User1 ctermfg=0 ctermbg=' . accentColor
+  execute 'hi! User2 ctermbg=0 ctermfg=' . accentColor
+  execute 'hi! User3 ctermfg=0 cterm=NONE ctermbg=' . accentColor
+  execute 'hi! TabLineSel ctermfg=0 cterm=NONE ctermbg=' . accentColor
+  execute 'hi! TabLine ctermbg=0 ctermfg=' . accentColor
+  execute 'hi! CursorLineNr ctermfg=' . accentColor
   return ''
 endfunction
 function! SearchCount()
@@ -1569,14 +1588,124 @@ function! SyntaxMonokai()
   if has("win32unix") || ( !has("gui_running") && ( has("win32") && has("win64") ) )
     if !executable("uname")
       " Powershell
-      set t_Co=16
-      colorscheme murphy
+      call SyntaxMonokai16color()
     elseif &shell =~ "cmd.exe" || &shell =~ "command.com" || &shell =~ "powershell"
       " Powershell, I guess :)
-      set t_Co=16
-      colorscheme murphy
+      call SyntaxMonokai16color()
     endif
   endif
+endfunction
+
+function! SyntaxMonokai16color()
+
+   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " If terminal true colors are supported                                        "
+  "                                                                              "
+  " 00 black         #1B1D1E  rgb( 27,   29,   30), 233, rgb%{ 11,   11,     12} "
+  " 01 dark red      #E90000  rgb(233,    0,    0), 160, rgb%{ 91,    0,      0} "
+  " 02 dark green    #00AF00  rgb(  0,  175,    0), 034, rgb%{  0,   69,      0} "
+  " 03 dark yellow   #FFFF00  rgb(255,  255,    0), 144, rgb%{100,  100,      0} "
+  " 04 dark blue     #00AFFF  rgb(  0,  175,  255), 081, rgb%{ 40,   85,     94} "
+  " 05 dark magenta  #AE81FF  rgb(174,  129,  255), 135, rgb%{ 68,   51,    100} "
+  " 06 dark cyan     #A1EFE4  rgb(161,  239,  228), 014, rgb%{ 63,   94,     89} "
+  " 07 light gray    #F8F8F2  rgb(248,  248,  242), 252, rgb%{ 97,   97,     95} "
+  " 08 dark gray     #7E8E91  rgb(126,  142,  145), 059, rgb%{ 49,   56,     57} "
+  " 09 light red     #F92672  rgb(249,   38,  114), 161, rgb%{ 98,   15,     45} "
+  " 10 light green   #A6E22E  rgb(166,  226,   46), 118, rgb%{ 65,   89,     18} "
+  " 11 light yellow  #F4BF75  rgb(244,  191,  117), 011, rgb%{ 96,   75,     46} "
+  " 12 light blue    #66D9EF  rgb(102,  217,  239), 039, rgb%{ 40,   85,     94} "
+  " 13 light magenta #AE81FF  rgb(174,  129,  255), 135, rgb%{ 68,   51,    100} "
+  " 14 light cyan    #A1EFE4  rgb(161,  239,  228), 014, rgb%{ 63,   94,     89} "
+  " 15 white         #F8F8F2  rgb(248,  248,  242), 252, rgb%{ 97,   97,     95} "
+  """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+  highlight clear
+  syntax reset
+  set t_Co=16
+
+  " Normal is the background color
+  hi Normal ctermfg=7 ctermbg=0 cterm=NONE
+  " Visual is the selection color
+  hi Visual ctermfg=7 ctermbg=11 cterm=NONE
+  " Pmenu is the popup autocomplete color
+  hi Pmenu ctermfg=7 ctermbg=11 cterm=NONE
+  hi PmenuSel ctermfg=11 ctermbg=7 cterm=NONE
+
+  hi Green      ctermfg=10 ctermbg=NONE cterm=NONE
+  hi iGreen     ctermfg=0 ctermbg=10 cterm=NONE
+  hi Blue       ctermfg=11 ctermbg=NONE cterm=NONE
+  hi iBlue      ctermfg=0 ctermbg=11 cterm=NONE
+  hi Search     ctermfg=8 ctermbg=14 cterm=NONE
+  hi IncSearch  ctermfg=7 ctermbg=10  cterm=NONE
+
+  " Init StatusLine colors
+  call ChangeAccentColor16()
+
+  hi Boolean              ctermfg=13
+  hi Character            ctermfg=11
+  hi ColorColumn          ctermbg=0
+  hi Comment              ctermfg=8
+  hi Conditional          ctermfg=12      cterm=none
+  hi Constant             ctermfg=13      cterm=none
+  hi Cursor               ctermfg=0       ctermbg=7
+  hi CursorColumn         ctermbg=0
+  hi CursorLine           ctermbg=14      cterm=none
+  hi Debug                ctermfg=15      cterm=none
+  hi Define               ctermfg=11
+  hi Delimiter            ctermfg=8
+  hi DiffAdd              ctermbg=11
+  hi DiffChange           ctermfg=11      ctermbg=0
+  hi DiffDelete           ctermfg=12      ctermbg=0
+  hi DiffText             ctermbg=0       cterm=none
+  hi Directory            ctermfg=11      cterm=none
+  hi Error                ctermfg=7       ctermbg=12
+  hi ErrorMsg             ctermfg=12      ctermbg=0      cterm=none
+  hi Exception            ctermfg=10      cterm=none
+  hi Float                ctermfg=13
+  hi FoldColumn           ctermfg=11      ctermbg=0
+  hi Folded               ctermfg=8       ctermbg=0     cterm=NONE
+  hi Function             ctermfg=10
+  hi Identifier           ctermfg=14      cterm=none
+  hi Ignore               ctermfg=8       ctermbg=0
+  hi Keyword              ctermfg=12      cterm=none
+  hi Label                ctermfg=14      cterm=none
+  hi LineNr               ctermfg=7       ctermbg=0
+  hi Macro                ctermfg=10
+  hi MatchParen           ctermfg=0       ctermbg=14     cterm=none
+  hi MoreMsg              ctermfg=14
+  hi NonText              ctermfg=8
+  hi Number               ctermfg=13
+  hi Operator             ctermfg=12
+  hi PmenuSbar            ctermbg=0
+  hi PmenuThumb           ctermfg=11
+  hi PreCondit            ctermfg=10      cterm=none
+  hi PreProc              ctermfg=10      cterm=none
+  hi Question             ctermfg=11
+  hi Repeat               ctermfg=12      cterm=none
+  hi SignColumn           ctermfg=10      ctermbg=0
+  hi Special              ctermfg=11
+  hi SpecialChar          ctermfg=12      cterm=none
+  hi SpecialComment       ctermfg=8       cterm=none
+  hi SpecialKey           ctermfg=11
+  hi SpellBad             ctermbg=52      cterm=underline
+  hi SpellCap             ctermbg=17      cterm=underline
+  hi SpellLocal           ctermbg=17      cterm=underline
+  hi Statement            ctermfg=12      cterm=none
+  hi StatusLine           ctermfg=0       ctermbg=7
+  hi StatusLineNC         ctermfg=8       ctermbg=0
+  hi StorageClass         ctermfg=14
+  hi String               ctermfg=11
+  hi Structure            ctermfg=11
+  hi TabLineFill          cterm=none      ctermbg=none
+  hi Tag                  ctermfg=12
+  hi Title                ctermfg=14
+  hi Todo                 ctermfg=15      ctermbg=0     cterm=none
+  hi Type                 ctermfg=11      cterm=none
+  hi Typedef              ctermfg=11
+  hi Underlined           ctermfg=7       cterm=underline
+  hi VertSplit            ctermfg=7       ctermbg=0     cterm=none
+  hi WarningMsg           ctermfg=15      ctermbg=8     cterm=none
+  hi WildMenu             ctermfg=11      ctermbg=0
 endfunction
 
 " :OpenDroppedFiles <Drop_Files_To_Vim>
