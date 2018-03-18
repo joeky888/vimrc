@@ -422,7 +422,7 @@ function! MetaKeyMapping()
     inoremap <D-e> <End>
     " Command S - Save
     nnoremap <silent> <D-s> :call FileSave()<CR>
-    inoremap <silent> <D-s> <C-g>u<C-O>:call FileSave()<CR>
+    inoremap <expr> <silent> <D-s> pumvisible() ? "\<C-y>\<C-g>u\<C-o>:call FileSave()\<CR>" : "\<C-g>u\<C-O>:call FileSave()\<CR>"
     vnoremap <silent> <D-s> <ESC>:call FileSave()<CR>
     cnoremap <D-s> <C-c>:call FileSave()<CR>
     " Command K - Delete Line
@@ -559,7 +559,7 @@ function! MetaKeyMapping()
   inoremap <M-e> <End>
   " Meta S - Save
   nnoremap <silent> <M-s> :call FileSave()<CR>
-  inoremap <silent> <M-s> <C-g>u<C-O>:call FileSave()<CR>
+  inoremap <expr> <silent> <M-s> pumvisible() ? "\<C-y>\<C-g>u\<C-o>:call FileSave()\<CR>" : "\<C-g>u\<C-O>:call FileSave()\<CR>"
   vnoremap <silent> <M-s> <ESC>:call FileSave()<CR>
   cnoremap <M-s> <C-c>:call FileSave()<CR>
   " Meta K - Delete Line
@@ -823,7 +823,7 @@ cnoremap <Insert> <C-r>"
 
 " Ctrl S - Save
 nnoremap <silent> <C-s> :call FileSave()<CR>
-inoremap <expr> <silent> <C-s> pumvisible() ? "\<C-e>\<C-g>u\<C-o>:call FileSave()\<CR>" : "\<C-g>u\<C-O>:call FileSave()\<CR>"
+inoremap <expr> <silent> <C-s> pumvisible() ? "\<C-y>\<C-g>u\<C-o>:call FileSave()\<CR>" : "\<C-g>u\<C-O>:call FileSave()\<CR>"
 vnoremap <silent> <C-s> <ESC>:call FileSave()<CR>
 cnoremap <C-s> <C-c>:call FileSave()<CR>
 
