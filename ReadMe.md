@@ -206,5 +206,5 @@ $   End of line
 ```
 
 ### TODO
-=====
+
 * Compatible with neovim
