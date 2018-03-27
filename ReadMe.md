@@ -31,7 +31,7 @@ Features
 * Extra menu items under Edit option (GUI)
 * For vim beginners only
 
-This vimrc is based on [MiniVim](https://github.com/sd65/MiniVim). It runs on Vim/Gvim/MacVim >= 7.4
+This vimrc is based on [MiniVim](https://github.com/sd65/MiniVim). It runs on Vim/Gvim/MacVim >= 7.4 and Neovim >= 0.2.3
 
 The code is under Public-domain licence.
 
@@ -204,7 +204,3 @@ $   End of line
 
 :g/pattern/d        Remove all lines contains a pattern
 ```
-
-### TODO
-
-* Compatible with neovim
