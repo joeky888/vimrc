@@ -57,7 +57,6 @@ set fileencodings=ucs-bom,utf-8,gbk,big5,utf-16le,utf-16be,default,latin1
 set langmenu=en_US.UTF-8 " Set Gvim menu language
 let $LANG='en' " Set $LANG variable
 set fileformats=unix,dos,mac " Set for terminal vim
-set viminfo+=n$HOME/dotfile/.viminfo " .viminfo location
 set synmaxcol=3000 " Don't try to highlight lines with over 3000 characters
 set sessionoptions-=options,localoptions,globals,buffers " Don't save these to the session file
 set sessionoptions+=winpos,winsize,resize, " Save these to the session file
@@ -74,6 +73,9 @@ let g:netrw_sizestyle="H" " Human-readable file size in file explorer
 let g:netrw_liststyle=1 " Like 'ls -al' in file explorer
 let g:netrw_timefmt="" " Don't display time in file explorer
 let g:vertical_jump=&scroll*4/3 " Jump when Ctrl up/down triggered
+if !has('nvim') " Neovim doesn't support viminfo
+  set viminfo+=n$HOME/dotfile/.viminfo " .viminfo location
+endif
 if has("gui_running") && filereadable(expand(("$VIMRUNTIME/delmenu.vim")))
   source $VIMRUNTIME/delmenu.vim " Reload Menu.vim
   source $VIMRUNTIME/menu.vim
