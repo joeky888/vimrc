@@ -26,6 +26,7 @@ Features
 * No plugins, just one file
 * Fast
 * Auto-Completion
+* Automatically detect indentation
 * 256-color Monokai theme (16-color Monokai-like theme if you're using Windows)
 * Sans-serif mono font automatic detection (GUI)
 * Extra menu items under Edit option (GUI)
