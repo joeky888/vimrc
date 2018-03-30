@@ -1542,10 +1542,10 @@ function! SyntaxMonokai()
   hi Debug                ctermfg=225     cterm=none      guifg=#BCA3A3     gui=none
   hi Define               ctermfg=81      guifg=#66D9EF
   hi Delimiter            ctermfg=241     guifg=#8F8F8F
-  hi DiffAdd              ctermbg=24      guibg=#13354A
+  hi DiffAdd              ctermfg=118     guifg=#A6E22E   ctermbg=239       guibg=#4C4745
+  hi DiffDelete           ctermfg=161     cterm=none      guifg=#F92672     gui=none            ctermbg=239       guibg=#4C4745
   hi DiffChange           ctermfg=181     ctermbg=239     guifg=#89807D     guibg=#4C4745
-  hi DiffDelete           ctermfg=162     ctermbg=53      guifg=#960050     guibg=#1E0010
-  hi DiffText             ctermbg=102     cterm=none      guibg=#4C4745     gui=none
+  hi DiffText             cterm=none      ctermbg=208     gui=none          guibg=#FD971F       ctermfg=233       guifg=#1B1D1E
   hi Directory            ctermfg=81      cterm=none      guifg=#66D9EF     gui=none
   hi Error                ctermfg=255     ctermbg=196     guifg=#E6DB74     guibg=#FF3333
   hi ErrorMsg             ctermfg=199     ctermbg=16      cterm=none        guifg=#F92672       guibg=#232526     gui=none
@@ -1597,6 +1597,11 @@ function! SyntaxMonokai()
   hi WildMenu             ctermfg=81      ctermbg=16      guifg=#66D9EF     guibg=#000000
   hi iCursor              guifg=#000000   guibg=#F8F8F0
 
+  hi def link diffAdded       Function
+  hi def link diffRemoved     Conditional
+  hi def link diffChanged     Define
+
+
   if has("win32unix") || ( !has("gui_running") && ( has("win32") && has("win64") ) )
     if !executable("uname")
       " Powershell
@@ -1646,10 +1651,10 @@ function! SyntaxMonokai16color()
   hi Debug                ctermfg=15      cterm=none
   hi Define               ctermfg=11
   hi Delimiter            ctermfg=8
-  hi DiffAdd              ctermbg=11
-  hi DiffChange           ctermfg=11      ctermbg=0
-  hi DiffDelete           ctermfg=12      ctermbg=0
-  hi DiffText             ctermbg=0       cterm=none
+  hi DiffAdd              ctermfg=10      ctermbg=8
+  hi DiffDelete           ctermfg=12      ctermbg=8
+  hi DiffChange           ctermfg=8       ctermbg=5
+  hi DiffText             ctermfg=0       ctermbg=14
   hi Directory            ctermfg=11      cterm=none
   hi Error                ctermfg=7       ctermbg=12
   hi ErrorMsg             ctermfg=12      ctermbg=0      cterm=none
@@ -2012,6 +2017,9 @@ function! HighlightAll()
 endfunction
 
 function! HighlightGlobal()
+  if &diff
+    set number
+  endif
   if &filetype == "" || &filetype == "text" || &filetype == "conf"
     syntax clear
     let b:comment_leader = "#"
