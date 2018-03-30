@@ -169,11 +169,16 @@ function! IndentDetectorDetect(autoadjust)
         let n = spacenum ? spacenum : b:Indent_Detector_shiftwidth
         exec 'setl expandtab smarttab tabstop='.n.' shiftwidth='.n.' softtabstop='.n
       endif
+      execute "set expandtab"
+      execute "set softtabstop=". (spacenum ? spacenum : &softtabstop)
+      execute "set shiftwidth=". (spacenum ? spacenum : &shiftwidth)
       return 'space'.(spacenum ? spacenum : '>8')
     else
       if &expandtab
         return 'space'.&softtabstop
       else
+        execute "set noexpandtab"
+        execute "set softtabstop=0"
         return 'tab'.&tabstop
       endif
     endif
