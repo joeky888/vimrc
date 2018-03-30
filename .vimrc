@@ -101,8 +101,8 @@ autocmd VimEnter * set vb t_vb= | set t_vb= " Disable Gvim visual bell
 autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme,SessionLoadPost * set iskeyword=a-z,A-Z,48-57,_
 autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme,SessionLoadPost * set formatoptions-=cro " Prevent vim inserting new comment lines
 au VimResized * let g:vertical_jump=&scroll*4/3
-au FileType vim,sh,zsh setlocal ts=2 sw=2 sts=2 " 2 spaces indent
-au FileType conf setlocal ts=2 sw=2 sts=2 | call HighlightGlobal() " 2 spaces indent
+" au FileType vim,sh,zsh setlocal ts=2 sw=2 sts=2 " 2 spaces indent
+au FileType call HighlightGlobal() " 2 spaces indent
 au FileType help nmap <buffer> <CR> <C-]> | nmap <buffer> <C-n> :cn<CR> | nmap <buffer> <C-p> :cp<CR>
 " Highlight code area in markdown
 let g:markdown_fenced_languages =
@@ -2111,7 +2111,7 @@ function! HighlightPS1()
   endif
   set ft=ps1
   let b:comment_leader = '#'
-  setlocal ts=2 sw=2 sts=2
+"   setlocal ts=2 sw=2 sts=2
   syn case ignore
   syn cluster ps1NotTop contains=@ps1Comment,ps1CDocParam,ps1FunctionDeclaration
   syn keyword ps1CommentTodo TODO FIXME XXX TBD HACK NOTE contained
