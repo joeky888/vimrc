@@ -145,10 +145,10 @@ function! IndentDetectorDetect(autoadjust)
       if a:autoadjust
         exec 'setl noexpandtab nosmarttab tabstop='.b:Indent_Detector_tabstop.' shiftwidth='.b:Indent_Detector_shiftwidth.' softtabstop='.b:Indent_Detector_softtabstop
       endif
-      set noexpandtab
-      set softtabstop=0
-      set tabstop=4
-      set shiftwidth=4
+      setl noexpandtab
+      setl softtabstop=0
+      setl tabstop=4
+      setl shiftwidth=4
       return 'tab'
     elseif leadspace
       let spacenum = 0
@@ -173,18 +173,18 @@ function! IndentDetectorDetect(autoadjust)
         let n = spacenum ? spacenum : b:Indent_Detector_shiftwidth
         exec 'setl expandtab smarttab tabstop='.n.' shiftwidth='.n.' softtabstop='.n
       endif
-      set expandtab
-      execute "set softtabstop=". (spacenum ? spacenum : &softtabstop)
-      execute "set shiftwidth=". (spacenum ? spacenum : &shiftwidth)
+      setl expandtab
+      execute "setl softtabstop=". (spacenum ? spacenum : &softtabstop)
+      execute "setl shiftwidth=". (spacenum ? spacenum : &shiftwidth)
       return 'space'.(spacenum ? spacenum : '>8')
     else
       if &expandtab
         return 'space'.&softtabstop
       else
-        set noexpandtab
-        set softtabstop=0
-        set tabstop=4
-        set shiftwidth=4
+        setl noexpandtab
+        setl softtabstop=0
+        setl tabstop=4
+        setl shiftwidth=4
         return 'tab'.&tabstop
       endif
     endif
