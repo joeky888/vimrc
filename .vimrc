@@ -1518,7 +1518,11 @@ function! SyntaxMonokai()
   let python_highlight_all = 1 " Tell $VIMRUNTIME/syntax/python.vim to highlight all
 
   " Normal is the background color
-  hi Normal ctermfg=252 ctermbg=233 cterm=NONE guifg=#F8F8F2 guibg=#1B1D1E gui=NONE
+  if has("nvim")
+    hi Normal ctermfg=252 ctermbg=0 cterm=NONE guifg=#F8F8F2 guibg=#1B1D1E gui=NONE
+  else
+    hi Normal ctermfg=252 ctermbg=233 cterm=NONE guifg=#F8F8F2 guibg=#1B1D1E gui=NONE
+  endif
   " Visual is the selection color
   hi Visual ctermfg=255 ctermbg=39 cterm=NONE guifg=White guibg=#00AFFF gui=NONE
   " Pmenu is the popup autocomplete color
