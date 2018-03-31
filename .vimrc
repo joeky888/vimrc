@@ -113,8 +113,13 @@ let g:markdown_fenced_languages =
   \"dosbatch","bash=sh","js=javascript"
 \]
 
-" Open all cmd args in new tabs
-silent tab all
+if &diff
+  set number
+  set nocursorline
+else
+  " Open all cmd args in new tabs
+  silent tab all
+endif
 
 " Open help in new tabs
 cnoreabbrev help <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'tab help' : 'help')<CR>
@@ -2017,9 +2022,6 @@ function! HighlightAll()
 endfunction
 
 function! HighlightGlobal()
-  if &diff
-    set number
-  endif
   if &filetype == "" || &filetype == "text" || &filetype == "conf"
     syntax clear
     let b:comment_leader = "#"
