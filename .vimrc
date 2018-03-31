@@ -1507,7 +1507,9 @@ function! SyntaxMonokai()
 
   try
     syntax enable " Enable syntax highlights
-    colorscheme darkblue
+    if !has('nvim')
+      colorscheme darkblue
+    endif
   catch /:E484:\|:E185:/
     " E484: Syntax files not found, using HighlightGlobal"
     autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme,SessionLoadPost * call HighlightGlobal()
