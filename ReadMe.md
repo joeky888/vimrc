@@ -21,6 +21,13 @@ Invoke-WebRequest "https://raw.githubusercontent.com/j16180339887/vimrc/master/.
 C:\windows\explorer.exe https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc
 ```
 
+Install for Neovim
+=====
+```sh
+mkdir -p ~/.config/nvim/
+curl https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc -o ~/.config/nvim/init.vim
+```
+
 Features
 =====
 * No plugins, just one file
@@ -32,7 +39,7 @@ Features
 * Extra menu items under Edit option (GUI)
 * For vim beginners only
 
-This vimrc is based on [MiniVim](https://github.com/sd65/MiniVim). It runs on Vim/Gvim/MacVim >= 7.4 and Neovim >= 0.2.3
+This vimrc is based on [MiniVim](https://github.com/sd65/MiniVim). It runs on Vim/Gvim/MacVim >= 7.4 and Neovim >= 0.2
 
 The code is under Public-domain licence.
 
