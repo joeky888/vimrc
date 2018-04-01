@@ -74,7 +74,7 @@ let g:netrw_liststyle=1 " Like 'ls -al' in file explorer
 let g:netrw_timefmt="" " Don't display time in file explorer
 let g:vertical_jump=&scroll*4/3 " Jump when Ctrl up/down triggered
 if !has('nvim') " Neovim doesn't support viminfo
-  set viminfo+=n$HOME/dotfile/.viminfo " .viminfo location
+  set viminfo+=n$HOME/.vim/.viminfo " .viminfo location
 endif
 if has("gui_running") && filereadable(expand(("$VIMRUNTIME/delmenu.vim")))
   source $VIMRUNTIME/delmenu.vim " Reload Menu.vim
@@ -240,7 +240,7 @@ function! GetFileSize()
 endfunction
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 """ Custom backup and swap files
-let myVimDir = expand("$HOME/dotfile/.vim")
+let myVimDir = expand("$HOME/.vim")
 let myBackupDir = myVimDir . '/backup'
 let mySwapDir = myVimDir . '/swap'
 let myUndoDir = myVimDir . '/undo'
@@ -804,14 +804,14 @@ inoremap <C-e> <End>
 if !has("gui_running") && has("clipboard")
   set clipboard=
   " Remap Ctrl C
-  nnoremap <silent> <C-c> mjV"+yV:silent w! $HOME/dotfile/clipboard.txt<CR>:call system('chmod 777 $HOME/dotfile/clipboard.txt')<CR>:redraw!<CR>`ji
-  inoremap <silent> <C-c> <C-\><C-o>mj<C-o>V"+y<C-o>V:silent w! $HOME/dotfile/clipboard.txt<CR><C-o>:call system('chmod 777 $HOME/dotfile/clipboard.txt')<CR><C-o>:redraw!<CR><C-o>`j
-  vnoremap <silent> <C-c> "+y<ESC>:call delete(expand("$HOME/dotfile/clipboard.txt"))<CR>:new $HOME/dotfile/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/dotfile/clipboard.txt')<CR>:redraw!<CR>gv
+  nnoremap <silent> <C-c> mjV"+yV:silent w! $HOME/.vim/clipboard.txt<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR>`ji
+  inoremap <silent> <C-c> <C-\><C-o>mj<C-o>V"+y<C-o>V:silent w! $HOME/.vim/clipboard.txt<CR><C-o>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR><C-o>:redraw!<CR><C-o>`j
+  vnoremap <silent> <C-c> "+y<ESC>:call delete(expand("$HOME/.vim/clipboard.txt"))<CR>:new $HOME/.vim/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR>gv
   cnoremap <C-c> <C-y>
   " Remap Ctrl X
-  nnoremap <silent> <C-x>       :call SavePos()<CR>:silent w! $HOME/dotfile/clipboard.txt<CR>V"+x:call system('chmod 777 $HOME/dotfile/clipboard.txt')<CR>:call setpos(".", b:savepos)<CR>i
-  inoremap <silent> <C-x>  <C-o>:call SavePos()<CR><ESC>:silent w! $HOME/dotfile/clipboard.txt<CR><ESC>V"+x:call system('chmod 777 $HOME/dotfile/clipboard.txt')<CR>:call setpos(".", b:savepos)<CR>i<C-g>u
-  vnoremap <silent> <C-x> "+y<ESC>:call delete(expand("$HOME/dotfile/clipboard.txt"))<CR>:new $HOME/dotfile/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/dotfile/clipboard.txt')<CR>gv"_d
+  nnoremap <silent> <C-x>       :call SavePos()<CR>:silent w! $HOME/.vim/clipboard.txt<CR>V"+x:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:call setpos(".", b:savepos)<CR>i
+  inoremap <silent> <C-x>  <C-o>:call SavePos()<CR><ESC>:silent w! $HOME/.vim/clipboard.txt<CR><ESC>V"+x:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:call setpos(".", b:savepos)<CR>i<C-g>u
+  vnoremap <silent> <C-x> "+y<ESC>:call delete(expand("$HOME/.vim/clipboard.txt"))<CR>:new $HOME/.vim/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>gv"_d
   cnoremap <C-x> <C-y><C-e><C-u>
   " Remap Ctrl V
   nnoremap <silent> <C-v> "+gPi<C-g>u
@@ -820,13 +820,13 @@ if !has("gui_running") && has("clipboard")
   cnoremap <C-v> <C-r>+
 elseif !has("gui_running") && !has("clipboard")
   " Ctrl C - Copy
-  call CreateShortcut("C-c", "mjYV:silent w! $HOME/dotfile/clipboard.txt<CR>:call system('chmod 777 $HOME/dotfile/clipboard.txt')<CR>:redraw!<CR>`j", "ni")
-  vnoremap <silent> <C-c> y:call delete(expand("$HOME/dotfile/clipboard.txt"))<CR>:new $HOME/dotfile/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/dotfile/clipboard.txt')<CR>:redraw!<CR>gv
+  call CreateShortcut("C-c", "mjYV:silent w! $HOME/.vim/clipboard.txt<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR>`j", "ni")
+  vnoremap <silent> <C-c> y:call delete(expand("$HOME/.vim/clipboard.txt"))<CR>:new $HOME/.vim/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR>gv
 
   " Ctrl X - Cut
-  nnoremap <silent> <C-x>       :call SavePos()<CR>:silent w! $HOME/dotfile/clipboard.txt<CR>dd:call system('chmod 777 $HOME/dotfile/clipboard.txt')<CR>:call setpos(".", b:savepos)<CR>i
-  inoremap <silent> <C-x>  <C-o>:call SavePos()<CR><ESC>:silent w! $HOME/dotfile/clipboard.txt<CR><ESC>dd:call system('chmod 777 $HOME/dotfile/clipboard.txt')<CR>:call setpos(".", b:savepos)<CR>i<C-g>u
-  vnoremap <silent> <C-x> d<ESC>:call delete(expand("$HOME/dotfile/clipboard.txt"))<CR>:new $HOME/dotfile/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/dotfile/clipboard.txt')<CR>
+  nnoremap <silent> <C-x>       :call SavePos()<CR>:silent w! $HOME/.vim/clipboard.txt<CR>dd:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:call setpos(".", b:savepos)<CR>i
+  inoremap <silent> <C-x>  <C-o>:call SavePos()<CR><ESC>:silent w! $HOME/.vim/clipboard.txt<CR><ESC>dd:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:call setpos(".", b:savepos)<CR>i<C-g>u
+  vnoremap <silent> <C-x> d<ESC>:call delete(expand("$HOME/.vim/clipboard.txt"))<CR>:new $HOME/.vim/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>
   cnoremap <C-x> <C-y><C-e><C-u>
 
   " Ctrl V - Paste from vim clipboard
@@ -838,9 +838,9 @@ elseif !has("gui_running") && !has("clipboard")
 endif
 
 " Insert - Paste
-nnoremap <silent> <Insert>            :r $HOME/dotfile/clipboard.txt<CR>
-inoremap <silent> <Insert> <C-g>u<ESC>:r $HOME/dotfile/clipboard.txt<CR>i<C-g>u
-vnoremap <silent> <Insert>           "_d:r $HOME/dotfile/clipboard.txt<CR>
+nnoremap <silent> <Insert>            :r $HOME/.vim/clipboard.txt<CR>
+inoremap <silent> <Insert> <C-g>u<ESC>:r $HOME/.vim/clipboard.txt<CR>i<C-g>u
+vnoremap <silent> <Insert>           "_d:r $HOME/.vim/clipboard.txt<CR>
 cnoremap <Insert> <C-r>"
 
 " Ctrl S - Save
@@ -2257,7 +2257,7 @@ function! MakeSession()
   if has('win32') || has('win64')
     let mySession=expand("$TEMP/vim/session.vim")
   else
-    let mySession=expand("$HOME/dotfile/.vim/session.vim")
+    let mySession=expand("$HOME/.vim/session.vim")
   endif
 
   " Don's save the session if there is only one buffer
@@ -2273,7 +2273,7 @@ function! LoadSession()
   if has('win32') || has('win64')
     let mySession=expand("$TEMP/vim/session.vim")
   else
-    let mySession=expand("$HOME/dotfile/.vim/session.vim")
+    let mySession=expand("$HOME/.vim/session.vim")
   endif
   if (filereadable(mySession))
     exe 'source ' . mySession
