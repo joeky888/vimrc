@@ -101,7 +101,7 @@ if !has("win32") && !has("win64") && !has("gui_running")
     let $PATH = "xterm-256color"
   elseif $TERM =~ "screen"
     let $PATH = "screen-256color"
-  else
+  endif
 endif
 autocmd VimEnter * set noerrorbells " Disable Gvim error sound
 autocmd VimEnter * set vb t_vb= | set t_vb= " Disable Gvim visual bell
