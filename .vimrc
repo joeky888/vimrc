@@ -98,9 +98,9 @@ if !has("win32") && !has("win64") && !has("gui_running")
     silent !zsh -c 'if [[ "$TERM" == "xterm"* ]]; then export TERM=xterm-256color ; elif [[ "$TERM" == "screen"* ]]; then export TERM=screen-256color ; fi;' > /dev/null 2>&1
   endif
   if $TERM =~ "xterm"
-    let $PATH = "xterm-256color"
+    let $TERM = "xterm-256color"
   elseif $TERM =~ "screen"
-    let $PATH = "screen-256color"
+    let $TERM = "screen-256color"
   endif
 endif
 autocmd VimEnter * set noerrorbells " Disable Gvim error sound
