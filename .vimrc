@@ -92,15 +92,8 @@ if !has("win32") && !has("win64") && !has("gui_running")
   " Make sure Ctrl-S, Ctrl-Q and Ctrl-V are working
   if executable("bash")
     silent !bash -c "stty -ixon -ixoff ; stty lnext '^-' stop undef start undef -ixon" > /dev/null 2>&1
-    silent !bash -c 'if [[ "$TERM" == "xterm"* ]]; then export TERM=xterm-256color ; elif [[ "$TERM" == "screen"* ]]; then export TERM=screen-256color ; fi;' > /dev/null 2>&1
   elseif executable("zsh")
     silent !zsh -c "stty -ixon -ixoff ; stty lnext '^-' stop undef start undef -ixon" > /dev/null 2>&1
-    silent !zsh -c 'if [[ "$TERM" == "xterm"* ]]; then export TERM=xterm-256color ; elif [[ "$TERM" == "screen"* ]]; then export TERM=screen-256color ; fi;' > /dev/null 2>&1
-  endif
-  if $TERM =~ "xterm"
-    let $TERM = "xterm-256color"
-  elseif $TERM =~ "screen"
-    let $TERM = "screen-256color"
   endif
 endif
 autocmd VimEnter * set noerrorbells " Disable Gvim error sound
