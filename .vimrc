@@ -1167,9 +1167,13 @@ vnoremap <CR> "_di<CR><C-g>u
 vnoremap <BS> "_di<C-g>u
 
 function! WrapSelection(c1, c2)
+  " Disable auto indention temporary
+  let l:ind=&indentexpr
+  setlocal indentexpr=
   execute "normal! `<i".a:c1
   execute "normal! `>a".a:c2
   normal! l
+  execute "setlocal indentexpr=".l:ind
 endfunction
 function! AutoPair(ac)
   redraw
