@@ -145,7 +145,7 @@ python2 -c "import urllib;from os.path import expanduser; urllib.urlretrieve('ht
 python3 -c "import urllib.request;from os.path import expanduser; urllib.request.urlretrieve('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc', expanduser('~') + '/.vimrc')"
 ```
 
-## Install on Windows (using powershell)
+## Install on Windows
 
 * Use Powershell
 * Copy all and press Enter
@@ -162,8 +162,8 @@ $path = "$env:USERPROFILE\\.vimrc"
 C:\windows\explorer.exe https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc
 ```
 
-Install for Neovim
-=====
+## Install for Neovim
+
 ```sh
 mkdir -p ~/.config/nvim/
 curl https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc -o ~/.config/nvim/init.vim
