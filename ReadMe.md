@@ -137,7 +137,7 @@ curl https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc -o ~/.vi
 * Use wget
 
 ```sh
-wget https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc -o ~/.vimrc
+wget https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc -O ~/.vimrc
 ```
 
 * Use Python2
