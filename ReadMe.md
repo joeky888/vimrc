@@ -1,33 +1,5 @@
 ![Menu](https://i.imgur.com/F3TnQln.png)
 
-Install
-====
-```sh
-# Unix-like & Powershell: Use curl
-curl https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc -o ~/.vimrc
-
-# Unix-like: Use python2
-python2 -c "import urllib;from os.path import expanduser; urllib.urlretrieve('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc', expanduser('~') + '/.vimrc')"
-# python2 -c "import urllib; print urllib.urlopen('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc'.encode('UTF-8')).read()" > ~/.vimrc
-
-# Unix-like: Use python3
-python3 -c "import urllib.request;from os.path import expanduser; urllib.request.urlretrieve('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc', expanduser('~') + '/.vimrc')"
-# python3 -c "import urllib.request as ur; print (ur.urlopen('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc').read().decode('utf-8'))" > ~/.vimrc
-
-# Powershell
-Invoke-WebRequest "https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc" -OutFile "$ENV:UserProfile\\.vimrc"
-
-# Windows: Use cmd
-C:\windows\explorer.exe https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc
-```
-
-Install for Neovim
-=====
-```sh
-mkdir -p ~/.config/nvim/
-curl https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc -o ~/.config/nvim/init.vim
-```
-
 Features
 =====
 * No plugins, just one file
@@ -153,6 +125,49 @@ The code is under Public-domain licence.
 | AutoCompleteEnable    |                                               | |
 | AutoCompleteDisable   |                                               | |
 | Download              | Download a file from a given URL              | |
+
+## Install
+
+* Use curl
+
+```sh
+curl https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc -o ~/.vimrc
+```
+
+* Use Python2
+```sh
+python2 -c "import urllib;from os.path import expanduser; urllib.urlretrieve('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc', expanduser('~') + '/.vimrc')"
+# python2 -c "import urllib; print urllib.urlopen('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc'.encode('UTF-8')).read()" > ~/.vimrc
+```
+
+* Use Python3
+```sh
+python3 -c "import urllib.request;from os.path import expanduser; urllib.request.urlretrieve('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc', expanduser('~') + '/.vimrc')"
+```
+
+## Install on Windows (using powershell)
+
+* Use Powershell
+* Copy all and press Enter
+
+```sh
+$url = "https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc"
+$path = "$env:USERPROFILE\\.vimrc"
+(New-Object System.Net.WebClient).DownloadFile($url, $path)
+```
+
+* Use cmd.exe
+
+```sh
+C:\windows\explorer.exe https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc
+```
+
+Install for Neovim
+=====
+```sh
+mkdir -p ~/.config/nvim/
+curl https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc -o ~/.config/nvim/init.vim
+```
 
 ### Extra notes
 
