@@ -1249,10 +1249,10 @@ autocmd FileType * exe 'setlocal dictionary+=$VIMRUNTIME/syntax/'.&filetype.'.vi
 set completeopt=menuone
 set complete=.,w,b,t
 set complete+=k " Rescan files in the 'dictionary' option
-if v:version > 704 || has("patch314") || has('patch-7.4.314')
+if (v:version >= 704 && has("patch314")) || has('patch-7.4.314')
   set shortmess+=c " Disable autocomplete WarningMsg
 endif
-if v:version > 704 || has("patch1570") || has('patch-7.4.1570')
+if (v:version >= 704 && has("patch1570")) || has('patch-7.4.1570')
   set shortmess+=F " Disable file info on start
 endif
 let autocomp=1
