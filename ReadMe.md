@@ -134,6 +134,12 @@ The code is under Public-domain licence.
 curl https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc -o ~/.vimrc
 ```
 
+* Use wget
+
+```sh
+wget https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc -o ~/.vimrc
+```
+
 * Use Python2
 ```sh
 python2 -c "import urllib;from os.path import expanduser; urllib.urlretrieve('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc', expanduser('~') + '/.vimrc')"
