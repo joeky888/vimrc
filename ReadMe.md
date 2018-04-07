@@ -140,16 +140,16 @@ curl https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc -o ~/.vi
 wget https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc -O ~/.vimrc
 ```
 
-* Use Python2
-```sh
-python2 -c "import urllib;from os.path import expanduser; urllib.urlretrieve('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc', expanduser('~') + '/.vimrc')"
-# python2 -c "import urllib; print urllib.urlopen('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc'.encode('UTF-8')).read()" > ~/.vimrc
-```
+<!-- * Use Python2 -->
+<!-- ```sh -->
+<!-- python2 -c "import urllib;from os.path import expanduser; urllib.urlretrieve('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc', expanduser('~') + '/.vimrc')" -->
+<!-- # python2 -c "import urllib; print urllib.urlopen('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc'.encode('UTF-8')).read()" > ~/.vimrc -->
+<!-- ``` -->
 
-* Use Python3
-```sh
-python3 -c "import urllib.request;from os.path import expanduser; urllib.request.urlretrieve('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc', expanduser('~') + '/.vimrc')"
-```
+<!-- * Use Python3 -->
+<!-- ```sh -->
+<!-- python3 -c "import urllib.request;from os.path import expanduser; urllib.request.urlretrieve('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc', expanduser('~') + '/.vimrc')" -->
+<!-- ``` -->
 
 ## Install on Windows
 
