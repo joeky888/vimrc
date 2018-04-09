@@ -449,7 +449,7 @@ function! MetaKeyMapping()
     vnoremap <silent> <D-k> :d _<CR>
     " Command D - Duplicate Line
     nnoremap <silent> <D-d> mj:t.<CR>`jji
-    inoremap <silent> <D-d> <C-\><C-O>mj<C-O>:t.<CR><C-O>`j<Down><C-g>u
+    inoremap <expr> <silent> <D-d> pumvisible() ? "\<C-y>\<C-\>\<C-O>mj\<C-O>:t.\<CR>\<C-O>`j\<Down>\<C-g>u" : "\<C-\>\<C-O>mj\<C-O>:t.\<CR>\<C-O>`j\<Down>\<C-g>u"
     vnoremap <D-d> yPgv
     " Command Q - Visual block selection
     nnoremap <D-q> <C-v>
@@ -586,7 +586,7 @@ function! MetaKeyMapping()
   vnoremap <silent> <M-k> :d _<CR>
   " Meta D - Duplicate Line
   nnoremap <silent> <M-d> mj:t.<CR>`jji
-  inoremap <silent> <M-d> <C-\><C-O>mj<C-O>:t.<CR><C-O>`j<Down><C-g>u
+  inoremap <expr> <silent> <M-d> pumvisible() ? "\<C-y>\<C-\>\<C-O>mj\<C-O>:t.\<CR>\<C-O>`j\<Down>\<C-g>u" : "\<C-\>\<C-O>mj\<C-O>:t.\<CR>\<C-O>`j\<Down>\<C-g>u"
   vnoremap <M-d> yPgv
   " Meta Q - Visual block selection
   nnoremap <M-q> <C-v>
@@ -862,7 +862,7 @@ vnoremap <silent> <C-k> :d _<CR>
 
 " Ctrl D - Duplicate Line
 nnoremap <silent> <C-d> mj:t.<CR>`jji
-inoremap <silent> <C-d> <C-\><C-O>mj<C-O>:t.<CR><C-O>`j<Down><C-g>u
+inoremap <expr> <silent> <C-d> pumvisible() ? "\<C-y>\<C-\>\<C-O>mj\<C-O>:t.\<CR>\<C-O>`j\<Down>\<C-g>u" : "\<C-\>\<C-O>mj\<C-O>:t.\<CR>\<C-O>`j\<Down>\<C-g>u"
 vnoremap <C-d> yPgv
 
 " Ctrl Q - Visual block selection
