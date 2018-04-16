@@ -752,7 +752,7 @@ inoremap <4-MiddleMouse> <Nop>
 vnoremap <4-MiddleMouse> <Nop>
 
 " Disable EX mode
-nnoremap Q <Nop>
+" nnoremap Q <Nop>
 
 " Disable Replace mode
 nnoremap R <Nop>
@@ -969,6 +969,8 @@ nnoremap <silent> <C-w> :call FileQuit()<CR>
 inoremap <silent> <C-w> <C-o>:call FileQuit()<CR>
 vnoremap <silent> <C-w> <ESC>:call FileQuit()<CR>
 cnoremap <C-w> <C-c>:call FileQuit()<CR>
+nnoremap <silent> q :call FileQuit()<CR>
+nnoremap <silent> Q :call FileQuit()<CR>
 
 " Tab - Indent
 call CreateShortcut("Tab", ">>", "n")

@@ -53,6 +53,8 @@ The code is under Public-domain licence.
 | Shift ↑   | Select multiple lines up                              | Depends on window size |
 | Shift ↓   | Select multiple lines down                            | Depends on window size |
 | Ctrl B    | Delete a word backward                                | |
+| q         | Quit                                                  | Normal mode only |
+| Q         | Quit                                                  | Normal mode only |
 | Tab       | Indent                                                | |
 | Shift Tab | Unindent                                              | |
 | Insert    | Paste from `clipboard.txt`                            | Only available in terminals, in case vim clipboard is broken |
