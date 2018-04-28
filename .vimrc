@@ -220,9 +220,7 @@ function! GetFileInfo()
   let file = expand('%:p')
   let permissions = getfperm(file)
   echom file . " saved at " . time | redraw
-  echohl iGreen | echon "     Info     "
-  echohl Green | echon  " " . GetFileSize() . ", " . time . ", " . permissions
-  echohl None
+  call ConsoleLog(" " . GetFileSize() . ", " . time . ", " . permissions)
 endfunction
 function! GetFileSize()
   let bytes = getfsize(expand('%:p'))
@@ -370,9 +368,7 @@ function! FileSave()
   let file = expand('%:p')
   let permissions = getfperm(file)
   echom file . " saved at " . time | redraw
-  echohl iGreen | echon "    SAVED     "
-  echohl Green | echon  " " . GetFileSize() . ", " . time . ", " . permissions
-  echohl None
+  call ConsoleLog(" Saved " . GetFileSize() . ", " . time . ", " . permissions)
   try
     call setpos(".", b:savepos)
   catch /:E20:/
@@ -1959,6 +1955,12 @@ command! EncodingKorea   execute "e ++enc=korea"
 command! EncodingUTF16LE execute "e ++enc=utf-16le"
 command! EncodingUTF16BE execute "e ++enc=utf-16be"
 command! EncodingAnsi    execute "e ++enc=ansi"
+
+function! ConsoleLog(msg)
+  echohl iGreen | echon "     Info     "
+  echohl Green | echon a:msg
+  echohl None
+endfunction
 
 function! ConsoleInfo(msg)
   echohl iBlue | echon "     Info     "
