@@ -2312,16 +2312,22 @@ if has("gui_running")
   endif
 
   function! ChangeFontSize()
-    if has('win32') || has('win64')
-      execute "set guifont=Ubuntu\\ Mono:h".g:guifontsize.",Consolas:h".g:guifontsize.",Lucida_Console:h".g:guifontsize
-      execute "set guifontwide=DroidMono:h".g:guifontsize.",Sarasa\\ Mono\\ TC:h".g:guifontsize.",NSimsun:h".g:guifontsize
-    elseif has("gui_macvim")
-      execute "set guifont=Monaco:h".g:guifontsize
-      execute "set guifontwide=Hiragino\\ Sans\\ GB:h".g:guifontsize
-    else
-      execute "set guifont=Ubuntu\\ Mono\\ ".g:guifontsize.",Droid\\ Sans\\ Mono\\ ".g:guifontsize.",Inconsolata\\ ".g:guifontsize.",DejaVu\\ Sans\\ Mono\\ ".g:guifontsize
-    endif
-      execute "set linespace=".(g:guifontsize/5)
+    try
+      if has('win32') || has('win64')
+        execute "set guifont=Ubuntu\\ Mono:h".g:guifontsize.",Consolas:h".g:guifontsize.",Lucida_Console:h".g:guifontsize
+        execute "set guifontwide=DroidMono:h".g:guifontsize.",Sarasa\\ Mono\\ TC:h".g:guifontsize.",NSimsun:h".g:guifontsize
+      elseif has("gui_macvim")
+        execute "set guifont=Monaco:h".g:guifontsize
+        execute "set guifontwide=Hiragino\\ Sans\\ GB:h".g:guifontsize
+      else
+        execute "set guifont=Ubuntu\\ Mono\\ ".g:guifontsize.",Droid\\ Sans\\ Mono\\ ".g:guifontsize.",Inconsolata\\ ".g:guifontsize.",DejaVu\\ Sans\\ Mono\\ ".g:guifontsize
+      endif
+    catch /:E231:/
+      echohl iBlue | echon "     Info     "
+      echohl Blue | echon  " E231: set guifontwide failed "
+      echohl None
+    endtry
+    execute "set linespace=".(g:guifontsize/5)
   endfunction
   call ChangeFontSize()
 
