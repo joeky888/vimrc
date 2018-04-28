@@ -376,9 +376,7 @@ function! FileSave()
   try
     call setpos(".", b:savepos)
   catch /:E20:/
-    echohl iBlue | echon "     Info     "
-    echohl Blue | echon  " E20: Mark not set, please try again. "
-    echohl None
+    call ConsoleInfo(" E20: Mark not set, please try again. ")
   endtry
 endfunction
 function! OpenLastBufferInNewTab()
@@ -1409,9 +1407,7 @@ function! NextSearch()
   try
     normal! n
   catch /:E486:/
-    echohl iBlue | echon "     Info     "
-    echohl Blue | echon  " Nothing found! "
-    echohl None
+    call ConsoleInfo(" Nothing found! ")
   endtry
   if l:line != line(".")
     let b:lastKey[1]=b:lastKey[1]+1 <= b:lastKey[2] ? b:lastKey[1]+1 : b:lastKey[1]+1-b:lastKey[2]
@@ -1422,9 +1418,7 @@ function! PreviousSearch()
   try
     normal! N
   catch /:E486:/
-    echohl iBlue | echon "     Info     "
-    echohl Blue | echon  " Nothing found! "
-    echohl None
+    call ConsoleInfo(" Nothing found! ")
   endtry
   if l:line != line(".")
     let b:lastKey[1]=b:lastKey[1]-1 > 0 ? b:lastKey[1]-1 : b:lastKey[1]-1+b:lastKey[2]
@@ -1825,9 +1819,7 @@ function! Reverse()
   let [line_end, column_end] = getpos("'>")[1:2]
   let lines = getline(line_start, line_end)
   if len(lines) == 0
-    echohl iBlue | echon "     Info     "
-    echohl Blue | echon  " Please select some text first!"
-    echohl None
+    call ConsoleInfo(" Please select some text first!")
     return ''
   endif
   let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
@@ -1837,9 +1829,7 @@ function! Reverse()
   try
     exe "s/\\%V.*\\%V./".sv."/"
   catch /:E486:/
-    echohl iBlue | echon "     Info     "
-    echohl Blue | echon  " Please select some text first!"
-    echohl None
+    call ConsoleInfo(" Please select some text first! ")
   endtry
 endfunction
 nnoremenu Edit.Reverse\ String Vc<C-O>:set revins<CR><C-R>"<Esc>:set norevins<CR>
@@ -1969,6 +1959,12 @@ command! EncodingKorea   execute "e ++enc=korea"
 command! EncodingUTF16LE execute "e ++enc=utf-16le"
 command! EncodingUTF16BE execute "e ++enc=utf-16be"
 command! EncodingAnsi    execute "e ++enc=ansi"
+
+function! ConsoleInfo(msg)
+  echohl iBlue | echon "     Info     "
+  echohl Blue | echon a:msg
+  echohl None
+endfunction
 
 function! DownloadFile(url)
   if has("gui_running") && (has("win32") || has("win64"))
@@ -2312,21 +2308,15 @@ if has("gui_running")
   endif
 
   function! ChangeFontSize()
-    try
-      if has('win32') || has('win64')
-        execute "set guifont=Ubuntu\\ Mono:h".g:guifontsize.",Consolas:h".g:guifontsize.",Lucida_Console:h".g:guifontsize
-        execute "set guifontwide=DroidMono:h".g:guifontsize.",Sarasa\\ Mono\\ TC:h".g:guifontsize.",NSimsun:h".g:guifontsize
-      elseif has("gui_macvim")
-        execute "set guifont=Monaco:h".g:guifontsize
-        execute "set guifontwide=Hiragino\\ Sans\\ GB:h".g:guifontsize
-      else
-        execute "set guifont=Ubuntu\\ Mono\\ ".g:guifontsize.",Droid\\ Sans\\ Mono\\ ".g:guifontsize.",Inconsolata\\ ".g:guifontsize.",DejaVu\\ Sans\\ Mono\\ ".g:guifontsize
-      endif
-    catch /:E231:/
-      echohl iBlue | echon "     Info     "
-      echohl Blue | echon  " E231: set guifontwide failed "
-      echohl None
-    endtry
+    if has('win32') || has('win64')
+      execute "silent! set guifont=Ubuntu\\ Mono:h".g:guifontsize.",Consolas:h".g:guifontsize.",Lucida_Console:h".g:guifontsize
+      execute "silent! set guifontwide=DroidMono:h".g:guifontsize.",Sarasa\\ Mono\\ TC:h".g:guifontsize.",NSimsun:h".g:guifontsize
+    elseif has("gui_macvim")
+      execute "silent! set guifont=Monaco:h".g:guifontsize
+      execute "silent! set guifontwide=Hiragino\\ Sans\\ GB:h".g:guifontsize
+    else
+      execute "silent! set guifont=Ubuntu\\ Mono\\ ".g:guifontsize.",Droid\\ Sans\\ Mono\\ ".g:guifontsize.",Inconsolata\\ ".g:guifontsize.",DejaVu\\ Sans\\ Mono\\ ".g:guifontsize
+    endif
     execute "set linespace=".(g:guifontsize/5)
   endfunction
   call ChangeFontSize()
