@@ -14,7 +14,8 @@ endif
 "      Settings      "
 """"""""""""""""""""""
 filetype on " Enable filetype plugin
-filetype plugin indent on
+filetype plugin on
+filetype indent off
 set nocompatible " We use Vim, not Vi
 set ttyfast " Faster redraw
 set lazyredraw " Don't redraw statusline when switching between vim modes
