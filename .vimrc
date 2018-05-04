@@ -1238,7 +1238,7 @@ function! ToggleComment()
       endif
     endif
   else
-    echom "Unknow comment's symbols for filetype"
+    echom "Unknown comment's symbols for filetype"
   endif
 endfunction
 
@@ -1599,7 +1599,6 @@ function! SyntaxMonokai()
   hi def link diffAdded       Function
   hi def link diffRemoved     Conditional
   hi def link diffChanged     Define
-
 
   if has("win32unix") || ( !has("gui_running") && ( has("win32") && has("win64") ) )
     if !executable("uname")
