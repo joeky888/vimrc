@@ -153,8 +153,8 @@ function! IndentDetectorDetect(autoadjust)
       endif
       setl noexpandtab
       setl softtabstop=0
-      setl tabstop=4
-      setl shiftwidth=4
+      setl tabstop=8
+      setl shiftwidth=8
       return 'tab'
     elseif leadspace
       let spacenum = 0
@@ -1896,7 +1896,7 @@ function! IndentTab(width)
   execute "set shiftwidth=" . a:width
   execute "%retab!"
   if exists('b:fileIndent') | unlet b:fileIndent | endif
-  call GetIndent()
+"   call GetIndent()
 endfunction
 
 command! IndentSpace2   execute "call IndentSpace(2)"
