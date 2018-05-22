@@ -2295,6 +2295,10 @@ if has("gui_running")
     set backupdir=$TEMP/vim/backup
     set undodir=$TEMP/vim/undo
     au GUIEnter * simalt ~x " Full screen on start
+    if executable("powershell")
+      set shell=powershell.exe
+      set shellcmdflag=-command
+    endif
   endif
   set number
   set lines=999 columns=999 " set window Maximized
