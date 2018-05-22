@@ -1320,20 +1320,23 @@ let colorsAndModes= {
   \ 'i' : 39,
   \ 'v' : 82,
   \ 'V' : 226,
-  \ '' : 208
+  \ '' : 208,
+  \ 't' : 208
 \}
 let colorsAndModes16= {
   \ 'i' : 11,
   \ 'v' : 10,
   \ 'V' : 14,
-  \ '' : 14
+  \ '' : 14,
+  \ 't' : 14
 \}
 let defaultAccentColorGui='#D7005F'
 let colorsAndModesGui= {
   \ 'i' : '#00AFFF',
   \ 'v' : '#5FFF00',
   \ 'V' : '#FFFF00',
-  \ '' : '#FF8700'
+  \ '' : '#FF8700',
+  \ 't' : '#FF8700'
 \}
 function! LastAccentColor()
   if !exists('b:lastMode')
