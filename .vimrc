@@ -331,8 +331,8 @@ function! FileSave()
   let @/ = "" " Clear searching highlight
   execute "%s/\\s\\+$//e"
   call histdel("search", -1) " Remove last searching history
-  let cantSave = "echo \"Can't save the file: \" . v:exception | return"
-  let notSaved = "redraw | echo 'This buffer was NOT saved!' | return"
+  let cantSave = "echo \"Can't save the file: \" . v:exception | call HighlightAll() | return"
+  let notSaved = "redraw | echo 'This buffer was NOT saved!' | call HighlightAll() | return"
   try
     silent w
   catch /:E45:\|:E505:\|:E212:/
