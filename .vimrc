@@ -102,7 +102,7 @@ autocmd VimEnter * set vb t_vb= | set t_vb= " Disable Gvim visual bell
 autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme,SessionLoadPost * set iskeyword=a-z,A-Z,48-57,_
 autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme,SessionLoadPost * set formatoptions-=cro " Prevent vim inserting new comment lines
 au VimResized * let g:vertical_jump=&scroll*4/3
-" au FileType vim,sh,zsh setlocal ts=2 sw=2 sts=2 " 2 spaces indent
+au FileType vim,sh,zsh setlocal fileformat=unix
 au FileType call HighlightGlobal()
 au FileType help nmap <buffer> <CR> <C-]> | nmap <buffer> <C-n> :cn<CR> | nmap <buffer> <C-p> :cp<CR>
 " Highlight code area in markdown
