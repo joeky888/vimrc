@@ -1284,6 +1284,9 @@ call ToggleAutoComplete()
 command! AutoCompleteEnable  let g:autocomp=1 | call ToggleAutoComplete()
 command! AutoCompleteDisable let g:autocomp=0 | call ToggleAutoComplete()
 
+command! SshPasteEnable  let g:autocomp=0 | call ToggleAutoComplete() | set paste
+command! SshPasteDisable let g:autocomp=1 | call ToggleAutoComplete() | set nopaste
+
 let g:netrw_banner=0 " Hide banner
 " let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+' " Hide hidden files
 autocmd FileType netrw call KeysInNetrw()
