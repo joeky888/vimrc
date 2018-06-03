@@ -37,7 +37,7 @@ set selection=exclusive " Don't select char under cursor
 set mouseshape+=a:beam " set cursor shape as modern editors should be
 set mouse=a
 set autoindent " auto indent
-set smartindent " smart indent
+set nosmartindent " no smart indent
 set noshowmode " Don't display the current mode
 set gdefault " The substitute flag g is on
 set hidden " Hide the buffer instead of closing when switching
