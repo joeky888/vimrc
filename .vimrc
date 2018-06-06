@@ -1287,11 +1287,6 @@ command! AutoCompleteDisable let g:autocomp=0 | call ToggleAutoComplete()
 " command! SshPasteEnable  let g:autocomp=0 | call ToggleAutoComplete() | set paste
 " command! SshPasteDisable let g:autocomp=1 | call ToggleAutoComplete() | set nopaste
 
-if exists("$SSH_CLIENT") || exists("$SSH_TTY")
-  " Disable paste and completion when using ssh
-  call SshPaste()
-endif
-
 function! SshPaste()
   inoremap <silent> [ [
   inoremap <silent> { {
@@ -1301,6 +1296,11 @@ function! SshPaste()
   set nocindent
   let g:autocomp=0 | call ToggleAutoComplete()
 endfunction
+
+if exists("$SSH_CLIENT") || exists("$SSH_TTY")
+  " Disable paste and completion when using ssh
+  call SshPaste()
+endif
 
 let g:netrw_banner=0 " Hide banner
 " let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+' " Hide hidden files
