@@ -9,6 +9,7 @@ Features
 * 256-color Monokai theme (16-color Monokai-like theme if you're using Windows)
 * Sans-serif mono font automatic detection (GUI)
 * Extra menu items under Edit option (GUI)
+* Paste to vim on ssh-server out-of-box
 * For vim beginners only
 
 This vimrc is based on [MiniVim](https://github.com/sd65/MiniVim). It runs on Vim/Gvim/MacVim >= 7.3 and Neovim >= 0.2
@@ -126,8 +127,6 @@ The code is under Public-domain licence.
 | Opencc2S              |                                               | |
 | AutoCompleteEnable    |                                               | |
 | AutoCompleteDisable   |                                               | |
-| SshPasteEnable        |                                               | Automatically called when using ssh |
-| SshPasteDisable       |                                               | |
 | Download              | Download a file from a given URL              | |
 
 ## Install

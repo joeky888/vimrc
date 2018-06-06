@@ -1284,12 +1284,23 @@ call ToggleAutoComplete()
 command! AutoCompleteEnable  let g:autocomp=1 | call ToggleAutoComplete()
 command! AutoCompleteDisable let g:autocomp=0 | call ToggleAutoComplete()
 
-command! SshPasteEnable  let g:autocomp=0 | call ToggleAutoComplete() | set paste
-command! SshPasteDisable let g:autocomp=1 | call ToggleAutoComplete() | set nopaste
+" command! SshPasteEnable  let g:autocomp=0 | call ToggleAutoComplete() | set paste
+" command! SshPasteDisable let g:autocomp=1 | call ToggleAutoComplete() | set nopaste
+
 if exists("$SSH_CLIENT") || exists("$SSH_TTY")
   " Disable paste and completion when using ssh
-  let g:autocomp=0 | call ToggleAutoComplete() | set paste
+  call SshPaste()
 endif
+
+function! SshPaste()
+  inoremap <silent> [ [
+  inoremap <silent> { {
+  inoremap <silent> ( (
+  set noautoindent
+  set nosmartindent
+  set nocindent
+  let g:autocomp=0 | call ToggleAutoComplete()
+endfunction
 
 let g:netrw_banner=0 " Hide banner
 " let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+' " Hide hidden files
