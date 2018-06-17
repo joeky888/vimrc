@@ -988,6 +988,16 @@ cnoremap <C-y> <C-c><C-r>
 
 " Ctrl T - New tab
 call CreateShortcut("C-t", ":tabnew<CR>", "inv", "noTrailingIInInsert", "cmdInVisual")
+call CreateShortcut("M-t", ":tabnew<CR>", "inv", "noTrailingIInInsert", "cmdInVisual")
+nnoremap <ESC><ESC>t :tabnew<CR>
+inoremap <ESC><ESC>t <C-o>:tabnew<CR>
+cnoremap <ESC><ESC>t <C-c>:tabnew<CR>
+vnoremap <ESC><ESC>t <Esc>:tabnew<CR>
+nnoremap <ESC>t :tabnew<CR>
+inoremap <ESC>t <C-o>:tabnew<CR>
+cnoremap <ESC>t <C-c>:tabnew<CR>
+vnoremap <ESC>t <Esc>:tabnew<CR>
+
 
 " Ctrl N - Next word
 call CreateShortcut("C-n", "w", "n")
