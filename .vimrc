@@ -2079,8 +2079,8 @@ function! HighlightGlobal()
     syn match txtComment    "^\/\/.*$"
     syn match txtComment    "\s\/\/.*"
     syn match txtComment    "^;.*"
-    hi def link alphanumeric  Function
-    hi def link txtNumber     Define
+    hi def link alphanumeric  Define
+    hi def link txtNumber     Number
     hi def link lineURL       Green
     hi def link nonalphabet   Conditional
     hi def link txtComment    Comment
