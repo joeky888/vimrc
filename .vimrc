@@ -1827,8 +1827,8 @@ inoremenu Edit.Remove.Empty\ lines          <ESC>:g/^$/de<CR>
 inoremenu Edit.Remove.Leading\ whitespace   <ESC>:%s/^\s\+//e<CR>
 inoremenu Edit.Remove.Trailing\ whitespace  <ESC>:%s/\s\+$//e<CR>
 
-command! -range=% RemoveLeadingSpace     <line1>,<line2>%s/^\s\+//e
-command! -range=% RemoveTrailingSpace    <line1>,<line2>%s/\s\+$//e
+command! -range=% RemoveLeadingSpace     <line1>,<line2>s/^\s\+//e
+command! -range=% RemoveTrailingSpace    <line1>,<line2>s/\s\+$//e
 command! -range=% RemoveEmptyLines       <line1>,<line2>g/^$/d
 
 " Toggle case
