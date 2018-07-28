@@ -90,13 +90,9 @@ call system("cat /proc/self/cgroup | grep -q docker") | let g:isDocker = v:shell
 if (executable("gpm") || executable("/usr/sbin/gpm") || executable("/sbin/gpm")) && !exists("$DISPLAY") && !g:isDocker
   set ttymouse=xterm " Reset to xterm in order to use GPM mouse
 endif
-if !has("win32") && !has("win64") && !has("gui_running")
+if !has("win32") && !has("win64") && !has("gui_running") && executable("sh") && executable("stty")
   " Make sure Ctrl-S, Ctrl-Q and Ctrl-V are working
-  if executable("bash")
-    silent !bash -c "stty -ixon -ixoff ; stty lnext '^-' stop undef start undef -ixon" > /dev/null 2>&1
-  elseif executable("zsh")
-    silent !zsh -c "stty -ixon -ixoff ; stty lnext '^-' stop undef start undef -ixon" > /dev/null 2>&1
-  endif
+  silent !sh -c "stty -ixon -ixoff ; stty lnext '^-' stop undef start undef -ixon" > /dev/null 2>&1
 endif
 autocmd VimEnter * set noerrorbells " Disable Gvim error sound
 autocmd VimEnter * set vb t_vb= | set t_vb= " Disable Gvim visual bell
