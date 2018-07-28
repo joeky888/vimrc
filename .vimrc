@@ -93,9 +93,9 @@ endif
 if !has("win32") && !has("win64") && !has("gui_running")
   " Make sure Ctrl-S, Ctrl-Q and Ctrl-V are working
   if executable("bash")
-    silent !bash -c "stty -ixon -ixoff ; stty lnext '^-' stop undef start undef -ixon" > /dev/null 2>&1
+    call system('bash -c "stty -ixon -ixoff ; stty lnext \"^-\" stop undef start undef -ixon"')
   elseif executable("zsh")
-    silent !zsh -c "stty -ixon -ixoff ; stty lnext '^-' stop undef start undef -ixon" > /dev/null 2>&1
+    call system('zsh -c "stty -ixon -ixoff ; stty lnext \"^-\" stop undef start undef -ixon"')
   endif
 endif
 autocmd VimEnter * set noerrorbells " Disable Gvim error sound
