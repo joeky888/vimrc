@@ -127,6 +127,8 @@ The code is under Public-domain licence.
 | Opencc2S              |                                               | |
 | AutoCompleteEnable    |                                               | |
 | AutoCompleteDisable   |                                               | |
+| SshPasteEnable        |                                               | |
+| SshPasteDisable       |                                               | |
 | Download              | Download a file from a given URL              | |
 
 ## Install

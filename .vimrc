@@ -100,6 +100,7 @@ autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme,SessionLoa
 autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme,SessionLoadPost * set formatoptions-=cro " Prevent vim inserting new comment lines
 au VimResized * let g:vertical_jump=&scroll*4/3
 au FileType vim,sh,zsh,python setlocal fileformat=unix
+au FileType make setlocal fileformat=unix | setlocal noexpandtab | setlocal tabstop=8
 au FileType call HighlightGlobal()
 au FileType help,man nmap <buffer> <CR> <C-]> | nmap <buffer> <C-n> :cn<CR> | nmap <buffer> <C-p> :cp<CR>
 " Highlight code area in markdown
@@ -1291,8 +1292,8 @@ call ToggleAutoComplete()
 command! AutoCompleteEnable  let g:autocomp=1 | call ToggleAutoComplete()
 command! AutoCompleteDisable let g:autocomp=0 | call ToggleAutoComplete()
 
-" command! SshPasteEnable  let g:autocomp=0 | call ToggleAutoComplete() | set paste
-" command! SshPasteDisable let g:autocomp=1 | call ToggleAutoComplete() | set nopaste
+command! SshPasteEnable  let g:autocomp=0 | call ToggleAutoComplete() | set paste
+command! SshPasteDisable let g:autocomp=1 | call ToggleAutoComplete() | set nopaste
 
 function! SshPaste()
   inoremap <silent> [ [
