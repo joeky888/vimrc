@@ -100,7 +100,7 @@ autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme,SessionLoa
 autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme,SessionLoadPost * set formatoptions-=cro " Prevent vim inserting new comment lines
 au VimResized * let g:vertical_jump=&scroll*4/3
 au FileType vim,sh,zsh,python setlocal fileformat=unix
-au FileType make setlocal fileformat=unix | setlocal noexpandtab | setlocal tabstop=8
+au FileType make setlocal fileformat=unix | call IndentTab(8)
 au FileType call HighlightGlobal()
 au FileType help,man nmap <buffer> <CR> <C-]> | nmap <buffer> <C-n> :cn<CR> | nmap <buffer> <C-p> :cp<CR>
 " Highlight code area in markdown
@@ -185,10 +185,7 @@ function! IndentDetectorDetect(autoadjust)
       if &expandtab
         return 'space'.&softtabstop
       else
-        setl noexpandtab
-        setl softtabstop=0
-        setl tabstop=4
-        setl shiftwidth=4
+        call IndentTab(8)
         return 'tab'.&tabstop
       endif
     endif
