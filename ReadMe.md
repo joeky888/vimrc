@@ -136,24 +136,24 @@ The code is under Public-domain licence.
 * Use curl
 
 ```sh
-curl https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc -o ~/.vimrc
+curl https://raw.githubusercontent.com/joeky888/vimrc/master/.vimrc -o ~/.vimrc
 ```
 
 * Use wget
 
 ```sh
-wget https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc -O ~/.vimrc
+wget https://raw.githubusercontent.com/joeky888/vimrc/master/.vimrc -O ~/.vimrc
 ```
 
 <!-- * Use Python2 -->
 <!-- ```sh -->
-<!-- python2 -c "import urllib;from os.path import expanduser; urllib.urlretrieve('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc', expanduser('~') + '/.vimrc')" -->
-<!-- # python2 -c "import urllib; print urllib.urlopen('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc'.encode('UTF-8')).read()" > ~/.vimrc -->
+<!-- python2 -c "import urllib;from os.path import expanduser; urllib.urlretrieve('https://raw.githubusercontent.com/joeky888/vimrc/master/.vimrc', expanduser('~') + '/.vimrc')" -->
+<!-- # python2 -c "import urllib; print urllib.urlopen('https://raw.githubusercontent.com/joeky888/vimrc/master/.vimrc'.encode('UTF-8')).read()" > ~/.vimrc -->
 <!-- ``` -->
 
 <!-- * Use Python3 -->
 <!-- ```sh -->
-<!-- python3 -c "import urllib.request;from os.path import expanduser; urllib.request.urlretrieve('https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc', expanduser('~') + '/.vimrc')" -->
+<!-- python3 -c "import urllib.request;from os.path import expanduser; urllib.request.urlretrieve('https://raw.githubusercontent.com/joeky888/vimrc/master/.vimrc', expanduser('~') + '/.vimrc')" -->
 <!-- ``` -->
 
 ## Install on Windows
@@ -162,7 +162,7 @@ wget https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc -O ~/.vi
 * Copy all and press Enter
 
 ```sh
-$url = "https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc"
+$url = "https://raw.githubusercontent.com/joeky888/vimrc/master/.vimrc"
 $path = "$env:USERPROFILE\\.vimrc"
 (New-Object System.Net.WebClient).DownloadFile($url, $path)
 ```
@@ -170,14 +170,14 @@ $path = "$env:USERPROFILE\\.vimrc"
 * Use cmd.exe
 
 ```sh
-C:\windows\explorer.exe https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc
+C:\windows\explorer.exe https://raw.githubusercontent.com/joeky888/vimrc/master/.vimrc
 ```
 
 ## Install for Neovim
 
 ```sh
 mkdir -p ~/.config/nvim/
-curl https://raw.githubusercontent.com/j16180339887/vimrc/master/.vimrc -o ~/.config/nvim/init.vim
+curl https://raw.githubusercontent.com/joeky888/vimrc/master/.vimrc -o ~/.config/nvim/init.vim
 ```
 
 ### Extra notes
