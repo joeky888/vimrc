@@ -104,13 +104,17 @@ au FileType make setlocal fileformat=unix | call IndentTab(8)
 au FileType call HighlightGlobal()
 au FileType help,man nmap <buffer> <CR> <C-]> | nmap <buffer> <C-n> :cn<CR> | nmap <buffer> <C-p> :cp<CR>
 " Highlight code area in markdown
-let g:markdown_fenced_languages =
-\[
-  \"c","cpp","java","javascript","ruby","python","vim",
-  \"css","html","xml","json","cmake","yaml","sh","conf",
-  \"zsh","tmux","debsources","resolv","sudoers","make",
-  \"dosbatch","bash=sh","js=javascript"
-\]
+if (v:version == 704 && has("patch2011")) || has('patch-7.4.2011') || v:version > 704
+  let g:markdown_fenced_languages = getcompletion('', 'filetype')
+else
+  let g:markdown_fenced_languages =
+  \[
+    \"c","cpp","java","javascript","ruby","python","vim",
+    \"css","html","xml","json","cmake","yaml","sh","conf",
+    \"zsh","tmux","debsources","resolv","sudoers","make",
+    \"dosbatch","bash=sh","js=javascript"
+  \]
+fi
 
 if &diff
   set number
@@ -1252,10 +1256,10 @@ autocmd FileType * exe 'setlocal dictionary+=$VIMRUNTIME/syntax/'.&filetype.'.vi
 set completeopt=menuone
 set complete=.,w,b,t
 set complete+=k " Rescan files in the 'dictionary' option
-if (v:version >= 704 && has("patch314")) || has('patch-7.4.314')
+if (v:version == 704 && has("patch314")) || has('patch-7.4.314') || v:version > 704
   set shortmess+=c " Disable autocomplete WarningMsg
 endif
-if (v:version >= 704 && has("patch1570")) || has('patch-7.4.1570')
+if (v:version == 704 && has("patch1570")) || has('patch-7.4.1570') || v:version > 704
   set shortmess+=F " Disable file info on start
 endif
 let autocomp=1
