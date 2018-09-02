@@ -104,17 +104,14 @@ au FileType make setlocal fileformat=unix | call IndentTab(8)
 au FileType call HighlightGlobal()
 au FileType help,man nmap <buffer> <CR> <C-]> | nmap <buffer> <C-n> :cn<CR> | nmap <buffer> <C-p> :cp<CR>
 " Highlight code area in markdown
-if (v:version == 704 && has("patch2011")) || has('patch-7.4.2011') || v:version > 704
-  let g:markdown_fenced_languages = getcompletion('', 'filetype')
-else
-  let g:markdown_fenced_languages =
-  \[
-    \"c","cpp","java","javascript","ruby","python","vim",
-    \"css","html","xml","json","cmake","yaml","sh","conf",
-    \"zsh","tmux","debsources","resolv","sudoers","make",
-    \"dosbatch","bash=sh","js=javascript"
-  \]
-endif
+" let g:markdown_fenced_languages = getcompletion('', 'filetype')
+let g:markdown_fenced_languages =
+\[
+  \"c","cpp","java","javascript","ruby","python","vim",
+  \"css","html","xml","json","cmake","yaml","sh","conf",
+  \"zsh","tmux","debsources","resolv","sudoers","make",
+  \"dosbatch","bash=sh","js=javascript","go"
+\]
 
 if &diff
   set number
