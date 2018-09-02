@@ -114,7 +114,7 @@ else
     \"zsh","tmux","debsources","resolv","sudoers","make",
     \"dosbatch","bash=sh","js=javascript"
   \]
-fi
+endif
 
 if &diff
   set number
