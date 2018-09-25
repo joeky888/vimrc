@@ -86,7 +86,10 @@ if has("mouse_sgr")
 elseif has("mouse_xterm")
   set ttymouse=xterm2 " Faster mouse in tty, xterm patch version from 95 to 276
 endif
-call system("cat /proc/self/cgroup | grep -q docker") | let g:isDocker = v:shell_error == 0 ? 1 : 0
+if filereadable("/proc/self/cgroup")
+  call system("cat /proc/self/cgroup | grep -q docker")
+  let g:isDocker = v:shell_error == 0 ? 1 : 0
+endif
 if (executable("gpm") || executable("/usr/sbin/gpm") || executable("/sbin/gpm")) && !exists("$DISPLAY") && !exists("$DESKTOP_SESSION") && !g:isDocker
   set ttymouse=xterm " Reset to xterm in order to use GPM mouse
 endif
