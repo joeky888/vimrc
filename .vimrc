@@ -1004,7 +1004,7 @@ inoremap <C-n> <C-Right>
 vnoremap <C-n> <S-Right>
 
 " Terminal Alt Backspace kill a word
-nnoremap <Esc><BS> "_dBi<C-g>u
+nnoremap <Esc><BS> i<C-w><C-g>u
 inoremap <Esc><BS> <C-w><C-g>u
 vnoremap <Esc><BS> "_di<C-g>u
 cnoremap <Esc><BS> <C-w>
@@ -1100,7 +1100,7 @@ inoremap <C-Del> <C-o>"_dw<C-g>u
 vnoremap <C-BS> "_di
 
 " Alt - Backspace kill a word
-nnoremap <A-BS> "_dBi<C-g>u
+nnoremap <A-BS> i<C-w><C-g>u
 inoremap <A-BS> <C-w><C-g>u
 vnoremap <A-BS> "_d
 cnoremap <A-BS> <C-w>
