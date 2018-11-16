@@ -2366,6 +2366,9 @@ if has("gui_running")
   au VimEnter * nested :call LoadSession() | call SyntaxMonokai() | call HighlightAll()
   au VimLeave * call DeleteHiddenBuffers() | call MakeSession()
 
+  " Normal is the background color
+  hi Normal ctermfg=252 ctermbg=233 cterm=NONE guifg=#F8F8F2 guibg=#1B1D1E gui=NONE
+
   " Ctrl C is copying line if there is no word selected
   nnoremap <C-c> mjV"+y:redraw!<CR>`ji
   inoremap <C-c> <C-\><C-o>mj<C-o>V"+y<C-o>:redraw!<CR><C-o>`j
