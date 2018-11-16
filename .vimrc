@@ -1543,6 +1543,7 @@ function! SyntaxMonokai()
 
   " Normal is the background color
   " hi Normal ctermfg=252 ctermbg=233 cterm=NONE guifg=#F8F8F2 guibg=#1B1D1E gui=NONE
+  hi Normal guifg=#F8F8F2 guibg=#1B1D1E gui=NONE
   " Visual is the selection color
   hi Visual ctermfg=255 ctermbg=39 cterm=NONE guifg=White guibg=#00AFFF gui=NONE
   " Pmenu is the popup autocomplete color
@@ -2365,9 +2366,6 @@ if has("gui_running")
   " Restore all sessions, GUI only, don't do this with terminal vim
   au VimEnter * nested :call LoadSession() | call SyntaxMonokai() | call HighlightAll()
   au VimLeave * call DeleteHiddenBuffers() | call MakeSession()
-
-  " Normal is the background color
-  hi Normal ctermfg=252 ctermbg=233 cterm=NONE guifg=#F8F8F2 guibg=#1B1D1E gui=NONE
 
   " Ctrl C is copying line if there is no word selected
   nnoremap <C-c> mjV"+y:redraw!<CR>`ji
