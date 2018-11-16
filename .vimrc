@@ -1542,7 +1542,7 @@ function! SyntaxMonokai()
   let python_highlight_all = 1 " Tell $VIMRUNTIME/syntax/python.vim to highlight all
 
   " Normal is the background color
-  hi Normal ctermfg=252 ctermbg=233 cterm=NONE guifg=#F8F8F2 guibg=#1B1D1E gui=NONE
+  " hi Normal ctermfg=252 ctermbg=233 cterm=NONE guifg=#F8F8F2 guibg=#1B1D1E gui=NONE
   " Visual is the selection color
   hi Visual ctermfg=255 ctermbg=39 cterm=NONE guifg=White guibg=#00AFFF gui=NONE
   " Pmenu is the popup autocomplete color
@@ -1650,7 +1650,7 @@ function! SyntaxMonokai16color()
   set t_Co=16
 
   " Normal is the background color
-  hi Normal ctermfg=7 ctermbg=0 cterm=NONE
+  " hi Normal ctermfg=7 ctermbg=0 cterm=NONE
   " Visual is the selection color
   hi Visual ctermfg=15 ctermbg=3 cterm=NONE
   " Pmenu is the popup autocomplete color
