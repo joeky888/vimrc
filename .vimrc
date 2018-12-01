@@ -59,8 +59,6 @@ set langmenu=en_US.UTF-8 " Set Gvim menu language
 let $LANG='en' " Set $LANG variable
 set fileformats=unix,dos,mac " Set for terminal vim
 set synmaxcol=3000 " Don't try to highlight lines with over 3000 characters
-set sessionoptions-=options,localoptions,globals,buffers " Don't save these to the session file
-set sessionoptions+=winpos,winsize,resize, " Save these to the session file
 set smartcase& " After 8.0.1238, smartcase should be on. But we'll see.
 set nowrap " Don't wrap text
 set cmdheight=2 "Avoiding the Hit ENTER to continue prompts
@@ -99,8 +97,8 @@ if !has("win32") && !has("win64") && !has("gui_running") && executable("sh") && 
 endif
 autocmd VimEnter * set noerrorbells " Disable Gvim error sound
 autocmd VimEnter * set vb t_vb= | set t_vb= " Disable Gvim visual bell
-autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme,SessionLoadPost * set iskeyword=a-z,A-Z,48-57,_
-autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme,SessionLoadPost * set formatoptions-=cro " Prevent vim inserting new comment lines
+autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme * set iskeyword=a-z,A-Z,48-57,_
+autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme * set formatoptions-=cro " Prevent vim inserting new comment lines
 au VimResized * let g:vertical_jump=&scroll*4/3
 au FileType vim,sh,zsh,python setlocal fileformat=unix
 au FileType make setlocal fileformat=unix | call IndentTab(8)
@@ -207,7 +205,7 @@ function! GetIndent()
   endif
   return b:fileIndent
 endfunction
-autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufNew,FileType,SessionLoadPost * exe "if exists('b:fileIndent') | unlet b:fileIndent | endif" | call GetIndent()
+autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufNew,FileType * exe "if exists('b:fileIndent') | unlet b:fileIndent | endif" | call GetIndent()
 
 """ Prevent lag when hitting ESC
 set ttimeoutlen=10
@@ -291,15 +289,6 @@ function! ModifiedQCheck()
     silent q
   endif
 endfunction
-function! ModifiedBDCheck()
-  if &modified
-    if (confirm("YOU HAVE UNSAVED CHANGES! Wanna quit anyway?", "&Yes\n&No", 2)==1)
-      bd!
-    endif
-  else
-    silent bd
-  endif
-endfunction
 function! FileQuit()
   if has("gui_running")
     " help file is not in the buffer list, specially treated
@@ -308,13 +297,6 @@ function! FileQuit()
       return
     elseif TabIsEmpty() == 1
       silent q!
-      return
-    endif
-    redir => bufferActive | silent exe 'buffers a' | redir END
-    let g:bufferNum = len(split(bufferActive, "\n"))
-
-    if g:bufferNum == 1 && bufname("%") != "" && winnr("$") == 1
-      silent bufdo call ModifiedBDCheck()
       return
     endif
   endif
@@ -330,8 +312,8 @@ function! FileSave()
   let @/ = "" " Clear searching highlight
   execute "%s/\\s\\+$//e"
   call histdel("search", -1) " Remove last searching history
-  let cantSave = "echo \"Can't save the file: \" . v:exception | call HighlightAll() | return"
-  let notSaved = "redraw | echo 'This buffer was NOT saved!' | call HighlightAll() | return"
+  let cantSave = "echo \"Can't save the file: \" . v:exception | return"
+  let notSaved = "redraw | echo 'This buffer was NOT saved!' | return"
   try
     silent w
   catch /:E45:\|:E505:\|:E212:/
@@ -1525,12 +1507,9 @@ function! SyntaxMonokai()
   try
     set background=light
     syntax enable " Enable syntax highlights
-"     if !has('nvim')
-"       colorscheme darkblue
-"     endif
   catch /:E484:\|:E185:/
     " E484: Syntax files not found, using HighlightGlobal"
-    autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme,SessionLoadPost * call HighlightGlobal()
+    autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme * call HighlightGlobal()
     call HighlightGlobal()
   endtry
 "   set background=dark
@@ -1641,6 +1620,7 @@ function! SyntaxMonokai()
     endif
   endif
 endfunction
+call SyntaxMonokai()
 
 function! SyntaxMonokai16color()
 
@@ -2041,17 +2021,6 @@ autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufEnter,FileType,ColorScheme * c
 autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufEnter,FileType,ColorScheme *.{srt,SRT,vtt,VTT} call HighlightSRT()
 autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufEnter,FileType,ColorScheme *.{ass,ASS,ssa,SSA} call HighlightASS()
 autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufEnter,FileType,ColorScheme *.{ps1,PS1,psd1,PSD1,psm1,PSM1,pssc,PSSC} call HighlightPS1()
-" autocmd FileType,Syntax,ColorScheme * call HighlightAll()
-
-" Highlight again after session loaded
-function! HighlightAll()
-  call HighlightGlobal()
-  call HighlightSRT()
-  call HighlightASS()
-  call HighlightPS1()
-  call HighlightC()
-  set iskeyword=a-z,A-Z,48-57,_
-endfunction
 
 function! HighlightGlobal()
   if &filetype == "" || &filetype == "text" || &filetype == "conf"
@@ -2279,41 +2248,6 @@ function! HighlightC()
   hi def link cCustomClass Define
 endfunction
 
-function! MakeSession()
-  if has('win32') || has('win64')
-    let mySession=expand("$TEMP/vim/session.vim")
-  else
-    let mySession=expand("$HOME/.vim/session.vim")
-  endif
-
-  " Don's save the session if there is only one buffer
-  if exists('g:bufferNum')
-    if g:bufferNum <= 1 | call delete(mySession) | return | endif
-  endif
-  exe "mksession! " . mySession
-endfunction
-
-function! LoadSession()
-  " Prevent screen flashing on start
-  hi Normal ctermfg=252 ctermbg=233 guifg=#F8F8F2 guibg=#1B1D1E
-  if has('win32') || has('win64')
-    let mySession=expand("$TEMP/vim/session.vim")
-  else
-    let mySession=expand("$HOME/.vim/session.vim")
-  endif
-  if (filereadable(mySession))
-    exe 'source ' . mySession
-  endif
-endfunction
-
-function! DeleteHiddenBuffers()
-  let tpbl=[]
-  call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
-  for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
-      silent execute 'bwipeout' buf
-  endfor
-endfunction
-
 if has("gui_running")
 
   let g:guifontsize=14
@@ -2363,10 +2297,6 @@ if has("gui_running")
   inoremap <silent> <Home> <C-o>:let g:guifontsize+=1<CR><C-o>:call ChangeFontSize()<CR>
   inoremap <silent> <End>  <C-o>:let g:guifontsize-=1<CR><C-o>:call ChangeFontSize()<CR>
 
-  " Restore all sessions, GUI only, don't do this with terminal vim
-  au VimEnter * nested :call LoadSession() | call SyntaxMonokai() | call HighlightAll()
-  au VimLeave * call DeleteHiddenBuffers() | call MakeSession()
-
   " Ctrl C is copying line if there is no word selected
   nnoremap <C-c> mjV"+y:redraw!<CR>`ji
   inoremap <C-c> <C-\><C-o>mj<C-o>V"+y<C-o>:redraw!<CR><C-o>`j
@@ -2397,6 +2327,4 @@ if has("gui_running")
 
   " Pasting or Visual-Block Insert and command-line mode
   " noremap! <Insert> <C-r>+
-else
-  call SyntaxMonokai()
 endif
