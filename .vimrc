@@ -111,7 +111,7 @@ let g:markdown_fenced_languages =
   \"c","cpp","java","javascript","ruby","python","vim",
   \"css","html","xml","json","cmake","yaml","sh","conf",
   \"zsh","tmux","debsources","resolv","sudoers","make",
-  \"dosbatch","bash=sh","js=javascript","go"
+  \"dosbatch","bash=sh","js=javascript","go","sql"
 \]
 
 if &diff
@@ -1208,6 +1208,7 @@ autocmd FileType jproperties        let b:comment_leader = '#'
 autocmd FileType gitconfig          let b:comment_leader = '#'
 autocmd FileType matlab,tex         let b:comment_leader = '%'
 autocmd FileType vim                let b:comment_leader = '"'
+autocmd FileType sql                let b:comment_leader = '--'
 autocmd FileType css                let b:comment_leader = '\/\*'   |   let b:comment_ender = '\*\/'
 autocmd FileType html,xml,markdown  let b:comment_leader = '<!--'   |   let b:comment_ender = '-->'
 
