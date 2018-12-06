@@ -183,7 +183,7 @@ curl https://raw.githubusercontent.com/joeky888/vimrc/master/.vimrc -o ~/.config
 ### Extra notes
 
 * Don't use `sudo vim`, use `sudoedit` instead
-* On MacVim, both Ctrl key and Command key will work
+* On MacVim, both Ctrl key and Command key will work if you save it as `~/.gvimrc`
 * There are some keys one should never map them
     * Ctrl-I = Space in terminal
     * Ctrl-M = Enter in terminal
