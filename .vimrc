@@ -309,7 +309,7 @@ function! FileQuit()
 endfunction
 function! FileSave()
   call SavePos()
-  let @/ = "" " Clear searching highlight
+"   let @/ = "" " Clear searching highlight
   execute "%s/\\s\\+$//e"
   call histdel("search", -1) " Remove last searching history
   let cantSave = "echo \"Can't save the file: \" . v:exception | return"
@@ -1381,61 +1381,93 @@ function! ChangeAccentColor16()
   execute 'hi! CursorLineNr ctermfg=' . accentColor
   return ''
 endfunction
+
+" Modified from https://github.com/google/vim-searchindex
 function! SearchCount()
-  " variable b:lastKey = [key, Nth, N]
-  if !exists('b:lastKey') | let b:lastKey = [[], 0, 0] | endif
-  return b:lastKey[1] . "/" . b:lastKey[2]
-endfunction
-function! UpdateSearch()
-  let pos=getpos('.')
-  let key=[@/, b:changedtick]
+  " both :s and search() modify cursor position
+  let win_view = winsaveview()
+  " folds affect range of ex commands (issue #4)
+  let save_foldenable = &foldenable
+  set nofoldenable
 
-  let b:lastKey[0] = key
+  let in_line = MatchInLine()
 
-  redir => cnt
-    silent exe '%s/' . key[0] . '//gne'
-  redir END
-  let b:lastKey[2] = str2nr(matchstr( cnt, '\d\+' ))
-
-  redir => nth
-    silent exe '0,.s/' . key[0] . '//gne'
-  redir END
-
-  let b:lastKey[1] = str2nr(matchstr( nth, '\d\+' ))
-  call setpos('.', pos)
-endfunction
-function! CommandAfterSearch()
-  if getcmdtype() == '/'
-    return "\<cr>:call UpdateSearch()\<cr>"
+  let cache_key = [b:changedtick, @/]
+  if exists('b:searchindex_cache_key') && b:searchindex_cache_key ==# cache_key
+    let before = MatchesAbove(b:searchindex_cache_val)
+    let total = b:searchindex_cache_val[-1]
   else
-    return "\<cr>"
+    let before = (line('.') == 1 ? 0 : MatchesInRange('1,-1'))
+    let total = before + MatchesInRange(',$')
+  endif
+
+  let b:searchindex_cache_val = [line('.'), before, total]
+  let b:searchindex_cache_key = cache_key
+
+  let &foldenable = save_foldenable
+  call winrestview(win_view)
+
+  " return [before + in_line, total]
+  return before + in_line . '/' . total
+endfunction
+function MatchesAbove(cached_values)
+  " avoid wrapping range at the beginning of file
+  if line('.') == 1 | return 0 | endif
+
+  let [old_line, old_result, total] = a:cached_values
+  " Find the nearest point from which we can restart match counting (top,
+  " bottom, or previously cached line).
+  let line = line('.')
+  let to_top = line
+  let to_old = abs(line - old_line)
+  let to_bottom = line('$') - line
+  let min_dist = min([to_top, to_old, to_bottom])
+
+  if min_dist == to_top
+    return MatchesInRange('1,.-1')
+  elseif min_dist == to_bottom
+    return total - MatchesInRange(',$')
+  " otherwise, min_dist == to_old, we just need to check relative line order
+  elseif old_line < line
+    return old_result + MatchesInRange(old_line . ',-1')
+  elseif old_line > line
+    return old_result - MatchesInRange(',' . (old_line - 1))
+  else " old_line == line
+    return old_result
   endif
 endfunction
-cnoremap <silent> <expr> <CR> CommandAfterSearch()
-function! NextSearch()
-  let l:line = line(".")
-  try
-    normal! n
-  catch /:E486:/
-    call ConsoleInfo(" Nothing found! ")
-  endtry
-  if l:line != line(".")
-    let b:lastKey[1]=b:lastKey[1]+1 <= b:lastKey[2] ? b:lastKey[1]+1 : b:lastKey[1]+1-b:lastKey[2]
-  endif
+function! MatchInLine()
+  let line = line('.')
+  let col = col('.')
+  let star_search = 0
+
+  normal! 0
+  let matches = 0
+  let s_opt = 'c'
+  " The count might be off in edge cases (e.g. regexes that allow empty match,
+  " like 'a*'). Unfortunately, Vim's searching functions are so inconsistent
+  " that I can't fix this.
+  while search(@/, s_opt, line) && col('.') <= col
+    let matches += 1
+    let s_opt = ''
+  endwhile
+
+  return matches
 endfunction
-function! PreviousSearch()
-  let l:line = line(".")
-  try
-    normal! N
-  catch /:E486:/
-    call ConsoleInfo(" Nothing found! ")
-  endtry
-  if l:line != line(".")
-    let b:lastKey[1]=b:lastKey[1]-1 > 0 ? b:lastKey[1]-1 : b:lastKey[1]-1+b:lastKey[2]
-  endif
+function! MatchesInRange(range)
+  " Use :s///n to search efficiently in large files. Although calling search()
+  " in the loop would be cleaner (see issue #18), it is also much slower.
+  let gflag = &gdefault ? '' : 'g'
+  let saved_marks = [ getpos("'["), getpos("']") ]
+  let output = ''
+  redir => output
+    silent! execute 'keepjumps ' . a:range . 's//~/en' . gflag
+  redir END
+  call setpos("'[", saved_marks[0])
+  call setpos("']", saved_marks[1])
+  return str2nr(matchstr(output, '\d\+'))
 endfunction
-nnoremap <silent> n :call NextSearch()<CR>
-nnoremap <silent> N :call PreviousSearch()<CR>
+
 function! ReadOnly()
   return (&readonly || !&modifiable) ? 'Read Only ' : ''
 endfunction
