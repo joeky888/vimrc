@@ -426,7 +426,7 @@ function! MetaKeyMapping()
     " Command D - Duplicate Line
     nnoremap <silent> <D-d> mj:t.<CR>`jji
     inoremap <expr> <silent> <D-d> pumvisible() ? "\<C-y>\<C-O>mj\<ESC>:t.\<CR>`jji\<C-g>u" : "\<C-O>mj\<ESC>:t.\<CR>`jji\<C-g>u"
-    vnoremap <D-d> yPgv
+    vnoremap <D-d> yP<ESC>gv
     " Command Q - Visual block selection
     nnoremap <D-q> <C-v>
     inoremap <D-q> <C-\><C-o><C-v>
@@ -476,11 +476,11 @@ function! MetaKeyMapping()
     " Command Pageup - Move up Line booster
     nnoremap <silent> <D-PageUp> mj:<C-u>silent! move-16<CR>`j
     inoremap <silent> <D-PageUp> <C-\><C-O>mj<C-O>:<C-u>silent! move-16<CR><C-O>`j<C-g>u
-    vnoremap <silent> <D-PageUp> :<C-u>silent! '<,'>move-16<CR>gv
+    vnoremap <silent> <D-PageUp> :<C-u>silent! '<,'>move-16<CR><ESC>gv
     " Command Pagedown - Move down Line boosted
     nnoremap <silent> <D-PageDown> mj:<C-u>silent! move+15<CR>`j
     inoremap <silent> <D-PageDown> <C-\><C-O>mj<C-O>:<C-u>silent! move+15<CR><C-O>`j<C-g>u
-    vnoremap <silent> <D-PageDown> :<C-u>silent! '<,'>move'>+15<CR>gv
+    vnoremap <silent> <D-PageDown> :<C-u>silent! '<,'>move'>+15<CR><ESC>gv
     " Command W - Quit
     nnoremap <silent> <D-w> :call FileQuit()<CR>
     inoremap <silent> <D-w> <C-o>:call FileQuit()<CR>
@@ -533,7 +533,7 @@ function! MetaKeyMapping()
     " Command C is copying line if there is no word selected
     nnoremap <D-c> mjV"+y:redraw!<CR>`ji
     inoremap <D-c> <C-\><C-o>mj<C-o>V"+y<C-o>:redraw!<CR><C-o>`j
-    vnoremap <D-c> "+y:redraw!<CR>gv
+    vnoremap <D-c> "+y:redraw!<CR><ESC>gv
     cnoremap <D-c> <C-y>
     " Command X is cutting line if there is no word selected
     nnoremap <silent> <D-x>           :call SavePos()<CR>dd:call setpos(".", b:savepos)<CR>
@@ -563,7 +563,7 @@ function! MetaKeyMapping()
   " Meta D - Duplicate Line
   nnoremap <silent> <M-d> mj:t.<CR>`jji
   inoremap <expr> <silent> <M-d> pumvisible() ? "\<C-y>\<C-O>mj\<ESC>:t.\<CR>`jji\<C-g>u" : "\<C-O>mj\<ESC>:t.\<CR>`jji\<C-g>u"
-  vnoremap <M-d> yPgv
+  vnoremap <M-d> yP<ESC>gv
   " Meta Q - Visual block selection
   nnoremap <M-q> <C-v>
   inoremap <M-q> <C-\><C-o><C-v>
@@ -605,11 +605,11 @@ function! MetaKeyMapping()
   " Meta Pageup - Move up Line booster
   nnoremap <silent> <M-PageUp> mj:<C-u>silent! move-16<CR>`j
   inoremap <silent> <M-PageUp> <C-\><C-O>mj<C-O>:<C-u>silent! move-16<CR><C-O>`j<C-g>u
-  vnoremap <silent> <M-PageUp> :<C-u>silent! '<,'>move-16<CR>gv
+  vnoremap <silent> <M-PageUp> :<C-u>silent! '<,'>move-16<CR><ESC>gv
   " Meta Pagedown - Move down Line boosted
   nnoremap <silent> <M-PageDown> mj:<C-u>silent! move+15<CR>`j
   inoremap <silent> <M-PageDown> <C-\><C-O>mj<C-O>:<C-u>silent! move+15<CR><C-O>`j<C-g>u
-  vnoremap <silent> <M-PageDown> :<C-u>silent! '<,'>move'>+15<CR>gv
+  vnoremap <silent> <M-PageDown> :<C-u>silent! '<,'>move'>+15<CR><ESC>gv
   " Meta W - Quit
   nnoremap <silent> <M-w> :call FileQuit()<CR>
   inoremap <silent> <M-w> <C-o>:call FileQuit()<CR>
@@ -662,7 +662,7 @@ function! MetaKeyMapping()
   " Meta C is copying line if there is no word selected
   nnoremap <M-c> mjV"+y:redraw!<CR>`ji
   inoremap <M-c> <C-\><C-o>mj<C-o>V"+y<C-o>:redraw!<CR><C-o>`j
-  vnoremap <M-c> "+y:redraw!<CR>gv
+  vnoremap <M-c> "+y:redraw!<CR><ESC>gv
   cnoremap <M-c> <C-y>
   " Meta X is cutting line if there is no word selected
   nnoremap <silent> <M-x>           :call SavePos()<CR>dd:call setpos(".", b:savepos)<CR>
@@ -782,7 +782,7 @@ if !has("gui_running") && has("clipboard")
   " Remap Ctrl C
   nnoremap <silent> <C-c> mjV"+yV:<C-u>silent! '<,'>w! $HOME/.vim/clipboard.txt<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR>`ji
   inoremap <silent> <C-c> <C-\><C-o>mj<C-o>V"+y<C-o>V:<C-u>silent! '<,'>w! $HOME/.vim/clipboard.txt<CR><C-o>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR><C-o>:redraw!<CR><C-o>`j
-  vnoremap <silent> <C-c> "+y<ESC>:call delete(expand("$HOME/.vim/clipboard.txt"))<CR>:new $HOME/.vim/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR>gv
+  vnoremap <silent> <C-c> "+y<ESC>:call delete(expand("$HOME/.vim/clipboard.txt"))<CR>:new $HOME/.vim/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR><ESC>gv
   cnoremap <C-c> <C-y>
   " Remap Ctrl X
   nnoremap <silent> <C-x>       :call SavePos()<CR>:silent w! $HOME/.vim/clipboard.txt<CR>V"+x:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:call setpos(".", b:savepos)<CR>i
@@ -797,7 +797,7 @@ if !has("gui_running") && has("clipboard")
 elseif !has("gui_running") && !has("clipboard")
   " Ctrl C - Copy
   call CreateShortcut("C-c", "mjYV:<C-u>silent! '<,'>w! $HOME/.vim/clipboard.txt<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR>`j", "ni")
-  vnoremap <silent> <C-c> y:call delete(expand("$HOME/.vim/clipboard.txt"))<CR>:new $HOME/.vim/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR>gv
+  vnoremap <silent> <C-c> y:call delete(expand("$HOME/.vim/clipboard.txt"))<CR>:new $HOME/.vim/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR><ESC>gv
 
   " Ctrl X - Cut
   nnoremap <silent> <C-x>       :call SavePos()<CR>:silent w! $HOME/.vim/clipboard.txt<CR>dd:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:call setpos(".", b:savepos)<CR>i
@@ -839,7 +839,7 @@ vnoremap <silent> <C-k> :d _<CR>
 " Ctrl D - Duplicate Line
 nnoremap <silent> <C-d> mj:t.<CR>`jji
 inoremap <expr> <silent> <C-d> pumvisible() ? "\<C-y>\<C-O>mj\<ESC>:t.\<CR>`jji\<C-g>u" : "\<C-O>mj\<ESC>:t.\<CR>`jji\<C-g>u"
-vnoremap <C-d> yPgv
+vnoremap <C-d> yP<ESC>gv
 
 " Ctrl Q - Visual block selection
 nnoremap <C-q> <C-v>
@@ -923,22 +923,22 @@ vnoremap <C-l> <ESC>
 " Pageup - Move up Line
 nnoremap <silent> <PageUp> mj:<C-u>silent! move-2<CR>`j
 inoremap <silent> <PageUp> <C-\><C-O>mj<C-O>:<C-u>silent! move-2<CR><C-O>`j<C-g>u
-vnoremap <silent> <PageUp> :<C-u>silent! '<,'>move-2<CR>gv
+vnoremap <silent> <PageUp> :<C-u>silent! '<,'>move-2<CR><ESC>gv
 
 " Pagedown - Move down Line
 nnoremap <silent> <PageDown> mj:<C-u>silent! move+<CR>`j
 inoremap <silent> <PageDown> <C-\><C-O>mj<C-O>:<C-u>silent! move+<CR><C-O>`j<C-g>u
-vnoremap <silent> <PageDown> :<C-u>silent! '<,'>move'>+<CR>gv
+vnoremap <silent> <PageDown> :<C-u>silent! '<,'>move'>+<CR><ESC>gv
 
 " Ctrl Pageup - Move up Line booster
 nnoremap <silent> <C-PageUp> mj:<C-u>silent! move-16<CR>`j
 inoremap <silent> <C-PageUp> <C-\><C-O>mj<C-O>:<C-u>silent! move-16<CR><C-O>`j<C-g>u
-vnoremap <silent> <C-PageUp> :<C-u>silent! '<,'>move-16<CR>gv
+vnoremap <silent> <C-PageUp> :<C-u>silent! '<,'>move-16<CR><ESC>gv
 
 " Ctrl Pagedown - Move down Line boosted
 nnoremap <silent> <C-PageDown> mj:<C-u>silent! move+15<CR>`j
 inoremap <silent> <C-PageDown> <C-\><C-O>mj<C-O>:<C-u>silent! move+15<CR><C-O>`j<C-g>u
-vnoremap <silent> <C-PageDown> :<C-u>silent! '<,'>move'>+15<CR>gv
+vnoremap <silent> <C-PageDown> :<C-u>silent! '<,'>move'>+15<CR><ESC>gv
 
 " Ctrl W - Quit
 nnoremap <silent> <C-w> :call FileQuit()<CR>
@@ -2336,7 +2336,7 @@ if has("gui_running")
   " Ctrl C is copying line if there is no word selected
   nnoremap <C-c> mjV"+y:redraw!<CR>`ji
   inoremap <C-c> <C-\><C-o>mj<C-o>V"+y<C-o>:redraw!<CR><C-o>`j
-  vnoremap <C-c> "+y:redraw!<CR>gv
+  vnoremap <C-c> "+y:redraw!<CR><ESC>gv
   cnoremap <C-c> <C-y>
 
   " Ctrl X is cutting line if there is no word selected
