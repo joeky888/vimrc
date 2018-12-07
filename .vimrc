@@ -309,7 +309,7 @@ function! FileQuit()
 endfunction
 function! FileSave()
   call SavePos()
-"   let @/ = "" " Clear searching highlight
+  let @/ = "" " Clear searching highlight
   execute "%s/\\s\\+$//e"
   call histdel("search", -1) " Remove last searching history
   let cantSave = "echo \"Can't save the file: \" . v:exception | return"
@@ -1384,6 +1384,9 @@ endfunction
 
 " Modified from https://github.com/google/vim-searchindex
 function! SearchCount()
+  if @/ == ""
+    return '0/0'
+  endif
   " both :s and search() modify cursor position
   let win_view = winsaveview()
   " folds affect range of ex commands (issue #4)
