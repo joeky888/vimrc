@@ -1385,7 +1385,7 @@ endfunction
 " Modified from https://github.com/google/vim-searchindex
 function! SearchCount()
   if @/ == ""
-    return '0/0'
+    return '0/0 on 0 lines'
   endif
   " both :s and search() modify cursor position
   let win_view = winsaveview()
@@ -1402,6 +1402,10 @@ function! SearchCount()
   else
     let before = (line('.') == 1 ? 0 : MatchesInRange('1,-1'))
     let total = before + MatchesInRange(',$')
+      redir => cnt
+      silent exe '%s/' . @/ . '//gne'
+    redir END
+    let b:cacheTotalLine = matchstr( cnt, '\d\+' )
   endif
 
   let b:searchindex_cache_val = [line('.'), before, total]
@@ -1411,7 +1415,7 @@ function! SearchCount()
   call winrestview(win_view)
 
   " return [before + in_line, total]
-  return before + in_line . '/' . total
+  return before + in_line . '/' . total . ' on ' . b:cacheTotalLine . ' lines'
 endfunction
 function MatchesAbove(cached_values)
   " avoid wrapping range at the beginning of file
