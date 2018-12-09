@@ -1,4 +1,4 @@
-![Menu](https://i.imgur.com/F3TnQln.png)
+![Menu](https://i.imgur.com/RcKd96h.png)
 
 Features
 =====
