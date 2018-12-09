@@ -1413,7 +1413,7 @@ function! SearchCount()
 
   let &foldenable = save_foldenable
   call winrestview(win_view)
-
+  if !exists('b:cacheTotalLine') || b:cacheTotalLine==0 | let b:cacheTotalLine=0 | endif
   " return [before + in_line, total]
   return before + in_line . '/' . total . ' on ' . b:cacheTotalLine . ' lines'
 endfunction
