@@ -10,6 +10,7 @@ Features
 * Sans-serif mono font automatic detection (GUI)
 * Extra menu items under Edit option (GUI)
 * Paste to vim on ssh-server out-of-box
+* Works even without any syntax/color files (e.g. only vim executable)
 * For vim beginners only
 
 This vimrc is based on [MiniVim](https://github.com/sd65/MiniVim). It runs on Vim/Gvim/MacVim >= 7.3 and Neovim >= 0.2
@@ -183,6 +184,8 @@ curl https://raw.githubusercontent.com/joeky888/vimrc/master/.vimrc -o ~/.config
 ### Extra notes
 
 * Don't use `sudo vim`, use `sudoedit` instead
+* Auto-complete is disabled inside ssh sessions and docker containers
+* Use vim built-in clipboard when system clipboard is not available
 * On MacVim, both Ctrl key and Command key will work if you save it as `~/.gvimrc`
 * There are some keys one should never map them
     * Ctrl-I = Space in terminal
