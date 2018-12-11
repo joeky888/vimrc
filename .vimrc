@@ -1416,7 +1416,8 @@ function! SearchCount()
   call winrestview(win_view)
   if !exists('b:cacheTotalLine') || b:cacheTotalLine==0 | let b:cacheTotalLine=0 | endif
   " return [before + in_line, total]
-  return before + in_line . '/' . total . ' on ' . b:cacheTotalLine . ' lines'
+  let endS = (b:cacheTotalLine == '1') ? "" : "s"
+  return before + in_line . '/' . total . ' on ' . b:cacheTotalLine . ' line' . endS
 endfunction
 function MatchesAbove(cached_values)
   " avoid wrapping range at the beginning of file
