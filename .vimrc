@@ -1406,7 +1406,7 @@ function! SearchCount()
     redir => cnt
       silent! exe '%s/' . @/ . '//ne' . gflag
     redir END
-    let b:cacheTotalLine = matchstr( matchstr(cnt, '\w'), '\d\+' )
+    let b:cacheTotalLine = matchstr( matchstr(cnt, '\w\+'), '\d\+' )
   endif
 
   let b:searchindex_cache_val = [line('.'), before, total]
