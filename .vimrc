@@ -1400,12 +1400,13 @@ function! SearchCount()
     let before = MatchesAbove(b:searchindex_cache_val)
     let total = b:searchindex_cache_val[-1]
   else
+    let gflag = &gdefault ? 'g' : ''
     let before = (line('.') == 1 ? 0 : MatchesInRange('1,-1'))
     let total = before + MatchesInRange(',$')
-      redir => cnt
-      silent exe '%s/' . @/ . '//gne'
+    redir => cnt
+      silent! exe '%s/' . @/ . '//ne' . gflag
     redir END
-    let b:cacheTotalLine = matchstr( cnt, '\d\+' )
+    let b:cacheTotalLine = matchstr( matchstr(cnt, '\w'), '\d\+' )
   endif
 
   let b:searchindex_cache_val = [line('.'), before, total]
