@@ -102,7 +102,6 @@ autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme * set form
 au VimResized * let g:vertical_jump=&scroll*4/3
 au FileType vim,sh,zsh,python setlocal fileformat=unix
 au FileType make setlocal fileformat=unix | call IndentTab(8)
-au FileType call HighlightGlobal()
 au FileType help,man nmap <buffer> <CR> <C-]> | nmap <buffer> <C-n> :cn<CR> | nmap <buffer> <C-p> :cp<CR>
 " Highlight code area in markdown
 " let g:markdown_fenced_languages = getcompletion('', 'filetype')
@@ -531,9 +530,9 @@ function! MetaKeyMapping()
     nnoremap <D-BS> i<C-g>u<C-W>
     cnoremap <D-BS> <C-w>
     " Command C is copying line if there is no word selected
-    nnoremap <D-c> mjV"+y:call ForceRedraw()<CR>`ji
-    inoremap <D-c> <C-\><C-o>mj<C-o>V"+y<C-o>:call ForceRedraw()<CR><C-o>`j
-    vnoremap <D-c> "+y:call ForceRedraw()<CR><ESC>gv
+    nnoremap <D-c> mjV"+y:redraw!<CR>`ji
+    inoremap <D-c> <C-\><C-o>mj<C-o>V"+y<C-o>:redraw!<CR><C-o>`j
+    vnoremap <D-c> "+y:redraw!<CR><ESC>gv
     cnoremap <D-c> <C-y>
     " Command X is cutting line if there is no word selected
     nnoremap <silent> <D-x>           :call SavePos()<CR>dd:call setpos(".", b:savepos)<CR>
@@ -660,9 +659,9 @@ function! MetaKeyMapping()
   nnoremap <M-BS> i<C-g>u<C-W>
   cnoremap <M-BS> <C-w>
   " Meta C is copying line if there is no word selected
-  nnoremap <M-c> mjV"+y:call ForceRedraw()<CR>`ji
-  inoremap <M-c> <C-\><C-o>mj<C-o>V"+y<C-o>:call ForceRedraw()<CR><C-o>`j
-  vnoremap <M-c> "+y:call ForceRedraw()<CR><ESC>gv
+  nnoremap <M-c> mjV"+y:redraw!<CR>`ji
+  inoremap <M-c> <C-\><C-o>mj<C-o>V"+y<C-o>:redraw!<CR><C-o>`j
+  vnoremap <M-c> "+y:redraw!<CR><ESC>gv
   cnoremap <M-c> <C-y>
   " Meta X is cutting line if there is no word selected
   nnoremap <silent> <M-x>           :call SavePos()<CR>dd:call setpos(".", b:savepos)<CR>
@@ -780,9 +779,9 @@ inoremap <C-e> <End>
 if !has("gui_running") && has("clipboard")
   set clipboard=
   " Remap Ctrl C
-  nnoremap <silent> <C-c> mjV"+yV:<C-u>silent! '<,'>w! $HOME/.vim/clipboard.txt<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:call ForceRedraw()<CR>`ji
-  inoremap <silent> <C-c> <C-\><C-o>mj<C-o>V"+y<C-o>V:<C-u>silent! '<,'>w! $HOME/.vim/clipboard.txt<CR><C-o>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR><C-o>:call ForceRedraw()<CR><C-o>`j
-  vnoremap <silent> <C-c> "+y<ESC>:call delete(expand("$HOME/.vim/clipboard.txt"))<CR>:new $HOME/.vim/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:call ForceRedraw()<CR><ESC>gv
+  nnoremap <silent> <C-c> mjV"+yV:<C-u>silent! '<,'>w! $HOME/.vim/clipboard.txt<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR>`ji
+  inoremap <silent> <C-c> <C-\><C-o>mj<C-o>V"+y<C-o>V:<C-u>silent! '<,'>w! $HOME/.vim/clipboard.txt<CR><C-o>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR><C-o>:redraw!<CR><C-o>`j
+  vnoremap <silent> <C-c> "+y<ESC>:call delete(expand("$HOME/.vim/clipboard.txt"))<CR>:new $HOME/.vim/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR><ESC>gv
   cnoremap <C-c> <C-y>
   " Remap Ctrl X
   nnoremap <silent> <C-x>       :call SavePos()<CR>:silent w! $HOME/.vim/clipboard.txt<CR>V"+x:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:call setpos(".", b:savepos)<CR>i
@@ -796,8 +795,8 @@ if !has("gui_running") && has("clipboard")
   cnoremap <C-v> <C-r>+
 elseif !has("gui_running") && !has("clipboard")
   " Ctrl C - Copy
-  call CreateShortcut("C-c", "mjYV:<C-u>silent! '<,'>w! $HOME/.vim/clipboard.txt<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:call ForceRedraw()<CR>`j", "ni")
-  vnoremap <silent> <C-c> y:call delete(expand("$HOME/.vim/clipboard.txt"))<CR>:new $HOME/.vim/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:call ForceRedraw()<CR><ESC>gv
+  call CreateShortcut("C-c", "mjYV:<C-u>silent! '<,'>w! $HOME/.vim/clipboard.txt<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR>`j", "ni")
+  vnoremap <silent> <C-c> y:call delete(expand("$HOME/.vim/clipboard.txt"))<CR>:new $HOME/.vim/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR><ESC>gv
 
   " Ctrl X - Cut
   nnoremap <silent> <C-x>       :call SavePos()<CR>:silent w! $HOME/.vim/clipboard.txt<CR>dd:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:call setpos(".", b:savepos)<CR>i
@@ -1551,7 +1550,7 @@ function! SyntaxMonokai()
     syntax enable " Enable syntax highlights
   catch /:E484:\|:E185:/
     " E484: Syntax files not found, using HighlightGlobal"
-    autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme * call HighlightGlobal()
+    autocmd BufRead,BufNewFile,BufWritePost,FileType,ColorScheme * call HighlightGlobal()
     call HighlightGlobal()
   endtry
 "   set background=dark
@@ -1899,13 +1898,6 @@ command! -range=% Opencc2S    <line1>,<line2>%!opencc -c tw2sp.json
 function! FastRender()
   setlocal nocursorline
   syntax clear
-  let b:FastRender=1
-endfunction
-
-function! ForceRedraw()
-  if !exists('b:FastRender')
-    redraw!
-  endif
 endfunction
 
 nnoremenu Edit.FastRender :call FastRender()<CR>
@@ -2065,7 +2057,7 @@ for b:char in split(g:CharSet, '\zs')
 endfor
 
 " Custom file syntax
-autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufEnter,FileType,ColorScheme * call HighlightGlobal()
+autocmd BufRead,BufNewFile,BufWritePost,FileType,ColorScheme * call HighlightGlobal()
 autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufEnter,FileType,ColorScheme * call HighlightC()
 autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufEnter,FileType,ColorScheme *.{srt,SRT,vtt,VTT} call HighlightSRT()
 autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufEnter,FileType,ColorScheme *.{ass,ASS,ssa,SSA} call HighlightASS()
@@ -2347,9 +2339,9 @@ if has("gui_running")
   inoremap <silent> <End>  <C-o>:let g:guifontsize-=1<CR><C-o>:call ChangeFontSize()<CR>
 
   " Ctrl C is copying line if there is no word selected
-  nnoremap <C-c> mjV"+y:call ForceRedraw()<CR>`ji
-  inoremap <C-c> <C-\><C-o>mj<C-o>V"+y<C-o>:call ForceRedraw()<CR><C-o>`j
-  vnoremap <C-c> "+y:call ForceRedraw()<CR><ESC>gv
+  nnoremap <C-c> mjV"+y:redraw!<CR>`ji
+  inoremap <C-c> <C-\><C-o>mj<C-o>V"+y<C-o>:redraw!<CR><C-o>`j
+  vnoremap <C-c> "+y:redraw!<CR><ESC>gv
   cnoremap <C-c> <C-y>
 
   " Ctrl X is cutting line if there is no word selected
