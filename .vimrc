@@ -1903,7 +1903,7 @@ function! FastRender()
 endfunction
 
 function! ForceRedraw()
-  if exists('b:FastRender')
+  if !exists('b:FastRender')
     redraw!
   endif
 endfunction
