@@ -40,8 +40,8 @@ The code is under Public-domain licence.
 | \| (bar)  | Enter multiple-line editing from Visual-Block mode    | |
 | Ctrl N    | Next word                                             | |
 | Ctrl P    | Previous word                                         | |
-| Ctrl U    | Jump up multiple lines                                | Depends on window size |
-| Ctrl J    | Jump down multiple lines                              | Depends on window size |
+| Ctrl U    | Move current line / Selection up                      | Depends on window size |
+| Ctrl J    | Move current line / Selection down                    | Depends on window size |
 | Ctrl →    | Next word                                             | |
 | Ctrl ←    | Previous word                                         | |
 | Ctrl ↑    | Jump up multiple lines                                | Depends on window size |
@@ -64,8 +64,8 @@ The code is under Public-domain licence.
 | F3        | Move to next tab                                      | Like Byobu |
 | F4        | Move to previous tab                                  | Like Byobu |
 | F10       | Enable/Disable Auto-Completion                        | |
-| PageUp    | Move current line / Selection up                      | |
-| PageDown  | Move current line / Selection down                    | |
+| PageUp    | Jump up multiple lines                                | Depends on window size |
+| PageDown  | Jump down multiple lines                              | Depends on window size |
 | Home      | Increase font size                                    | GUI only |
 | End       | Decrease font size                                    | GUI only |
 | - (minus) | Fold/Unfold                                           | Normal mode only |

@@ -473,13 +473,13 @@ function! MetaKeyMapping()
     inoremap <D-l> <C-\><C-O>V
     vnoremap <D-l> <ESC>
     " Command Pageup - Move up Line booster
-    nnoremap <silent> <D-PageUp> mj:<C-u>silent! move-16<CR>`j
-    inoremap <silent> <D-PageUp> <C-\><C-O>mj<C-O>:<C-u>silent! move-16<CR><C-O>`j<C-g>u
-    vnoremap <silent> <D-PageUp> :<C-u>silent! '<,'>move-16<CR><ESC>gv
+"     nnoremap <silent> <D-PageUp> mj:<C-u>silent! move-16<CR>`j
+"     inoremap <silent> <D-PageUp> <C-\><C-O>mj<C-O>:<C-u>silent! move-16<CR><C-O>`j<C-g>u
+"     vnoremap <silent> <D-PageUp> :<C-u>silent! '<,'>move-16<CR><ESC>gv
     " Command Pagedown - Move down Line boosted
-    nnoremap <silent> <D-PageDown> mj:<C-u>silent! move+15<CR>`j
-    inoremap <silent> <D-PageDown> <C-\><C-O>mj<C-O>:<C-u>silent! move+15<CR><C-O>`j<C-g>u
-    vnoremap <silent> <D-PageDown> :<C-u>silent! '<,'>move'>+15<CR><ESC>gv
+"     nnoremap <silent> <D-PageDown> mj:<C-u>silent! move+15<CR>`j
+"     inoremap <silent> <D-PageDown> <C-\><C-O>mj<C-O>:<C-u>silent! move+15<CR><C-O>`j<C-g>u
+"     vnoremap <silent> <D-PageDown> :<C-u>silent! '<,'>move'>+15<CR><ESC>gv
     " Command W - Quit
     nnoremap <silent> <D-w> :call FileQuit()<CR>
     inoremap <silent> <D-w> <C-o>:call FileQuit()<CR>
@@ -602,13 +602,13 @@ function! MetaKeyMapping()
   inoremap <M-l> <C-\><C-O>V
   vnoremap <M-l> <ESC>
   " Meta Pageup - Move up Line booster
-  nnoremap <silent> <M-PageUp> mj:<C-u>silent! move-16<CR>`j
-  inoremap <silent> <M-PageUp> <C-\><C-O>mj<C-O>:<C-u>silent! move-16<CR><C-O>`j<C-g>u
-  vnoremap <silent> <M-PageUp> :<C-u>silent! '<,'>move-16<CR><ESC>gv
+"   nnoremap <silent> <M-PageUp> mj:<C-u>silent! move-16<CR>`j
+"   inoremap <silent> <M-PageUp> <C-\><C-O>mj<C-O>:<C-u>silent! move-16<CR><C-O>`j<C-g>u
+"   vnoremap <silent> <M-PageUp> :<C-u>silent! '<,'>move-16<CR><ESC>gv
   " Meta Pagedown - Move down Line boosted
-  nnoremap <silent> <M-PageDown> mj:<C-u>silent! move+15<CR>`j
-  inoremap <silent> <M-PageDown> <C-\><C-O>mj<C-O>:<C-u>silent! move+15<CR><C-O>`j<C-g>u
-  vnoremap <silent> <M-PageDown> :<C-u>silent! '<,'>move'>+15<CR><ESC>gv
+"   nnoremap <silent> <M-PageDown> mj:<C-u>silent! move+15<CR>`j
+"   inoremap <silent> <M-PageDown> <C-\><C-O>mj<C-O>:<C-u>silent! move+15<CR><C-O>`j<C-g>u
+"   vnoremap <silent> <M-PageDown> :<C-u>silent! '<,'>move'>+15<CR><ESC>gv
   " Meta W - Quit
   nnoremap <silent> <M-w> :call FileQuit()<CR>
   inoremap <silent> <M-w> <C-o>:call FileQuit()<CR>
@@ -861,15 +861,15 @@ execute 'nnoremap <silent> <C-Down> '.g:vertical_jump.'j'
 execute 'inoremap <silent> <C-Down> <C-\><C-O>'.g:vertical_jump.'j'
 execute 'vnoremap <silent> <C-Down> '.g:vertical_jump.'j'
 
-" Ctrl U - Pageup
-execute 'nnoremap <silent> <C-u> '.g:vertical_jump.'k'
-execute 'inoremap <silent> <C-u> <C-\><C-O>'.g:vertical_jump.'k'
-execute 'vnoremap <silent> <C-u> '.g:vertical_jump.'k'
+" Pageup - Pageup
+execute 'nnoremap <silent> <PageUp> '.g:vertical_jump.'k'
+execute 'inoremap <silent> <PageUp> <C-\><C-O>'.g:vertical_jump.'k'
+execute 'vnoremap <silent> <PageUp> '.g:vertical_jump.'k'
 
-" Ctrl J - Pagedown
-execute 'nnoremap <silent> <C-j> '.g:vertical_jump.'j'
-execute 'inoremap <silent> <C-j> <C-\><C-O>'.g:vertical_jump.'j'
-execute 'vnoremap <silent> <C-j> '.g:vertical_jump.'j'
+" Pagedown - Pagedown
+execute 'nnoremap <silent> <PageDown> '.g:vertical_jump.'j'
+execute 'inoremap <silent> <PageDown> <C-\><C-O>'.g:vertical_jump.'j'
+execute 'vnoremap <silent> <PageDown> '.g:vertical_jump.'j'
 
 " Shift Left - Select mode
 nnoremap <S-Left> v<Left>
@@ -919,25 +919,25 @@ call CreateShortcut("C-l", "V", "n")
 inoremap <C-l> <C-\><C-O>V
 vnoremap <C-l> <ESC>
 
-" Pageup - Move up Line
-nnoremap <silent> <PageUp> mj:<C-u>silent! move-2<CR>`j
-inoremap <silent> <PageUp> <C-\><C-O>mj<C-O>:<C-u>silent! move-2<CR><C-O>`j<C-g>u
-vnoremap <silent> <PageUp> :<C-u>silent! '<,'>move-2<CR><ESC>gv
+" Ctrl U - Move up Line
+nnoremap <silent> <C-u> mj:<C-u>silent! move-2<CR>`j
+inoremap <silent> <C-u> <C-\><C-O>mj<C-O>:<C-u>silent! move-2<CR><C-O>`j<C-g>u
+vnoremap <silent> <C-u> :<C-u>silent! '<,'>move-2<CR><ESC>gv
 
-" Pagedown - Move down Line
-nnoremap <silent> <PageDown> mj:<C-u>silent! move+<CR>`j
-inoremap <silent> <PageDown> <C-\><C-O>mj<C-O>:<C-u>silent! move+<CR><C-O>`j<C-g>u
-vnoremap <silent> <PageDown> :<C-u>silent! '<,'>move'>+<CR><ESC>gv
+" Ctrl J - Move down Line
+nnoremap <silent> <C-j> mj:<C-u>silent! move+<CR>`j
+inoremap <silent> <C-j> <C-\><C-O>mj<C-O>:<C-u>silent! move+<CR><C-O>`j<C-g>u
+vnoremap <silent> <C-j> :<C-u>silent! '<,'>move'>+<CR><ESC>gv
 
 " Ctrl Pageup - Move up Line booster
-nnoremap <silent> <C-PageUp> mj:<C-u>silent! move-16<CR>`j
-inoremap <silent> <C-PageUp> <C-\><C-O>mj<C-O>:<C-u>silent! move-16<CR><C-O>`j<C-g>u
-vnoremap <silent> <C-PageUp> :<C-u>silent! '<,'>move-16<CR><ESC>gv
+" nnoremap <silent> <C-PageUp> mj:<C-u>silent! move-16<CR>`j
+" inoremap <silent> <C-PageUp> <C-\><C-O>mj<C-O>:<C-u>silent! move-16<CR><C-O>`j<C-g>u
+" vnoremap <silent> <C-PageUp> :<C-u>silent! '<,'>move-16<CR><ESC>gv
 
 " Ctrl Pagedown - Move down Line boosted
-nnoremap <silent> <C-PageDown> mj:<C-u>silent! move+15<CR>`j
-inoremap <silent> <C-PageDown> <C-\><C-O>mj<C-O>:<C-u>silent! move+15<CR><C-O>`j<C-g>u
-vnoremap <silent> <C-PageDown> :<C-u>silent! '<,'>move'>+15<CR><ESC>gv
+" nnoremap <silent> <C-PageDown> mj:<C-u>silent! move+15<CR>`j
+" inoremap <silent> <C-PageDown> <C-\><C-O>mj<C-O>:<C-u>silent! move+15<CR><C-O>`j<C-g>u
+" vnoremap <silent> <C-PageDown> :<C-u>silent! '<,'>move'>+15<CR><ESC>gv
 
 " Ctrl W - Quit
 nnoremap <silent> <C-w> :call FileQuit()<CR>
