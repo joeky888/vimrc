@@ -101,7 +101,7 @@ autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme * set iske
 autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme * set formatoptions-=cro " Prevent vim inserting new comment lines
 au VimResized * let g:vertical_jump=&scroll*4/3
 au FileType vim,sh,zsh,python setlocal fileformat=unix
-au FileType make setlocal fileformat=unix | call IndentTab(8)
+au FileType make,go setlocal fileformat=unix | call IndentTab(8)
 au FileType help,man nmap <buffer> <CR> <C-]> | nmap <buffer> <C-n> :cn<CR> | nmap <buffer> <C-p> :cp<CR>
 " Highlight code area in markdown
 " let g:markdown_fenced_languages = getcompletion('', 'filetype')
