@@ -31,7 +31,6 @@ set virtualedit=onemore " Allow the cursor to move just past the end of the line
 set history=10000 " Maximum 10000 undo
 set wildmenu " Better command-line completion
 set wildignorecase " Ignore case when command-line completion
-set guicursor=a:ver25-Cursor/lCursor-blinkon0 " disable cursor flashing
 set clipboard=unnamed,unnamedplus
 set selection=exclusive " Don't select char under cursor
 set mouseshape+=a:beam " set cursor shape as modern editors should be
@@ -94,6 +93,11 @@ endif
 if !has("win32") && !has("win64") && !has("gui_running") && executable("sh") && executable("stty")
   " Make sure Ctrl-S, Ctrl-Q and Ctrl-V are working
   silent !sh -c "stty -ixon -ixoff ; stty lnext '^-' stop undef start undef -ixon" > /dev/null 2>&1
+endif
+if has("nvim")
+  set guicursor=
+else
+  set guicursor=a:ver25-Cursor/lCursor-blinkon0 " disable cursor flashing
 endif
 autocmd VimEnter * set noerrorbells " Disable Gvim error sound
 autocmd VimEnter * set vb t_vb= | set t_vb= " Disable Gvim visual bell
