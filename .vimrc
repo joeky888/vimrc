@@ -1293,7 +1293,7 @@ function! SshPaste()
   let g:autocomp=0 | call ToggleAutoComplete()
 endfunction
 
-if exists("$SSH_CLIENT") || exists("$SSH_TTY")
+if exists("$SSH_CLIENT") || exists("$SSH_TTY") || exists("g:isDocker")
   " Disable paste and completion when using ssh
   call SshPaste()
 endif
