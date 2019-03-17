@@ -1782,12 +1782,26 @@ import json
 def FormatJSON(fmtlStart, fmtlEnd):
   fmtlStart = fmtlStart-1
   jsonStr = "\n".join(vim.current.buffer[fmtlStart:fmtlEnd])
-  prettyJson = json.dumps(json.loads(jsonStr), sort_keys=False, indent=4, separators=(',', ': '), ensure_ascii=False)
-  prettyJson = prettyJson.encode('utf8')
+  prettyJson = json.dumps(json.loads(jsonStr), sort_keys=False, indent=4, separators=(',', ': '), ensure_ascii=False).encode('utf8')
   vim.current.buffer[fmtlStart:fmtlEnd] = prettyJson.split('\n')
 EOF
   " :'<,'>JsonBeautify
   command! -range=% JsonBeautify python FormatJSON(<line1>, <line2>)
+  nnoremenu Edit.Json.Beautify(UTF8)  ggVG:<C-u>'<,'>JsonBeautify<CR>
+  inoremenu Edit.Json.Beautify(UTF8)  <ESC>ggVG:<C-u>'<,'>JsonBeautify<CR>
+  vnoremenu Edit.Json.Beautify(UTF8)  :<C-u>'<,'>JsonBeautify<CR>
+elseif has("python3")
+python3 << EOF
+import vim
+import json
+def FormatJSON(fmtlStart, fmtlEnd):
+  fmtlStart = fmtlStart-1
+  jsonStr = "\n".join(vim.current.buffer[fmtlStart:fmtlEnd])
+  prettyJson = json.dumps(json.loads(jsonStr), sort_keys=False, indent=4, separators=(',', ': '), ensure_ascii=False)
+  vim.current.buffer[fmtlStart:fmtlEnd] = prettyJson.split('\n')
+EOF
+  " :'<,'>JsonBeautify
+  command! -range=% JsonBeautify python3 FormatJSON(<line1>, <line2>)
   nnoremenu Edit.Json.Beautify(UTF8)  ggVG:<C-u>'<,'>JsonBeautify<CR>
   inoremenu Edit.Json.Beautify(UTF8)  <ESC>ggVG:<C-u>'<,'>JsonBeautify<CR>
   vnoremenu Edit.Json.Beautify(UTF8)  :<C-u>'<,'>JsonBeautify<CR>
