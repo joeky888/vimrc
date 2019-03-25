@@ -115,7 +115,7 @@ let g:markdown_fenced_languages =
   \"css","html","xml","json","cmake","yaml","sh","conf",
   \"zsh","tmux","debsources","resolv","sudoers","make",
   \"dosbatch","dosini","bash=sh","js=javascript","go","sql",
-  \"dockerfile"
+  \"dockerfile","lua"
 \]
 
 if &diff
