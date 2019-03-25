@@ -1212,7 +1212,7 @@ autocmd FileType jproperties        let b:comment_leader = '#'
 autocmd FileType gitconfig          let b:comment_leader = '#'
 autocmd FileType matlab,tex         let b:comment_leader = '%'
 autocmd FileType vim                let b:comment_leader = '"'
-autocmd FileType sql                let b:comment_leader = '--'
+autocmd FileType sql,lua            let b:comment_leader = '--'
 autocmd FileType css                let b:comment_leader = '\/\*'   |   let b:comment_ender = '\*\/'
 autocmd FileType html,xml,markdown  let b:comment_leader = '<!--'   |   let b:comment_ender = '-->'
 
