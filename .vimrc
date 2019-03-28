@@ -915,8 +915,8 @@ vnoremap <C-f> <Esc>:noh<CR>:redraw<CR>:set ignorecase<CR>/\%V
 
 " Ctrl R - Search and Replace
 nnoremap <C-r> :noh<CR>:redraw<CR>:set noignorecase<CR>:%s/
-inoremap <C-r> <Esc>:noh<CR>:redraw<CR>:set noignorecase<CR><Esc>:%s/
-vnoremap <C-r> <Esc>:noh<CR>:redraw<CR>:set noignorecase<CR><Esc>:'<,'>s/\%V
+inoremap <C-r> <Esc>:noh<CR><Esc>:redraw<CR><Esc>:set noignorecase<CR><Esc>:%s/
+vnoremap <C-r> <Esc>:noh<CR><Esc>:redraw<CR><Esc>:set noignorecase<CR><Esc>:'<,'>s/\%V
 
 " Ctrl G - Select all
 call CreateShortcut("C-g", "ggVG", "inv")
