@@ -316,8 +316,12 @@ endfunction
 function! FileSave()
   call SavePos()
   let @/ = "" " Clear searching highlight
-  execute "%s/\\s\\+$//e"
-  call histdel("search", -1) " Remove last searching history
+  if (v:version == 704 && has("patch150")) || has('patch-7.4.150') || v:version > 704
+    keeppatterns %s/\s\+$//e " Keep last searching history
+  else
+    %s/\s\+$//e
+    call histdel("search", -1) " Remove last searching history
+  endif
   let cantSave = "echo \"Can't save the file: \" . v:exception | return"
   let notSaved = "redraw | echo 'This buffer was NOT saved!' | return"
   try
