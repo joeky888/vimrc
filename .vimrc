@@ -914,13 +914,13 @@ execute 'vnoremap <silent> <ESC>[1;2B '.g:vertical_jump.'j'
 
 " Ctrl F - Find
 nnoremap <C-f> :noh<CR>:redraw<CR>:set ignorecase<CR>/
-inoremap <C-f> <Esc>:noh<CR>:redraw<CR>:set ignorecase<CR>/
-vnoremap <C-f> <Esc>:noh<CR>:redraw<CR>:set ignorecase<CR>/\%V
+inoremap <C-f> <Esc><Esc>:noh<CR><Esc>:redraw<CR><Esc>:set ignorecase<CR>/
+vnoremap <C-f> <Esc><Esc>:noh<CR><Esc>:redraw<CR><Esc>:set ignorecase<CR>/\%V
 
 " Ctrl R - Search and Replace
 nnoremap <C-r> :noh<CR>:redraw<CR>:set noignorecase<CR>:%s/
-inoremap <C-r> <Esc>:noh<CR><Esc>:redraw<CR><Esc>:set noignorecase<CR><Esc>:%s/
-vnoremap <C-r> <Esc>:noh<CR><Esc>:redraw<CR><Esc>:set noignorecase<CR><Esc>:'<,'>s/\%V
+inoremap <C-r> <Esc><Esc>:noh<CR><Esc>:redraw<CR><Esc>:set noignorecase<CR><Esc>:%s/
+vnoremap <C-r> <Esc><Esc>:noh<CR><Esc>:redraw<CR><Esc>:set noignorecase<CR><Esc>:'<,'>s/\%V
 
 " Ctrl G - Select all
 call CreateShortcut("C-g", "ggVG", "inv")
