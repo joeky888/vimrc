@@ -98,6 +98,7 @@ if !has("win32") && !has("win64") && !has("gui_running") && executable("sh") && 
 endif
 if has("nvim")
   set guicursor=
+  set inccommand=nosplit " incsearch for subtitutions
 else
   set guicursor=a:ver25-Cursor/lCursor-blinkon0 " disable cursor flashing
 endif
