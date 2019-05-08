@@ -106,7 +106,7 @@ autocmd VimEnter * set noerrorbells " Disable Gvim error sound
 autocmd VimEnter * set vb t_vb= | set t_vb= " Disable Gvim visual bell
 autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme * set iskeyword=a-z,A-Z,48-57,_
 autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme * set formatoptions-=cro " Prevent vim inserting new comment lines
-autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufEnter,FileType,ColorScheme *.{ts, tsx, jsx} setlocal filetype=javascript
+autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufEnter,FileType,ColorScheme *.{ts,tsx,jsx} setlocal filetype=javascript
 au VimResized * let g:vertical_jump=&scroll*4/3
 au FileType vim,sh,zsh,python setlocal fileformat=unix
 au FileType make,go setlocal fileformat=unix | call IndentTab(8)
