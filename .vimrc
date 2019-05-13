@@ -855,7 +855,7 @@ vnoremap <C-d> yP<ESC>gv
 
 " Ctrl Q - Visual block selection
 nnoremap <C-q> <C-v>
-inoremap <C-q> <C-\><C-o><C-v>
+inoremap <C-q> <C-o><C-v>
 vnoremap <C-q> <ESC>
 
 " Ctrl Left - Move a word
