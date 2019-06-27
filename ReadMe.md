@@ -187,7 +187,6 @@ curl https://raw.githubusercontent.com/joeky888/vimrc/master/.vimrc -o ~/.config
 * Auto-complete is disabled inside ssh sessions and docker containers
 * Vim built-in clipboard will be used when system clipboard is not available
 * When Fbterm and gpm is detected, ttymouse will be set to `xterm` (to use gpm mouse)
-* On MacVim, both Ctrl key and Command key will work if you save it as `~/.gvimrc`
 * There are some keys one should never map them
     * Ctrl-I = Space in terminal
     * Ctrl-M = Enter in terminal
