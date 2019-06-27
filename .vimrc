@@ -1270,8 +1270,6 @@ function! SearchCount()
 
   let in_line = MatchInLine()
 
-  echo in_line
-
   let cache_key = [b:changedtick, @/]
   if exists('b:searchindex_cache_key') && b:searchindex_cache_key ==# cache_key
     let before = MatchesAbove(b:searchindex_cache_val)
