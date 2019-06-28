@@ -13,7 +13,7 @@ Features
 * Works even without any syntax/color files (e.g. only vim executable)
 * For vim beginners only
 
-This vimrc is based on [MiniVim](https://github.com/sd65/MiniVim). It runs on Vim/Gvim/MacVim >= 7.3 and Neovim >= 0.2
+This vimrc is based on [MiniVim](https://github.com/sd65/MiniVim). It runs on Vim/Gvim >= 7.3 and Neovim >= 0.2
 
 The code is under Public-domain licence.
 

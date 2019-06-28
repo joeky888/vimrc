@@ -601,9 +601,6 @@ nnoremap <4-MiddleMouse> <Nop>
 inoremap <4-MiddleMouse> <Nop>
 vnoremap <4-MiddleMouse> <Nop>
 
-" Disable EX mode
-" nnoremap Q <Nop>
-
 " Disable Replace mode
 nnoremap R <Nop>
 nnoremap r <Nop>
