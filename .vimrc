@@ -1721,6 +1721,27 @@ inoremenu Edit.XML.Minify     <ESC>:call XmlMinify()<CR>
 command! XmlBeautify    execute "call XmlBeautify()"
 command! XmlMinify      execute "call XmlMinify()"
 
+function! Base64Decode()
+  execute '%!perl -e "require MIME::Base64; print MIME::Base64::decode_base64(<STDIN>)"'
+endfunction
+
+function! Base64Encode()
+  execute '%!perl -e "require MIME::Base64; print MIME::Base64::encode_base64(<STDIN>)"'
+endfunction
+
+nnoremenu Edit.Base64.Decode   :call Base64Decode()<CR>
+inoremenu Edit.Base64.Decode   <ESC>:call Base64Decode()<CR>
+nnoremenu Edit.Base64.Decode   :call Base64Decode()<CR>
+inoremenu Edit.Base64.Decode   <ESC>:call Base64Decode()<CR>
+nnoremenu Edit.Base64.Encode   :call Base64Encode()<CR>
+inoremenu Edit.Base64.Encode   <ESC>:call Base64Encode()<CR>
+nnoremenu Edit.Base64.Encode   :call Base64Encode()<CR>
+inoremenu Edit.Base64.Encode   <ESC>:call Base64Encode()<CR>
+command! Base64Decode   execute "call Base64Decode()"
+command! Base64Decode   execute "call Base64Decode()"
+command! Base64Encode   execute "call Base64Encode()"
+command! Base64Encode   execute "call Base64Encode()"
+
 " xxd command alias
 command! -range=% XXD <line1>,<line2>%!xxd
 

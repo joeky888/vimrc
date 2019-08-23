@@ -86,6 +86,8 @@ The code is under Public-domain licence.
 | JsonMinify            | Json file minify                              | |
 | XmlBeautify           | XML file beautify                             | |
 | XmlMinify             |                                               | |
+| Base64Decode          | Decode base64                                 | Require Perl |
+| Base64Encode          | Encode base64                                 | Require Perl |
 | MergeToOneLine        | Merge selection to one single line            | |
 | RemoveLeadingSpace    |                                               | |
 | RemoveTrailingSpace   |                                               | |
