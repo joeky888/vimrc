@@ -1722,11 +1722,11 @@ command! XmlBeautify    execute "call XmlBeautify()"
 command! XmlMinify      execute "call XmlMinify()"
 
 function! Base64Decode()
-  execute '%!perl -e "require MIME::Base64; print MIME::Base64::decode_base64(<STDIN>)"'
+  execute '%!perl -e "require MIME::Base64; my \$in; while (<STDIN>) { last if /^END\$/; \$in .= \$_; }; print MIME::Base64::decode_base64(\$in)"'
 endfunction
 
 function! Base64Encode()
-  execute '%!perl -e "require MIME::Base64; print MIME::Base64::encode_base64(<STDIN>)"'
+  execute '%!perl -e "require MIME::Base64; my \$in; while (<STDIN>) { last if /^END\$/; \$in .= \$_; }; print MIME::Base64::encode_base64(\$in)"'
 endfunction
 
 nnoremenu Edit.Base64.Decode   :call Base64Decode()<CR>
