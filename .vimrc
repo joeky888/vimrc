@@ -1738,8 +1738,6 @@ inoremenu Edit.Base64.Encode   <ESC>:call Base64Encode()<CR>
 nnoremenu Edit.Base64.Encode   :call Base64Encode()<CR>
 inoremenu Edit.Base64.Encode   <ESC>:call Base64Encode()<CR>
 command! Base64Decode   execute "call Base64Decode()"
-command! Base64Decode   execute "call Base64Decode()"
-command! Base64Encode   execute "call Base64Encode()"
 command! Base64Encode   execute "call Base64Encode()"
 
 " xxd command alias
