@@ -97,11 +97,9 @@ if !has("win32") && !has("win64") && !has("gui_running") && executable("sh") && 
   silent !sh -c "stty -ixon -ixoff ; stty lnext '^-' stop undef start undef -ixon" > /dev/null 2>&1
 endif
 if has("nvim")
-  set guicursor=
   set inccommand=nosplit " incsearch for subtitutions
-else
-  set guicursor=a:ver25-Cursor/lCursor-blinkon0 " disable cursor flashing
 endif
+set guicursor=a:ver25-Cursor/lCursor-blinkon0 " disable cursor flashing
 autocmd VimEnter * set noerrorbells " Disable Gvim error sound
 autocmd VimEnter * set vb t_vb= | set t_vb= " Disable Gvim visual bell
 autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme * set iskeyword=a-z,A-Z,48-57,_
