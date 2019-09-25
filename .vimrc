@@ -2196,7 +2196,7 @@ function! HighlightC()
   hi def link cCustomClass Define
 endfunction
 
-if has("gui_running")
+if has("gui_running") || has("gui_vimr")
 
   let g:guifontsize=14
   if has('win32') || has('win64')
