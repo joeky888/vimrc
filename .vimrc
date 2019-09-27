@@ -100,6 +100,13 @@ if has("nvim")
   set inccommand=nosplit " incsearch for subtitutions
 endif
 set guicursor=a:ver25-Cursor/lCursor-blinkon0 " disable cursor flashing
+let g:SYSPERL = "perl"
+if has("unix")
+  let s:uname = system("uname")
+  if s:uname == "Darwin\n"
+    let g:SYSPERL = "/usr/bin/perl"
+  endif
+endif
 autocmd VimEnter * set noerrorbells " Disable Gvim error sound
 autocmd VimEnter * set vb t_vb= | set t_vb= " Disable Gvim visual bell
 autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme * set iskeyword=a-z,A-Z,48-57,_
@@ -1720,11 +1727,11 @@ command! XmlBeautify    execute "call XmlBeautify()"
 command! XmlMinify      execute "call XmlMinify()"
 
 function! Base64Decode()
-  execute '%!perl -e "require MIME::Base64; my \$in; while (<STDIN>) { last if /^END\$/; \$in .= \$_; }; print MIME::Base64::decode_base64(\$in)"'
+  execute '%!'.g:SYSPERL.' -e "require MIME::Base64; my \$in; while (<STDIN>) { last if /^END\$/; \$in .= \$_; }; print MIME::Base64::decode_base64(\$in)"'
 endfunction
 
 function! Base64Encode()
-  execute '%!perl -e "require MIME::Base64; my \$in; while (<STDIN>) { last if /^END\$/; \$in .= \$_; }; print MIME::Base64::encode_base64(\$in)"'
+  execute '%!'.g:SYSPERL.' -e "require MIME::Base64; my \$in; while (<STDIN>) { last if /^END\$/; \$in .= \$_; }; print MIME::Base64::encode_base64(\$in)"'
 endfunction
 
 nnoremenu Edit.Base64.Decode   :call Base64Decode()<CR>
@@ -1737,6 +1744,25 @@ nnoremenu Edit.Base64.Encode   :call Base64Encode()<CR>
 inoremenu Edit.Base64.Encode   <ESC>:call Base64Encode()<CR>
 command! Base64Decode   execute "call Base64Decode()"
 command! Base64Encode   execute "call Base64Encode()"
+
+function! URLDecode()
+  execute '%!'.g:SYSPERL.' -e "require URI::Escape; my \$in; while (<STDIN>) { last if /^END\$/; \$in .= \$_; }; print URI::Escape::uri_unescape(\$in)"'
+endfunction
+
+function! URLEncode()
+  execute '%!'.g:SYSPERL.' -e "require URI::Escape; my \$in; while (<STDIN>) { last if /^END\$/; \$in .= \$_; }; print URI::Escape::uri_escape(\$in)"'
+endfunction
+
+nnoremenu Edit.URL.Decode   :call Base64Decode()<CR>
+inoremenu Edit.URL.Decode   <ESC>:call Base64Decode()<CR>
+nnoremenu Edit.URL.Decode   :call Base64Decode()<CR>
+inoremenu Edit.URL.Decode   <ESC>:call Base64Decode()<CR>
+nnoremenu Edit.URL.Encode   :call Base64Encode()<CR>
+inoremenu Edit.URL.Encode   <ESC>:call Base64Encode()<CR>
+nnoremenu Edit.URL.Encode   :call Base64Encode()<CR>
+inoremenu Edit.URL.Encode   <ESC>:call Base64Encode()<CR>
+command! URLDecode   execute "call URLDecode()"
+command! URLEncode   execute "call URLEncode()"
 
 " xxd command alias
 command! -range=% XXD <line1>,<line2>%!xxd

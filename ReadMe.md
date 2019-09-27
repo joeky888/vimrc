@@ -88,6 +88,8 @@ The code is under Public-domain licence.
 | XmlMinify             |                                               | |
 | Base64Decode          | Decode base64 file                            | Require Perl |
 | Base64Encode          | Encode base64 file                            | Require Perl |
+| URLDecode             | Decode URL in current file                    | Require Perl |
+| URLEncode             | Encode URL in current file                    | Require Perl |
 | MergeToOneLine        | Merge selection to one single line            | |
 | RemoveLeadingSpace    |                                               | |
 | RemoveTrailingSpace   |                                               | |
