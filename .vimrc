@@ -1532,7 +1532,7 @@ function! SyntaxMonokai()
   hi def link diffRemoved     Conditional
   hi def link diffChanged     Define
 
-  if has("win32unix") || ( !has("gui_running") && ( has("win32") && has("win64") ) )
+  if has("win32unix") || ( !has("gui_running") && ( has("win32") && has("win64") ) ) && !has("nvim")
     if !executable("uname")
       " Powershell
       call SyntaxMonokai16color()
