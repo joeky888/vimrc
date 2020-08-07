@@ -2074,9 +2074,10 @@ function! HighlightASS()
   syn match assDialogTimes   "\([^,]*,\)\{4}"  contained nextgroup=assDialogActor
   syn match assDialogActor   "[^,]*"           contained nextgroup=assDialogEffects
   syn match assDialogEffects ",\([^,]*,\)\{4}" contained nextgroup=assDialogText
-  syn match assDialogText    ".*$"             contained contains=assTextComment,assTextSubCode
+  syn match assDialogText    ".*$"             contained contains=assTextComment,assTextSubCode,assSpecialChar
   syn match assTextComment   "{[^}]*}"         contained
   syn match assTextSubCode   "{\\[^}]*}"       contained
+  syn match assSpecialChar   "\\[nNh{}]"       contained contains=@NoSpell
 
   hi def link assSection         Function
   hi def link assSourceComment   Comment
@@ -2091,6 +2092,7 @@ function! HighlightASS()
   hi def link assDialogText      Identifier
   hi def link assTextComment     Comment
   hi def link assTextSubCode     Comment
+  hi def link assSpecialChar     Comment
 endfunction
 
 function! HighlightPS1()
