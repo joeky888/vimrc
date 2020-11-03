@@ -1819,12 +1819,12 @@ vnoremenu Edit.Reverse\ String c<C-O>:set revins<CR><C-R>"<Esc>:set norevins<CR>
 command! -range ReverseString <line1>,<line2>call Reverse()
 
 " Opencc
-nnoremenu Edit.Opencc.Traditional         :%!opencc -c s2twp.json<CR>
-inoremenu Edit.Opencc.Traditional         <ESC>:%!opencc -c s2twp.json<CR>
+nnoremenu Edit.Opencc.Traditional         :%!opencc -c s2t.json<CR>
+inoremenu Edit.Opencc.Traditional         <ESC>:%!opencc -c s2t.json<CR>
 nnoremenu Edit.Opencc.Simplified          :%!opencc -c tw2sp.json<CR>
 inoremenu Edit.Opencc.Simplified          <ESC>:%!opencc -c tw2sp.json<CR>
 
-command! -range=% Opencc2T    <line1>,<line2>%!opencc -c s2twp.json
+command! -range=% Opencc2T    <line1>,<line2>%!opencc -c s2t.json
 command! -range=% Opencc2S    <line1>,<line2>%!opencc -c tw2sp.json
 
 " Fast rendering for current file
