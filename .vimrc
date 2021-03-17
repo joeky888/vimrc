@@ -1968,7 +1968,7 @@ endfunction
 
 function! HighlightFISH()
   let fe=expand("%:e")
-  let ext=["fish", "FISH"]
+  let ext=["fish", "FISH", "sh"]
   if (index(ext, fe) < 0)
     return
   endif
