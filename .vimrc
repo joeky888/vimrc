@@ -1862,6 +1862,10 @@ endfor
 autocmd BufRead,BufNewFile,BufWritePost,FileType,ColorScheme * call HighlightGlobal()
 autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufEnter,FileType,ColorScheme *.{srt,SRT,vtt,VTT} call HighlightSRT()
 autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufEnter,FileType,ColorScheme *.{ass,ASS,ssa,SSA} call HighlightASS()
+autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufEnter,FileType,ColorScheme *.{fish,FISH} call HighlightFISH()
+
+" Detect fish scripts by the shebang line.
+autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufEnter,FileType,ColorScheme * if getline(1) =~# '\v^#!%(\f*/|/usr/bin/env\s*<)fish>' | call HighlightFISH() | endif
 
 function! HighlightGlobal()
   if &filetype == "" || &filetype == "text" || &filetype == "conf"
@@ -1960,6 +1964,108 @@ function! HighlightASS()
   hi def link assTextComment     Comment
   hi def link assTextSubCode     Comment
   hi def link assSpecialChar     Comment
+endfunction
+
+function! HighlightFISH()
+  let fe=expand("%:e")
+  let ext=["fish", "FISH"]
+  if (index(ext, fe) < 0)
+    return
+  endif
+  setlocal filetype=fish
+
+  function! s:CreatePrivateKeyword (name, keyword, parent, hiGroup)
+    execute "syn keyword " . a:name  . " " . a:keyword . " contained containedin=" . a:parent
+    execute "hi link " . a:name . " " . a:hiGroup
+    execute "syn cluster c_private add=" . a:name
+  endfunction
+
+  function! s:CreatePrivateKeywordWithError (name, keyword, parent, hiGroup)
+    execute "syn keyword err_" . a:name . " " . a:keyword
+    execute "hi default link err_" . a:name . " Error"
+    call s:CreatePrivateKeyword(a:name, a:keyword, a:parent, a:hiGroup)
+  endfunction
+
+  function! s:CreatePrivateMatch (name, pattern, parent, hiGroup)
+    execute "syn match " . a:name  . " \"" . a:pattern . "\" contained containedin=" . a:parent
+    execute "hi link " . a:name . " " . a:hiGroup
+    execute "syn cluster c_private add=" . a:name
+  endfunction
+
+  function! s:CreatePrivateMatchWithError (name, pattern, parent, hiGroup)
+    execute "syn match err_" . a:name . " \"" . a:pattern . "\""
+    execute "hi default link err_" . a:name . " Error"
+    call s:CreatePrivateMatch(a:name, a:pattern, a:parent, a:hiGroup)
+  endfunction
+  syn case match
+
+  syn match m_path "\v\/?\S+\/(\/|\S*)+"
+  highlight link m_path Directory
+  syn keyword k_standaloneEnd end
+  hi default link k_standaloneEnd Error
+  syn keyword err_k_bash do done then fi export local
+  hi default link err_k_bash Error
+  syn region r_forLoop matchgroup=Repeat start="\<for\>" end="\<end\>" keepend extend fold transparent contains=ALLBUT,@c_private
+  syn region r_whileLoop matchgroup=Repeat start="\<while\>" end="\<end\>" keepend extend fold transparent contains=ALLBUT,@c_private
+
+  call s:CreatePrivateMatchWithError("m_if", '\v<if>', "r_ifStmt", "Conditional")
+  call s:CreatePrivateMatchWithError("m_else", '\v<else>(if)@!', "r_ifStmt", "Conditional")
+  call s:CreatePrivateMatchWithError("m_elseIf", '\v<else\s+if>', "r_ifStmt", "Conditional")
+  syn region r_ifStmt start="\<if\>" matchgroup=Conditional end="\<end\>" keepend extend fold transparent contains=ALLBUT,@c_private
+  call s:CreatePrivateKeywordWithError("k_case", "case", "r_switchStmt", "Conditional")
+  syn region r_switchStmt matchgroup=Conditional start="\<switch\>" end="\<end\>" keepend extend fold transparent contains=ALLBUT,@c_private
+  syn cluster c_funName add=m_funName
+  syn cluster c_private add=m_funName
+  syn match m_funName :\v(function\s+)@<=[^-/][^/]{-}($|;|\s+)@=: contained containedin=m_funSignature
+  syn match m_funName :\v(function\s+)@<="[^-/][^/]*": contained containedin=m_funSignature
+  syn match m_funName :\v(function\s+)@<='[^-/][^/]*': contained containedin=m_funSignature
+  hi default link m_funName Identifier
+  syn cluster c_funName add=err_m_funName
+  syn cluster c_private add=err_m_funName
+  syn match err_m_funName :\v(function\s+)@<=(-.{-}|/=\S{-}/\S{-})($|;|\s+)@=: contained containedin=m_funSignature
+  syn match err_m_funName :\v(function\s+)@<="(-.{-}|/=.{-}/.{-})": contained containedin=m_funSignature
+  syn match err_m_funName :\v(function\s+)@<='(-.{-}|/=.{-}/.{-})': contained containedin=m_funSignature
+  hi default link err_m_funName Error
+  syn cluster c_private add=m_funDescription
+  syn match m_funDescription :\v(\s+)@<=(-d|--description=)\s+(".{-}"|'.{-}'): contained containedin=m_funSignature contains=r_string nextgroup=m_funArgument
+  hi default link m_funDescription Type
+  syn cluster c_argName add=m_argName
+  syn cluster c_private add=m_argName
+  syn match m_argName :\v(\s+)@<=[a-zA-Z0-9_]*: contained containedin=m_funArgument
+  hi default link m_argName Identifier
+  syn match m_funArgument :\v(\s+)@<=(-a|--argument-names=\s+)([a-zA-Z0-9_]*\s+)+: contained containedin=m_funSignature contains=m_argName nextgroup=m_funDescription
+  hi default link m_funArgument Type
+  syn cluster c_private add=m_funSignature
+  syn match m_funSignature '\v<function>.{-}($|;)@='he=s+8 contained contains=c_funName,m_funArgument,m_funDescription containedin=r_functionDef nextgroup=@c_funName
+  hi link m_funSignature Function
+  syn region r_functionDef start="\v<function>" matchgroup=Function end="\<end\>" keepend extend fold transparent contains=ALLBUT,@c_private
+  syn region r_string start='"' end='"' extend fold contains=m_doubleQuoteEscape,m_variable
+  syn region r_string start="'" end="'" extend fold contains=m_singleQuoteEscape
+  hi default link r_string String
+  syn match m_singleQuoteEscape "\\'" contained
+  hi link m_singleQuoteEscape Special
+  syn match m_doubleQuoteEscape '\\"' contained
+  hi link m_doubleQuoteEscape Special
+  syn match m_arrayIndex "\[[\+-]=\d+(..[\+-]=\d+)=\]" contained
+  hi default link m_arrayIndex Operator
+  syn match m_guardedVar "\v\{\$+\w*(\[[\+-]=\d+(..[\+-]=\d+)=\])=\}" contains=m_arrayIndex
+  hi default link m_guardedVar Identifier
+  syn match m_variable "\v\$+\w*(\[[\+-]=\d+(..[\+-]=\d+)=\])=" contains=m_arrayIndex
+  hi default link m_variable Identifier
+  syn keyword k_todos contained FIXME XXX TODO FIXME: XXX: TODO:
+  hi default link k_todos Todo
+  syn match m_comment "\v^\s*\#.*$" contains=k_todos
+  hi default link m_comment Comment
+  syn match m_bang "\v#\!" nextgroup=m_path
+  hi default link m_bang Macro
+  syn cluster c_argument contains=r_string
+  syn match m_varDerefError "\$[-#@*$?!]"
+  syn region err_r_varDeref start="\${" end="}"
+  syn region err_r_varDeref start="\$(" end=")"
+  hi default link err_r_varDeref Error
+  syn region fishVarDeref start="\$\+\w\+\[" end="]" excludenl end="$" contains=fishSubst,fishVarDeref,@fishEscapeSeqs
+  syn match m_redirect "\v\d=(\>\>=|\<)(\&\d)="
+  hi default link m_redirect Operator
 endfunction
 
 if has("gui_running") || has("gui_vimr")
