@@ -1999,6 +1999,8 @@ function! HighlightFISH()
   endfunction
   syn case match
 
+  syn match joekyfishextra "alias \|set \|bind "
+  hi def link joekyfishextra Statement
   syn match m_path "\v\/?\S+\/(\/|\S*)+"
   highlight link m_path Directory
   syn keyword k_standaloneEnd end
