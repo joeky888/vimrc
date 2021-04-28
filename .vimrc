@@ -726,13 +726,13 @@ vnoremap <ESC>t <Esc>:tabnew<CR>
 
 
 " Ctrl N - Next occurrence
-nnoremap <C-n> .
-inoremap <C-n> <C-o>.
+nnoremap <C-n> n.
+inoremap <C-n> <C-o>n<C-o>.
 vnoremap <C-n> yb/<C-r>"<CR>cgn
 
 " Ctrl P - Previous occurrence
-nnoremap <C-p> .
-inoremap <C-p> <C-o>.
+nnoremap <C-p> N.
+inoremap <C-p> <C-o>N<C-o>.
 vnoremap <C-p> yb/<C-r>"<CR>cgN
 
 " Terminal Alt Backspace kill a word
