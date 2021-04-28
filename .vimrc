@@ -725,10 +725,15 @@ cnoremap <ESC>t <C-c>:tabnew<CR>
 vnoremap <ESC>t <Esc>:tabnew<CR>
 
 
-" Ctrl N - Next word
-call CreateShortcut("C-n", "w", "n")
-inoremap <C-n> <C-Right>
-vnoremap <C-n> <S-Right>
+" Ctrl N - Next occurrence
+nnoremap <C-n> .
+inoremap <C-n> <C-o>.
+vnoremap <C-n> yb/<C-r>"<CR>cgn
+
+" Ctrl P - Previous occurrence
+nnoremap <C-p> .
+inoremap <C-p> <C-o>.
+vnoremap <C-p> yb/<C-r>"<CR>cgN
 
 " Terminal Alt Backspace kill a word
 nnoremap <Esc><BS> i<C-w><C-g>u
@@ -758,11 +763,6 @@ nnoremap <ESC>[1;9C w
 inoremap <ESC>[1;9C <C-Right>
 cnoremap <ESC>[1;9C <C-Right>
 vnoremap <ESC>[1;9C <S-Right>
-
-" Ctrl P - Previous word
-call CreateShortcut("C-p", "b", "n")
-inoremap <C-p> <C-Left>
-vnoremap <C-p> <S-Left>
 
 " Terminal Alt Left - Previous word
 " execute "set <M-D>=\e[1;3D"

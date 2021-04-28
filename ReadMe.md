@@ -38,8 +38,8 @@ The code is under Public-domain licence.
 | Ctrl W    | Close                                                 | |
 | Ctrl Q    | Visual-Block mode                                     | |
 | \| (bar)  | Enter multiple-line editing from Visual-Block mode    | |
-| Ctrl N    | Next word                                             | |
-| Ctrl P    | Previous word                                         | |
+| Ctrl N    | Next occurrence                                       | Repeat operation to next occurrence     |
+| Ctrl P    | Previous occurrence                                   | Repeat operation to previous occurrence |
 | Ctrl U    | Move current line / Selection up                      | Depends on window size |
 | Ctrl J    | Move current line / Selection down                    | Depends on window size |
 | Ctrl →    | Next word                                             | |
