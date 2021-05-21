@@ -1595,24 +1595,34 @@ inoremenu Edit.XML.Minify     <ESC>:call XmlMinify()<CR>
 command! XmlBeautify    execute "call XmlBeautify()"
 command! XmlMinify      execute "call XmlMinify()"
 
-function! Base64Decode()
-  execute '%!'.g:SYSPERL.' -e "require MIME::Base64; my \$in; while (<STDIN>) { last if /^END\$/; \$in .= \$_; }; print MIME::Base64::decode_base64(\$in)"'
-endfunction
-
 function! Base64Encode()
   execute '%!'.g:SYSPERL.' -e "require MIME::Base64; my \$in; while (<STDIN>) { last if /^END\$/; \$in .= \$_; }; print MIME::Base64::encode_base64(\$in)"'
 endfunction
 
-nnoremenu Edit.Base64.Decode   :call Base64Decode()<CR>
-inoremenu Edit.Base64.Decode   <ESC>:call Base64Decode()<CR>
-nnoremenu Edit.Base64.Decode   :call Base64Decode()<CR>
-inoremenu Edit.Base64.Decode   <ESC>:call Base64Decode()<CR>
+function! Base64Decode()
+  execute '%!'.g:SYSPERL.' -e "require MIME::Base64; my \$in; while (<STDIN>) { last if /^END\$/; \$in .= \$_; }; print MIME::Base64::decode_base64(\$in)"'
+endfunction
+
+function! Base64EncodeGzip()
+  execute "%!gzip | base64"
+endfunction
+
+function! Base64DecodeGunzip()
+  execute "%!base64 -d | gunzip"
+endfunction
+
 nnoremenu Edit.Base64.Encode   :call Base64Encode()<CR>
 inoremenu Edit.Base64.Encode   <ESC>:call Base64Encode()<CR>
 nnoremenu Edit.Base64.Encode   :call Base64Encode()<CR>
 inoremenu Edit.Base64.Encode   <ESC>:call Base64Encode()<CR>
-command! Base64Decode   execute "call Base64Decode()"
+nnoremenu Edit.Base64.Decode   :call Base64Decode()<CR>
+inoremenu Edit.Base64.Decode   <ESC>:call Base64Decode()<CR>
+nnoremenu Edit.Base64.Decode   :call Base64Decode()<CR>
+inoremenu Edit.Base64.Decode   <ESC>:call Base64Decode()<CR>
 command! Base64Encode   execute "call Base64Encode()"
+command! Base64Decode   execute "call Base64Decode()"
+command! Base64EncodeGzip   execute "call Base64EncodeGzip()"
+command! Base64DecodeGunzip   execute "call Base64DecodeGunzip()"
 
 function! URLDecode()
   execute '%!'.g:SYSPERL.' -e "require URI::Escape; my \$in; while (<STDIN>) { last if /^END\$/; \$in .= \$_; }; print URI::Escape::uri_unescape(\$in)"'
