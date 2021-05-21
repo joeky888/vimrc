@@ -77,62 +77,64 @@ The code is under Public-domain licence.
 
 ## Extra commands (Most of them were added to the GUI Edit menu already)
 
-| Command             | Action                                     | Description        |
-| ------------------- | ------------------------------------------ | ------------------ |
-| OpenDroppedFiles    | Open dropped files to each tab at one time |                    |
-| JsonBeautify        | Json file beautify                         | Require Python 2/3 |
-| JsonMinify          | Json file minify                           |                    |
-| XmlBeautify         | XML file beautify                          |                    |
-| XmlMinify           |                                            |                    |
-| Base64Decode        | Decode base64 file                         | Require Perl       |
-| Base64Encode        | Encode base64 file                         | Require Perl       |
-| URLDecode           | Decode URL in current file                 | Require Perl       |
-| URLEncode           | Encode URL in current file                 | Require Perl       |
-| MergeToOneLine      | Merge selection to one single line         |                    |
-| RemoveLeadingSpace  |                                            |                    |
-| RemoveTrailingSpace |                                            |                    |
-| RemoveEmptyLines    |                                            |                    |
-| ToggleCaseToUpper   | Toggle case from selection                 |                    |
-| ToggleCaseToLower   | Toggle case from selection                 |                    |
-| ReverseString       | Reverse selected string                    |                    |
-| FastRender          | Disable everything slowing vim down        |                    |
-| Split2Vertical      | Split window                               |                    |
-| Split3Vertical      |                                            |                    |
-| Split2Horizontal    |                                            |                    |
-| Split3Horizontal    |                                            |                    |
-| Split4              |                                            |                    |
-| SplitMoveRight      | Move window                                |                    |
-| SplitMoveLeft       |                                            |                    |
-| SplitMoveUp         |                                            |                    |
-| SplitMoveDown       |                                            |                    |
-| SplitResizeRight    | Resize window                              |                    |
-| SplitResizeLeft     |                                            |                    |
-| SplitResizeUp       |                                            |                    |
-| SplitResizeDown     |                                            |                    |
-| IndentSpace2        | 2 space indention                          |                    |
-| IndentSpace4        | 4 space indention                          |                    |
-| IndentSpace8        | 8 space indention                          |                    |
-| IndentTab2          | 2 tab indention                            |                    |
-| IndentTab4          | 4 tab indention                            |                    |
-| IndentTab8          | 8 tab indention                            |                    |
-| LineEndingUnix      | \\n line ending                            |                    |
-| LineEndingDos       | \\r\\n line ending                         |                    |
-| LineEndingMac       | \\r line ending                            |                    |
-| EncodingUTF8        |                                            |                    |
-| EncodingBig5        |                                            |                    |
-| EncodingGBK         |                                            |                    |
-| EncodingJapan       |                                            |                    |
-| EncodingKorea       |                                            |                    |
-| EncodingUTF16LE     |                                            |                    |
-| EncodingUTF16BE     |                                            |                    |
-| EncodingAnsi        |                                            |                    |
-| Opencc2T            |                                            | Require Opencc     |
-| Opencc2S            |                                            |                    |
-| AutoCompleteEnable  |                                            |                    |
-| AutoCompleteDisable |                                            |                    |
-| SshPasteEnable      |                                            |                    |
-| SshPasteDisable     |                                            |                    |
-| Download            | Download a file from a given URL           |                    |
+| Command             | Action                                       | Description            |
+| ------------------- | -------------------------------------------- | ---------------------- |
+| OpenDroppedFiles    | Open dropped files to each tab at one time   |                        |
+| JsonBeautify        | Json file beautify                           | Requires Python 2/3    |
+| JsonMinify          | Json file minify                             |                        |
+| XmlBeautify         | XML file beautify                            |                        |
+| XmlMinify           |                                              |                        |
+| Base64Decode        | Decode base64 file                           | Requires Perl          |
+| Base64Encode        | Encode base64 file                           | Requires Perl          |
+| Base64DecodeGunzip  | Decode base64 file with gunzip uncompressing | Requires base64,gunzip |
+| Base64EncodeGzip    | Encode base64 file with gz compressing       | Requires base64,gzip   |
+| URLDecode           | Decode URL in current file                   | Requires Perl          |
+| URLEncode           | Encode URL in current file                   | Requires Perl          |
+| MergeToOneLine      | Merge selection to one single line           |                        |
+| RemoveLeadingSpace  |                                              |                        |
+| RemoveTrailingSpace |                                              |                        |
+| RemoveEmptyLines    |                                              |                        |
+| ToggleCaseToUpper   | Toggle case from selection                   |                        |
+| ToggleCaseToLower   | Toggle case from selection                   |                        |
+| ReverseString       | Reverse selected string                      |                        |
+| FastRender          | Disable everything slowing vim down          |                        |
+| Split2Vertical      | Split window                                 |                        |
+| Split3Vertical      |                                              |                        |
+| Split2Horizontal    |                                              |                        |
+| Split3Horizontal    |                                              |                        |
+| Split4              |                                              |                        |
+| SplitMoveRight      | Move window                                  |                        |
+| SplitMoveLeft       |                                              |                        |
+| SplitMoveUp         |                                              |                        |
+| SplitMoveDown       |                                              |                        |
+| SplitResizeRight    | Resize window                                |                        |
+| SplitResizeLeft     |                                              |                        |
+| SplitResizeUp       |                                              |                        |
+| SplitResizeDown     |                                              |                        |
+| IndentSpace2        | 2 space indention                            |                        |
+| IndentSpace4        | 4 space indention                            |                        |
+| IndentSpace8        | 8 space indention                            |                        |
+| IndentTab2          | 2 tab indention                              |                        |
+| IndentTab4          | 4 tab indention                              |                        |
+| IndentTab8          | 8 tab indention                              |                        |
+| LineEndingUnix      | \\n line ending                              |                        |
+| LineEndingDos       | \\r\\n line ending                           |                        |
+| LineEndingMac       | \\r line ending                              |                        |
+| EncodingUTF8        |                                              |                        |
+| EncodingBig5        |                                              |                        |
+| EncodingGBK         |                                              |                        |
+| EncodingJapan       |                                              |                        |
+| EncodingKorea       |                                              |                        |
+| EncodingUTF16LE     |                                              |                        |
+| EncodingUTF16BE     |                                              |                        |
+| EncodingAnsi        |                                              |                        |
+| Opencc2T            |                                              | Requires Opencc        |
+| Opencc2S            |                                              |                        |
+| AutoCompleteEnable  |                                              |                        |
+| AutoCompleteDisable |                                              |                        |
+| SshPasteEnable      |                                              |                        |
+| SshPasteDisable     |                                              |                        |
+| Download            | Download a file from a given URL             |                        |
 
 ## Install
 
