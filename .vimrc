@@ -1531,7 +1531,7 @@ def FormatJSON(fmtlStart, fmtlEnd):
   vim.current.buffer[fmtlStart:fmtlEnd] = prettyJson.split('\n')
 EOF
   " :'<,'>JsonBeautify
-  command! -range=% JsonBeautify python FormatJSON(<line1>, <line2>)
+  command! -range=% JsonBeautify set filetype=json | python FormatJSON(<line1>, <line2>)
   nnoremenu Edit.Json.Beautify(UTF8)  ggVG:<C-u>'<,'>JsonBeautify<CR>
   inoremenu Edit.Json.Beautify(UTF8)  <ESC>ggVG:<C-u>'<,'>JsonBeautify<CR>
   vnoremenu Edit.Json.Beautify(UTF8)  :<C-u>'<,'>JsonBeautify<CR>
@@ -1546,12 +1546,12 @@ def FormatJSON(fmtlStart, fmtlEnd):
   vim.current.buffer[fmtlStart:fmtlEnd] = prettyJson.split('\n')
 EOF
   " :'<,'>JsonBeautify
-  command! -range=% JsonBeautify python3 FormatJSON(<line1>, <line2>)
+  command! -range=% JsonBeautify set filetype=json | python3 FormatJSON(<line1>, <line2>)
   nnoremenu Edit.Json.Beautify(UTF8)  ggVG:<C-u>'<,'>JsonBeautify<CR>
   inoremenu Edit.Json.Beautify(UTF8)  <ESC>ggVG:<C-u>'<,'>JsonBeautify<CR>
   vnoremenu Edit.Json.Beautify(UTF8)  :<C-u>'<,'>JsonBeautify<CR>
 else
-  command! JsonBeautify %!python -m json.tool
+  command! JsonBeautify set filetype=json | %!python -m json.tool
   nnoremenu Edit.Json.Beautify(cANSI) :%!python -m json.tool<CR>
   inoremenu Edit.Json.Beautify(cANSI) <ESC>:%!python -m json.tool<CR>
 endif
