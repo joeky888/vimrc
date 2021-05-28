@@ -22,8 +22,8 @@ set lazyredraw " Don't redraw statusline when switching between vim modes
 set shortmess=tsIAW " No intro when starting Vim
 set expandtab " Insert spaces instead of tabs
 set smarttab " Insert spaces according to shiftwidth
-set softtabstop=4 " ... and insert four spaces
-set shiftwidth=4 " Indent with four spaces
+set softtabstop=2 " ... and insert 2 spaces
+set shiftwidth=2 " Indent with 2 spaces
 set incsearch " Search as typing
 set hlsearch " Highlight search results
 set cursorline " Highlight the cursor line
@@ -111,7 +111,7 @@ autocmd VimEnter * set noerrorbells " Disable Gvim error sound
 autocmd VimEnter * set vb t_vb= | set t_vb= " Disable Gvim visual bell
 autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme * set iskeyword=a-z,A-Z,48-57,_
 autocmd BufRead,BufNewFile,BufWritePost,BufEnter,FileType,ColorScheme * set formatoptions-=cro " Prevent vim inserting new comment lines
-autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufEnter,FileType,ColorScheme *.{ts,tsx,jsx} setlocal filetype=javascript
+" autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufEnter,FileType,ColorScheme *.{ts,tsx,jsx} setlocal filetype=javascript
 autocmd BufRead,BufNewFile,BufWritePost,BufAdd,BufEnter,FileType,ColorScheme *.{dockerfile,Dockerfile} setlocal filetype=dockerfile
 au VimResized * let g:vertical_jump=&scroll*4/3
 au FileType vim,sh,zsh,python setlocal fileformat=unix
