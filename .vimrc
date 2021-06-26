@@ -125,8 +125,12 @@ let g:markdown_fenced_languages =
   \"css","html","xml","json","cmake","yaml","sh","conf",
   \"zsh","tmux","debsources","resolv","sudoers","make",
   \"dosbatch","dosini","bash=sh","js=javascript","go","sql",
-  \"dockerfile","lua","gitconfig","rust","cs","ps1"
+  \"dockerfile","lua","gitconfig","rust","cs"
 \]
+
+if (v:version == 802 && has("patch2734")) || has('patch-8.2.2734') || v:version > 802
+  call add(g:markdown_fenced_languages, "ps1")
+else
 
 if &diff
   set number
