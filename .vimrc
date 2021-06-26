@@ -130,7 +130,7 @@ let g:markdown_fenced_languages =
 
 if (v:version == 802 && has("patch2734")) || has('patch-8.2.2734') || v:version > 802
   call add(g:markdown_fenced_languages, "ps1")
-else
+endif
 
 if &diff
   set number
