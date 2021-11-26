@@ -15,61 +15,61 @@ This vimrc is based on [MiniVim](https://github.com/sd65/MiniVim). It runs on Vi
 
 The code is under Public-domain licence.
 
-| Keys           | Action                                             | Description                                                   |
-| -------------- | -------------------------------------------------- | ------------------------------------------------------------- |
-| Ctrl A         | Move cursor to the beginning of the line           | Just like macOS and terminals                                 |
-| Ctrl E         | Move cursor to the end of the line                 | Just like macOS and terminals                                 |
-| Ctrl C         | Copy current line / Copy Selection                 | Also copies to `~/.vim/clipboard.txt` in terminals            |
-| Ctrl X         | Cut current line / Cut Selection                   | Also cuts to `~/.vim/clipboard.txt` in terminals              |
-| Ctrl V         | Paste                                              |                                                               |
-| Ctrl D         | Duplicate current line                             |                                                               |
-| Ctrl K         | Kill current line / Kill selected lines            | Just like nano                                                |
-| Ctrl F         | Search                                             | Case insensitive                                              |
-| /              | Search                                             | Case sensitive                                                |
-| Ctrl R         | Replace                                            | Case sensitive                                                |
-| Ctrl G         | Select all                                         |                                                               |
-| Ctrl \\        | Comment/Uncomment                                  | Depends on file type                                          |
-| Ctrl T         | New tab                                            |                                                               |
-| Ctrl Z         | Undo                                               |                                                               |
-| Ctrl Y         | Redo                                               |                                                               |
-| Ctrl S         | Save                                               |                                                               |
-| Ctrl W         | Close                                              |                                                               |
-| Ctrl Q         | Visual-Block mode                                  |                                                               |
-| \| (bar)       | Enter multiple-line editing from Visual-Block mode |                                                               |
-| Ctrl N         | Next occurrence                                    | Repeats the last operation to next occurrence (vim `cgn`)     |
-| Ctrl P         | Previous occurrence                                | Repeats the last operation to previous occurrence (vim `cgn`) |
-| Ctrl U         | Move current line / Selection up                   | Depends on window size                                        |
-| Ctrl J         | Move current line / Selection down                 | Depends on window size                                        |
-| Ctrl →         | Next word                                          |                                                               |
-| Ctrl ←         | Previous word                                      |                                                               |
-| Ctrl ↑         | Jump up multiple lines                             | Depends on window size                                        |
-| Ctrl ↓         | Jump down multiple lines                           | Depends on window size                                        |
-| Alt →          | Next word                                          | In case Ctrl key is not working in terminal emulators         |
-| Alt ←          | Previous word                                      |                                                               |
-| Alt ↑          | Jump up multiple lines                             | Depends on window size                                        |
-| Alt ↓          | Jump down multiple lines                           | Depends on window size                                        |
-| Shift →        | Select next word                                   | In case Ctrl key is not working in terminal emulators         |
-| Shift ←        | Select previous word                               |                                                               |
-| Shift ↑        | Select multiple lines up                           | Depends on window size                                        |
-| Shift ↓        | Select multiple lines down                         | Depends on window size                                        |
-| Ctrl B         | Delete a word backward                             |                                                               |
-| q              | Quit                                               | Normal mode only                                              |
-| Q              | Quit                                               | Normal mode only                                              |
-| Tab            | Indent                                             |                                                               |
-| Shift Tab      | Unindent                                           |                                                               |
-| Insert         | Paste from `clipboard.txt`                         | Only available in terminals, in case vim clipboard is broken  |
-| F2             | New tab                                            | Like Byobu                                                    |
-| F3             | Move to next tab                                   | Like Byobu                                                    |
-| F4             | Move to previous tab                               | Like Byobu                                                    |
-| F10            | Enable/Disable Auto-Completion                     |                                                               |
-| PageUp         | Jump up multiple lines                             | Depends on window size                                        |
-| PageDown       | Jump down multiple lines                           | Depends on window size                                        |
-| Home           | Increase font size                                 | GUI only                                                      |
-| End            | Decrease font size                                 | GUI only                                                      |
-| - (minus)      | Fold/Unfold                                        | Normal mode only                                              |
-| Ctrl Backspace | Delete a word backward                             |                                                               |
-| Alt  Backspace | Delete a word backward                             | In case Ctrl key is not working in terminal emulators         |
-| Ctrl Delete    | Delete a word forward                              |                                                               |
+| Keys           | Action                                             | Description                                                                                   |
+| -------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Ctrl A         | Move cursor to the beginning of the line           | Just like macOS and terminals                                                                 |
+| Ctrl E         | Move cursor to the end of the line                 | Just like macOS and terminals                                                                 |
+| Ctrl C         | Copy current line / Copy Selection                 | Also copies to `~/.vim/clipboard.txt` in terminals                                            |
+| Ctrl X         | Cut current line / Cut Selection                   | Also cuts to `~/.vim/clipboard.txt` in terminals                                              |
+| Ctrl V         | Paste                                              |                                                                                               |
+| Ctrl D         | Duplicate current line                             |                                                                                               |
+| Ctrl K         | Kill current line / Kill selected lines            | Just like nano                                                                                |
+| Ctrl F         | Search                                             | Case insensitive                                                                              |
+| /              | Search                                             | Case sensitive                                                                                |
+| Ctrl R         | Replace                                            | Case sensitive                                                                                |
+| Ctrl G         | Select all                                         |                                                                                               |
+| Ctrl \\        | Comment/Uncomment                                  | Depends on file type                                                                          |
+| Ctrl T         | New tab                                            |                                                                                               |
+| Ctrl Z         | Undo                                               |                                                                                               |
+| Ctrl Y         | Redo                                               |                                                                                               |
+| Ctrl S         | Save                                               |                                                                                               |
+| Ctrl W         | Close                                              |                                                                                               |
+| Ctrl Q         | Visual-Block mode                                  |                                                                                               |
+| \| (bar)       | Enter multiple-line editing from Visual-Block mode |                                                                                               |
+| Ctrl N         | Next occurrence                                    | vim `cgn` mode, hit c-n on the selection, edit it (don't do paste), then keep pressing ctrl-n |
+| Ctrl P         | Previous occurrence                                | Repeats the last operation to previous occurrence (vim `cgn`)                                 |
+| Ctrl U         | Move current line / Selection up                   | Depends on window size                                                                        |
+| Ctrl J         | Move current line / Selection down                 | Depends on window size                                                                        |
+| Ctrl →         | Next word                                          |                                                                                               |
+| Ctrl ←         | Previous word                                      |                                                                                               |
+| Ctrl ↑         | Jump up multiple lines                             | Depends on window size                                                                        |
+| Ctrl ↓         | Jump down multiple lines                           | Depends on window size                                                                        |
+| Alt →          | Next word                                          | In case Ctrl key is not working in terminal emulators                                         |
+| Alt ←          | Previous word                                      |                                                                                               |
+| Alt ↑          | Jump up multiple lines                             | Depends on window size                                                                        |
+| Alt ↓          | Jump down multiple lines                           | Depends on window size                                                                        |
+| Shift →        | Select next word                                   | In case Ctrl key is not working in terminal emulators                                         |
+| Shift ←        | Select previous word                               |                                                                                               |
+| Shift ↑        | Select multiple lines up                           | Depends on window size                                                                        |
+| Shift ↓        | Select multiple lines down                         | Depends on window size                                                                        |
+| Ctrl B         | Delete a word backward                             |                                                                                               |
+| q              | Quit                                               | Normal mode only                                                                              |
+| Q              | Quit                                               | Normal mode only                                                                              |
+| Tab            | Indent                                             |                                                                                               |
+| Shift Tab      | Unindent                                           |                                                                                               |
+| Insert         | Paste from `clipboard.txt`                         | Only available in terminals, in case vim clipboard is broken                                  |
+| F2             | New tab                                            | Like Byobu                                                                                    |
+| F3             | Move to next tab                                   | Like Byobu                                                                                    |
+| F4             | Move to previous tab                               | Like Byobu                                                                                    |
+| F10            | Enable/Disable Auto-Completion                     |                                                                                               |
+| PageUp         | Jump up multiple lines                             | Depends on window size                                                                        |
+| PageDown       | Jump down multiple lines                           | Depends on window size                                                                        |
+| Home           | Increase font size                                 | GUI only                                                                                      |
+| End            | Decrease font size                                 | GUI only                                                                                      |
+| - (minus)      | Fold/Unfold                                        | Normal mode only                                                                              |
+| Ctrl Backspace | Delete a word backward                             |                                                                                               |
+| Alt  Backspace | Delete a word backward                             | In case Ctrl key is not working in terminal emulators                                         |
+| Ctrl Delete    | Delete a word forward                              |                                                                                               |
 
 ## Extra menu items (GUI)
 
