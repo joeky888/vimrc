@@ -521,9 +521,9 @@ inoremap <C-e> <End>
 if !has("gui_running") && has("clipboard")
   set clipboard=
   " Remap Ctrl C
-  nnoremap <silent> <C-c> mjV"+yV:<C-u>silent! '<,'>w! $HOME/.vim/clipboard.txt<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR>`ji
-  inoremap <silent> <C-c> <C-\><C-o>mj<C-o>V"+y<C-o>V:<C-u>silent! '<,'>w! $HOME/.vim/clipboard.txt<CR><C-o>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR><C-o>:redraw!<CR><C-o>`j
-  vnoremap <silent> <C-c> "+y<ESC>:call delete(expand("$HOME/.vim/clipboard.txt"))<CR>:new $HOME/.vim/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR><ESC>gv
+  nnoremap <silent> <C-c> mjV"+yV:<C-u>silent! '<,'>w! $HOME/.vim/clipboard.txt<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>`ji
+  inoremap <silent> <C-c> <C-\><C-o>mj<C-o>V"+y<C-o>V:<C-u>silent! '<,'>w! $HOME/.vim/clipboard.txt<CR><C-o>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR><C-o><C-o>`j
+  vnoremap <silent> <C-c> "+y<ESC>:call delete(expand("$HOME/.vim/clipboard.txt"))<CR>:new $HOME/.vim/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR><ESC>gv
   cnoremap <C-c> <C-y>
   " Remap Ctrl X
   nnoremap <silent> <C-x>       :call SavePos()<CR>:silent w! $HOME/.vim/clipboard.txt<CR>V"+x:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:call setpos(".", b:savepos)<CR>i
@@ -537,8 +537,8 @@ if !has("gui_running") && has("clipboard")
   cnoremap <C-v> <C-r>+
 elseif !has("gui_running") && !has("clipboard")
   " Ctrl C - Copy
-  call CreateShortcut("C-c", "mjYV:<C-u>silent! '<,'>w! $HOME/.vim/clipboard.txt<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR>`j", "ni")
-  vnoremap <silent> <C-c> y:call delete(expand("$HOME/.vim/clipboard.txt"))<CR>:new $HOME/.vim/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:redraw!<CR><ESC>gv
+  call CreateShortcut("C-c", "mjYV:<C-u>silent! '<,'>w! $HOME/.vim/clipboard.txt<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>`j", "ni")
+  vnoremap <silent> <C-c> y:call delete(expand("$HOME/.vim/clipboard.txt"))<CR>:new $HOME/.vim/clipboard.txt<CR>P:silent w!<CR>:bdelete!<CR>:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR><ESC>gv
 
   " Ctrl X - Cut
   nnoremap <silent> <C-x>       :call SavePos()<CR>:silent w! $HOME/.vim/clipboard.txt<CR>dd:call system('chmod 777 $HOME/.vim/clipboard.txt')<CR>:call setpos(".", b:savepos)<CR>i
@@ -2126,9 +2126,9 @@ if has("gui_running") || has("gui_vimr")
   inoremap <silent> <End>  <C-o>:let g:guifontsize-=1<CR><C-o>:call ChangeFontSize()<CR>
 
   " Ctrl C is copying line if there is no word selected
-  nnoremap <C-c> mjV"+y:redraw!<CR>`ji
-  inoremap <C-c> <C-\><C-o>mj<C-o>V"+y<C-o>:redraw!<CR><C-o>`j
-  vnoremap <C-c> "+y:redraw!<CR><ESC>gv
+  nnoremap <C-c> mjV"+y`ji
+  inoremap <C-c> <C-\><C-o>mj<C-o>V"+y<C-o><C-o>`j
+  vnoremap <C-c> "+y<ESC>gv
   cnoremap <C-c> <C-y>
 
   " Ctrl X is cutting line if there is no word selected
