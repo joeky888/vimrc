@@ -419,6 +419,14 @@ function! DeleteLine()
   normal! "_dd
   call setpos(".", savepos)
 endfunction
+function! PasteInsertMode()
+  normal! gP
+  return ''
+endfunction
+function! PasteClipboardInsertMode()
+  normal! "+gP
+  return ''
+endfunction
 
 " Usefull shortcuts for entering insert mode
 nnoremap <CR> i<CR>
@@ -533,7 +541,7 @@ if !has("gui_running") && has("clipboard")
   " Remap Ctrl V
   nnoremap <silent> <C-v> "+gPi<C-g>u
   vnoremap <silent> <C-v> "_d"+gP
-  inoremap <silent> <C-v> <C-r>+<C-g>u
+  inoremap <silent> <C-v> <C-r>=PasteClipboardInsertMode()<CR><C-g>u
   cnoremap <C-v> <C-r>+
 elseif !has("gui_running") && !has("clipboard")
   " Ctrl C - Copy
@@ -550,7 +558,7 @@ elseif !has("gui_running") && !has("clipboard")
   " inoremap <silent> <C-v> <C-o>:normal! gP<CR><C-g>u
   nnoremap <silent> <C-v> gPi<C-g>u
   vnoremap <silent> <C-v> "_dgP
-  inoremap <silent> <C-v> <C-r>"<C-g>u
+  inoremap <silent> <C-v> <C-r>=PasteInsertMode()<CR><C-g>u
   cnoremap <C-v> <C-r>"
 endif
 
@@ -2139,7 +2147,7 @@ if has("gui_running") || has("gui_vimr")
   " Ctrl V is pasting from system clipboard
   nnoremap <silent> <C-v> "+gPi<C-g>u
   vnoremap <silent> <C-v> "_d"+gP
-  inoremap <silent> <C-v> <C-r>+<C-g>u
+  inoremap <silent> <C-v> <C-r>=PasteClipboardInsertMode()<CR><C-g>u
   cnoremap <C-v> <C-r>+
 
   " Shift-Insert same as Ctrl-v
