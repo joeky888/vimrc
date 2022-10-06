@@ -308,7 +308,7 @@ function! ModifiedQCheck()
   endif
 endfunction
 function! FileQuit()
-  if has("gui_running") || exists('g:GuiLoaded')
+  if has("gui_running")
     " help file is not in the buffer list, specially treated
     if (&filetype=="help")
       q
@@ -2086,7 +2086,7 @@ function! HighlightFISH()
   hi default link m_redirect Operator
 endfunction
 
-if has("gui_running") || has("gui_vimr") || exists('g:GuiLoaded')
+if has("gui_running") || has("gui_vimr") || has('nvim')
 
   let g:guifontsize=14
   if has('win32') || has('win64')
