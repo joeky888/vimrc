@@ -2119,7 +2119,7 @@ if has("gui_running") || has("gui_vimr") || has('nvim')
   function! ChangeFontSize()
     if has('win32') || has('win64')
       silent! execute "set guifont=Ubuntu\\ Mono:h".g:guifontsize.",Consolas:h".g:guifontsize.",Lucida_Console:h".g:guifontsize
-      silent! execute "set guifontwide=DroidMono:h".g:guifontsize.",Sarasa\\ Mono\\ TC:h".",Iosevka\\ Term:h".",Iosevka:h".g:guifontsize.",NSimsun:h".g:guifontsize
+      silent! execute "set guifontwide=Sarasa\\ Mono\\ TC:h".",Iosevka\\ Term:h".",Iosevka:h".g:guifontsize.",NSimsun:h".g:guifontsize
     elseif has("gui_macvim")
       silent! execute "set guifont=Monaco:h".g:guifontsize
       silent! execute "set guifontwide=Hiragino\\ Sans\\ GB:h".g:guifontsize
