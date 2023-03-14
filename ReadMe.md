@@ -177,9 +177,9 @@ curl https://raw.githubusercontent.com/joeky888/vimrc/master/.vimrc -o ~/.config
 ### Extra notes
 
 * Don't use `sudo vim`, use `sudoedit` instead
-* Auto-completen will be disabled automatically inside ssh sessions and docker containers otherwise it will corrupt the clipboard
-* Vim built-in clipboard will be used when system clipboard is not available
-* When Fbterm and gpm is detected, ttymouse will be set to `xterm` (to use gpm mouse)
+* Auto-completion will be disabled automatically inside ssh sessions and docker containers otherwise it will corrupt the clipboard
+* Vim's built-in clipboard will be used when system clipboard is not available
+* When Fbterm and gpm is detected, ttymouse will be set to `xterm` (to use gpm mouse in the fbterm)
 * Python and Perl are used on few commands but most of the functions are written in pure vimscript
 * There are some keys one should never remap them
     * Ctrl-I = Space in terminals
@@ -189,7 +189,7 @@ curl https://raw.githubusercontent.com/joeky888/vimrc/master/.vimrc -o ~/.config
     * Ctrl-/ Vim doesn't support it
     * Ctrl-AnyNumberkey Vim doesn't support it
     * three or more combination keys like Ctrl-Shift-S, terminals don't accept this
-* An example setup should like this in terminals
+* An example setup should like this in bashrc/zshrc
 ```sh
 # Add this to bash_profile, bashrc or zshrc
 if [[ "$TERM" == "xterm"* ]]; then
@@ -197,7 +197,7 @@ if [[ "$TERM" == "xterm"* ]]; then
 fi
 stty -ixon -ixoff # In order to use Ctrl Q and ctrl S
 stty lnext '^-' stop undef start undef -ixon # In order to use Ctrl V
-export VISUAL="vim" # For the sudoedit command
+export VISUAL="vim"     # For the sudoedit command
 export EDITOR="$VISUAL" # For the sudoedit command
 ```
 
