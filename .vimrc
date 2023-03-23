@@ -2086,7 +2086,7 @@ function! HighlightFISH()
   hi default link m_redirect Operator
 endfunction
 
-if has("gui_running") || has("gui_vimr") || has('nvim')
+if has("gui_running") || has("gui_vimr") || !has('nvim')
 
   let g:guifontsize=14
   if has('win32') || has('win64')
