@@ -2087,7 +2087,6 @@ function! HighlightFISH()
 endfunction
 
 # For neovim-qt, the best way to detect GUI is setting the NVIM_GUI=1
-# https://github.com/equalsraf/neovim-qt/issues/94#issuecomment-322306640
 if has("gui_running") || has("gui_vimr") || !empty($NVIM_GUI)
 
   let g:guifontsize=14
