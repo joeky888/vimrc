@@ -122,7 +122,7 @@ au FileType help,man nmap <buffer> <CR> <C-]> | nmap <buffer> <C-n> :cn<CR> | nm
 let g:markdown_fenced_languages =
 \[
   \"c","cpp","java","javascript","ruby","python","vim",
-  \"css","html","xml","json","cmake","yaml","sh","conf",
+  \"css","html","xml","json","cmake","yaml","toml","sh","conf",
   \"zsh","tmux","debsources","resolv","sudoers","make","diff",
   \"dosbatch","dosini","bash=sh","js=javascript","go","sql",
   \"dockerfile","lua","gitconfig","rust","cs","typescript"
@@ -952,12 +952,13 @@ autocmd FileType ruby,python        let b:comment_leader = '#'
 autocmd FileType conf,fstab         let b:comment_leader = '#'
 autocmd FileType tmux,zsh           let b:comment_leader = '#'
 autocmd FileType sshconfig          let b:comment_leader = '#'
-autocmd FileType make,cmake,yaml    let b:comment_leader = '#'
+autocmd FileType make,cmake         let b:comment_leader = '#'
 autocmd FileType debsources,desktop let b:comment_leader = '#'
 autocmd FileType xdefaults          let b:comment_leader = '!'
 autocmd FileType dockerfile         let b:comment_leader = '#'
 autocmd FileType jproperties        let b:comment_leader = '#'
 autocmd FileType gitconfig          let b:comment_leader = '#'
+autocmd FileType yaml,toml          let b:comment_leader = '#'
 autocmd FileType matlab,tex         let b:comment_leader = '%'
 autocmd FileType vim                let b:comment_leader = '"'
 autocmd FileType sql,lua            let b:comment_leader = '--'
