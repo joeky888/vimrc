@@ -57,7 +57,7 @@ set fileencodings=ucs-bom,utf-8,gbk,big5,utf-16le,utf-16be,default,latin1
 set langmenu=en_US.UTF-8 " Set Gvim menu language
 let $LANG='en' " Set $LANG variable
 set fileformats=unix,dos,mac " Set for terminal vim
-set synmaxcol=300 " Don't try to highlight lines with over 300 characters
+set synmaxcol=600 " Don't try to highlight lines with over 600 characters
 set smartcase& " After 8.0.1238, smartcase should be on. But we'll see.
 set sidescroll=0 " Leave 0 character when scrolling vertically
 set sidescrolloff=5 " Leave 5 characters when scrolling horizontally
