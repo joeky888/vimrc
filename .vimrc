@@ -33,7 +33,6 @@ set wildmenu " Better command-line completion
 set wildignorecase " Ignore case when command-line completion
 set clipboard=unnamed,unnamedplus
 set selection=exclusive " Don't select char under cursor
-set mouseshape+=a:beam " set cursor shape as modern editors should be
 set mouse=a
 set autoindent " auto indent
 set nosmartindent " no smart indent
@@ -52,7 +51,6 @@ set showbreak=>\
 set mousemodel=extend " Disable right click popup in Gvim
 set mousefocus " Focus on mouse hovered
 set encoding=utf-8
-set termencoding=utf-8
 set fileencodings=ucs-bom,utf-8,gbk,big5,utf-16le,utf-16be,default,latin1
 set langmenu=en_US.UTF-8 " Set Gvim menu language
 let $LANG='en' " Set $LANG variable
@@ -65,8 +63,6 @@ set nowrap " Don't wrap text
 set cmdheight=2 "Avoiding the Hit ENTER to continue prompts
 set guioptions-=T " Don't show toolbar in Gvim
 set guioptions-=t " Don't show tearoff menu items
-set guioptions+=b " Show bottom (horizontal) scrollbar in Gvim
-set guitabtooltip=%{expand('%:p')} " Use full path in GUI tab tooltip
 let g:netrw_list_hide='' " Show all hidden files when using file explorer
 let g:netrw_hide=0 " Show all hidden files when using file explorer
 let g:netrw_sizestyle="H" " Human-readable file size in file explorer
