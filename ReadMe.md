@@ -9,6 +9,7 @@ Features
 * Sans-serif mono font automatic detection (GUI-only)
 * Extra menu items under `Edit` option (GUI-only)
 * Paste to vim on ssh-server out-of-box
+* Works even without any syntax/color files (e.g. only vim executable)
 
 This vimrc is based on [MiniVim](https://github.com/sd65/MiniVim). It runs on Vim/Gvim >= 7.3 and Neovim >= 0.2
 
