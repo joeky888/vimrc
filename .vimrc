@@ -526,7 +526,7 @@ if !has("gui_running") && has("clipboard")
   set clipboard=
   " Remap Ctrl C
   nnoremap <silent> <C-c> mjV"+yV`j<ESC>i
-  inoremap <silent> <C-c> <C-\><C-o>mj<C-o>V"+y<C-o>V<C-o>`j<ESC>i
+  inoremap <silent> <C-c> <C-\><C-o>mj<C-o>V"+y<C-o>V<C-o><C-o>`j<ESC>i
   vnoremap <silent> <C-c> "+y<ESC>gv
   cnoremap <C-c> <C-y>
   " Remap Ctrl X
