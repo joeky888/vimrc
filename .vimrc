@@ -545,8 +545,8 @@ elseif !has("gui_running") && !has("clipboard")
   vnoremap <silent> <C-c> y<ESC>gv
 
   " Ctrl X - Cut
-  nnoremap <silent> <C-x>       :call SavePos()<CR>:call setpos(".", b:savepos)<CR>i
-  inoremap <silent> <C-x>  <C-o>:call SavePos()<CR>:call setpos(".", b:savepos)<CR>i<C-g>u
+  nnoremap <silent> <C-x>       :call SavePos()<CR>dd:call setpos(".", b:savepos)<CR>i
+  inoremap <silent> <C-x>  <C-o>:call SavePos()<CR>dd:call setpos(".", b:savepos)<CR>i<C-g>u
   vnoremap <silent> <C-x> d
   cnoremap <C-x> <C-y><C-e><C-u>
 
