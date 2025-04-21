@@ -19,8 +19,8 @@ The code is under Public-domain licence.
 | -------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | Ctrl A         | Move cursor to the beginning of the line           | Just like macOS and terminals                                                                 |
 | Ctrl E         | Move cursor to the end of the line                 | Just like macOS and terminals                                                                 |
-| Ctrl C         | Copy current line / Copy Selection                 | Also copies to `~/.vim/clipboard.txt` in terminals                                            |
-| Ctrl X         | Cut current line / Cut Selection                   | Also cuts to `~/.vim/clipboard.txt` in terminals                                              |
+| Ctrl C         | Copy current line / Copy Selection                 |                                                                                               |
+| Ctrl X         | Cut current line / Cut Selection                   |                                                                                               |
 | Ctrl V         | Paste                                              |                                                                                               |
 | Ctrl D         | Duplicate current line                             |                                                                                               |
 | Ctrl K         | Kill current line / Kill selected lines            | Just like nano                                                                                |
@@ -57,7 +57,7 @@ The code is under Public-domain licence.
 | Q              | Quit                                               | Normal mode only                                                                              |
 | Tab            | Indent                                             |                                                                                               |
 | Shift Tab      | Unindent                                           |                                                                                               |
-| Insert         | Paste from `clipboard.txt`                         | Only available in terminals, in case vim clipboard is broken                                  |
+| Insert         | Paste                                              | In command mode only                                                                          |
 | F2             | New tab                                            | Like Byobu                                                                                    |
 | F3             | Move to next tab                                   | Like Byobu                                                                                    |
 | F4             | Move to previous tab                               | Like Byobu                                                                                    |
