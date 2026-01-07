@@ -1516,8 +1516,6 @@ command! -nargs=1 OpenDroppedFiles call OpenDroppedFiles(<f-args>)
 if has("win32") || has("win64")
   let $PATH .= ';C:\ProgramData\Miniconda2' " choco install miniconda
   let $PATH .= ';C:\ProgramData\Miniconda3' " choco install miniconda3
-"   set pythondll=python27.dll " set python2 dll name
-"   set pythonthreedll=python36.dll " set python3 dll name
 endif
 
 if has("python")
@@ -1837,9 +1835,6 @@ function! DownloadFile(url)
     set shell=powershell.exe
     set shellcmdflag=-command
     exe "!Invoke-WebRequest -uri ".a:url." -outfile $(split-path -path ".a:url." -leaf)"
-  elseif executable("python2")
-    let flname = fnamemodify(a:url, ":t")
-    exe "!python2 -c \"import urllib; urllib.urlretrieve('".a:url."', './".flname."')\""
   elseif executable("python3")
     let flname = fnamemodify(a:url, ":t")
     exe "!python3 -c \"import urllib.request; urllib.request.urlretrieve('".a:url."', './".flname."')\""
