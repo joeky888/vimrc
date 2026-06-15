@@ -1255,8 +1255,10 @@ let g:currentmode={
     \ '!'  : 'Shell',
     \ 't'  : 'Terminal'
 \}
-set statusline=
-set statusline+=%{LastAccentColor()}
+" NOTE: in Neovim 0.12 `set statusline=` resets to the built-in default instead
+" of clearing it, so the first line must assign the option with `=` (non-empty)
+" to fully overwrite it; the rest append with `+=`.
+set statusline=%{LastAccentColor()} " Refresh accent color for the current mode
 set statusline+=%1*\ ***%{toupper(g:currentmode[mode()])}***\  " Current mode
 set statusline+=%2*\ %<%F\  " Filepath
 set statusline+=%2*\ [%{SearchCount()}] " Nth of N when searching
